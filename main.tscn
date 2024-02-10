@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmjp6174treub"]
+
+[ext_resource type="PackedScene" uid="uid://h2iadgdfawpi" path="res://level1.tscn" id="1_0clgb"]
+
+[node name="main" type="Node3D"]
+
+[node name="level1" parent="." instance=ExtResource("1_0clgb")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.642788, -0.439385, 0.627507, 0, 0.819152, 0.573576, -0.766044, 0.368688, -0.526541, 10, 10, -5)
+projection = 1
+size = 10.0

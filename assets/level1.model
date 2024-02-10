@@ -1,0 +1,33 @@
+# Made using Asset Forge (2.4.0)
+
+:materials
+
+[name:stoneLight;color:RGBA(0.710, 0.701, 0.840, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.5;valueB:0;]
+[name:stoneDark;color:RGBA(0.403, 0.390, 0.594, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.5;valueB:0;]
+
+:models
+
+[name:;collection:Dungeons;type:stairs;position:(-3.0000, 0.0000, -0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.5000, 2.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:floor;position:(-1.5000, 0.0000, -0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(0.5000, 0.0000, -0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(0.5000, 0.0000, 1.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(-1.5000, 0.0000, 1.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(-1.5000, 0.0000, -2.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:wall_corner;position:(-2.6000, 0.0000, -3.6000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall_corner;position:(-2.6000, 0.0000, 2.6000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall;position:(-2.6000, 0.0000, 1.3000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.6000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall;position:(-2.6000, 0.0000, -2.3000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.6000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:floor_corner;position:(-3.0000, 0.0000, -2.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:floor_corner;position:(-3.0000, 0.0000, 1.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:floor;position:(0.5000, 0.0000, -2.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(2.5000, 0.0000, -2.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(2.5000, 0.0000, -0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(2.5000, 0.0000, 1.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(4.5000, 0.0000, -2.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(4.5000, 0.0000, -0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(4.5000, 0.0000, 1.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(2.0000, 0.1000, 2.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneLight;]
+[name:;collection:Dungeons;type:wall;position:(5.4000, 0.0000, -0.5000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 5.2000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall_corner;position:(5.4000, 0.0000, -3.6000);rotation:(0.0000, 270.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall_corner;position:(5.4000, 0.0000, 2.6000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall;position:(1.3400, 0.0000, -3.6000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 7.6800);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:wall;position:(1.2800, 0.0000, 2.6000);rotation:(0.0000, 270.0000, 0.0000);scale:(1.0000, 1.0000, 7.5600);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
