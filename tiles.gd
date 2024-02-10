@@ -25,7 +25,7 @@ func _ready():
 		collisionBody.add_child(collisionShape)
 		collisionShape.set_owner(self)
 		
-		collisionShape.shape = mesh.mesh.create_trimesh_shape()
+		collisionShape.shape = mesh.mesh.create_convex_shape()
 
 	for child in get_children():
 		child.position = Vector3(0, 0, 0)

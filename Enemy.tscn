@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmpqqlben7t5q"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_bvr3j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
+radius = 0.15
+height = 0.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_70cfg"]
+radius = 0.15
+height = 0.6
+
+[node name="Enemy" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.196, 0.3, 0)
+floor_constant_speed = true
+floor_max_angle = 1.35438
+script = ExtResource("1_bvr3j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_h2xl3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_70cfg")
+skeleton = NodePath("../../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 0.3
