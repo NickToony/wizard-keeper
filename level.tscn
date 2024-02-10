@@ -1186,17 +1186,19 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1172, 1.67674, -5.94803)
 shadow_enabled = true
 omni_range = 2.0
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+[node name="OmniLight3D3" type="OmniLight3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7643, 0.879824, 0.115468)
 shadow_enabled = true
 omni_range = 2.0
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9335, 1.88951, 5.13486)
 shadow_enabled = true
 omni_range = 2.0
