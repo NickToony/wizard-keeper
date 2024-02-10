@@ -1,0 +1,11 @@
+# Made using Asset Forge (2.4.0)
+
+:materials
+
+[name:stoneLight;color:RGBA(0.537, 0.526, 0.697, 1.000);scale:(1.0, 1.0);texture:Brick/greybricks.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
+[name:stoneDark;color:RGBA(0.503, 0.429, 0.405, 1.000);scale:(1.0, 1.0);texture:Brick/stone.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
+[name:foliage;color:RGBA(0.166, 0.165, 0.165, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+
+:models
+
+[name:;collection:Dungeons;type:column;position:(0.0000, 0.0000, 0.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:foliage+foliage;]
