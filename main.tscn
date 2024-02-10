@@ -1,12 +1,109 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmjp6174treub"]
+[gd_scene load_steps=7 format=3 uid="uid://bmjp6174treub"]
 
-[ext_resource type="PackedScene" uid="uid://h2iadgdfawpi" path="res://level1.tscn" id="1_0clgb"]
+[ext_resource type="PackedScene" uid="uid://bdcrlm21c8k2s" path="res://level.tscn" id="1_tudte"]
+[ext_resource type="Script" path="res://Player.gd" id="2_60j26"]
+[ext_resource type="Script" path="res://Enemy.gd" id="3_jjch6"]
+
+[sub_resource type="Environment" id="Environment_c8u53"]
+background_mode = 1
+background_color = Color(0.0117647, 0.0117647, 0.0117647, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.52549, 0.52549, 0.52549, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
+radius = 0.15
+height = 0.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_70cfg"]
+radius = 0.15
+height = 0.6
 
 [node name="main" type="Node3D"]
 
-[node name="level1" parent="." instance=ExtResource("1_0clgb")]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.124077, -0.539832, 0.832578, 0.428468, 0.727658, 0.535658, -0.894997, 0.423195, 0.141015, 10.3663, 7.59075, 6.69605)
+light_energy = 0.5
+shadow_enabled = true
+directional_shadow_mode = 0
+sky_mode = 1
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.642788, -0.439385, 0.627507, 0, 0.819152, 0.573576, -0.766044, 0.368688, -0.526541, 10, 10, -5)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c8u53")
+
+[node name="level" parent="." instance=ExtResource("1_tudte")]
+
+[node name="Player" type="CharacterBody3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08218, 0.767764, 0)
+floor_constant_speed = true
+floor_max_angle = 1.35438
+script = ExtResource("2_60j26")
+speed = 5
+fall_acceleration = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Player"]
+shape = SubResource("CapsuleShape3D_h2xl3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Player"]
+mesh = SubResource("CapsuleMesh_70cfg")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="level/Player"]
+transform = Transform3D(-0.642788, -0.439385, 0.627507, 0, 0.819152, 0.573576, -0.766044, 0.368688, -0.526541, 5, 5, -4)
 projection = 1
-size = 10.0
+current = true
+size = 5.0
+far = 50.0
+
+[node name="Enemy" type="CharacterBody3D" parent="level" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.196, 0.3, 0)
+floor_constant_speed = true
+floor_max_angle = 1.35438
+script = ExtResource("3_jjch6")
+target = NodePath("../Player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Enemy"]
+shape = SubResource("CapsuleShape3D_h2xl3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Enemy"]
+mesh = SubResource("CapsuleMesh_70cfg")
+skeleton = NodePath("../../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="level/Enemy"]
+avoidance_enabled = true
+radius = 0.1
+
+[node name="Enemy2" type="CharacterBody3D" parent="level" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75548, 0.3, 0)
+floor_constant_speed = true
+floor_max_angle = 1.35438
+script = ExtResource("3_jjch6")
+target = NodePath("../Player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Enemy2"]
+shape = SubResource("CapsuleShape3D_h2xl3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Enemy2"]
+mesh = SubResource("CapsuleMesh_70cfg")
+skeleton = NodePath("../../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="level/Enemy2"]
+avoidance_enabled = true
+radius = 0.1
+
+[node name="Enemy3" type="CharacterBody3D" parent="level" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9548, 0.3, 0)
+floor_constant_speed = true
+floor_max_angle = 1.35438
+script = ExtResource("3_jjch6")
+target = NodePath("../Player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Enemy3"]
+shape = SubResource("CapsuleShape3D_h2xl3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Enemy3"]
+mesh = SubResource("CapsuleMesh_70cfg")
+skeleton = NodePath("../../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="level/Enemy3"]
+avoidance_enabled = true
+radius = 0.1
