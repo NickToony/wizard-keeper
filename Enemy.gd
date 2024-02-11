@@ -64,8 +64,12 @@ func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
 	move_and_slide()
 	
-	if velocity != Vector3.ZERO:
+	var speed = velocity.length()
+	if speed > 1:
 		modelAnimation.play("Run")
+		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+	elif speed > 0.1:
+		modelAnimation.play("Walk")
 		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
 	else:
 		modelAnimation.play("Idle")
