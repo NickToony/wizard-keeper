@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cu7qes7pu3re8"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_whpmj"]
+[ext_resource type="Script" path="res://src/entities/player/Player.gd" id="1_whpmj"]
 [ext_resource type="PackedScene" uid="uid://ciywvy5g1ocgt" path="res://assets/character/Wizard.gltf" id="2_mqdhi"]
-[ext_resource type="Shader" path="res://postprocess.gdshader" id="2_prys7"]
+[ext_resource type="Shader" path="res://shaders/postprocess.gdshader" id="2_prys7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
 radius = 0.15

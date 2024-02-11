@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddn5q858lm215"]
 
-[ext_resource type="Script" path="res://scenery.gd" id="1_x1npr"]
+[ext_resource type="Script" path="res://src/tilesets/scenery.gd" id="1_x1npr"]
 [ext_resource type="Texture2D" uid="uid://bmg8vhffl7td" path="res://assets/scenery/column/column_Stone_tiles.png" id="2_cmj4n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dih02"]
@@ -71,7 +71,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0iain")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ssjcp"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aect8"]
 points = PackedVector3Array(-0.19, 0, -0.19, -0.19, 0, 0.19, -0.19, 0.219949, -0.19, 0.19, 0, -0.19, 0.19, 0, 0.19, -0.19, 0.219949, 0.19, 0.19, 0.219949, -0.19, -0.165004, 1, -0.165004, 0.19, 0.219949, 0.19, -0.165004, 1, 0.164967, 0.164967, 1, -0.165004, 0.164967, 1, 0.164967)
 
 [node name="scenery" type="Node3D"]
@@ -82,7 +82,7 @@ transform = Transform3D(0, 1.68587e-07, -1, -8.42939e-08, 1, 1.68588e-07, 1, 8.4
 mesh = SubResource("ArrayMesh_mmhw4")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@17459" type="StaticBody3D" parent="column"]
+[node name="@StaticBody3D@30694" type="StaticBody3D" parent="column"]
 
-[node name="@CollisionShape3D@17460" type="CollisionShape3D" parent="column/@StaticBody3D@17459"]
-shape = SubResource("ConvexPolygonShape3D_ssjcp")
+[node name="@CollisionShape3D@30695" type="CollisionShape3D" parent="column/@StaticBody3D@30694"]
+shape = SubResource("ConvexPolygonShape3D_aect8")

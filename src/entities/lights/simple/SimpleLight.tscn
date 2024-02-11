@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbu6wtvq40n6u"]
 
-[ext_resource type="Script" path="res://SimpleLight.gd" id="1_vxkax"]
+[ext_resource type="Script" path="res://src/entities/lights/simple/SimpleLight.gd" id="1_vxkax"]
 
 [node name="SimpleLight" type="OmniLight3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1172, 1.67674, -5.94803)

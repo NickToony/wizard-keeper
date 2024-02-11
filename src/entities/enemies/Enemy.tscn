@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmpqqlben7t5q"]
 
-[ext_resource type="Script" path="res://Enemy.gd" id="1_bvr3j"]
+[ext_resource type="Script" path="res://src/entities/enemies/Enemy.gd" id="1_bvr3j"]
 [ext_resource type="PackedScene" uid="uid://cbuf3x7qk1str" path="res://assets/enemies/Goblin.gltf" id="2_sw6f5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]

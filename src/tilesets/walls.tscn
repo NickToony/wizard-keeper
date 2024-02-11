@@ -1,21 +1,21 @@
 [gd_scene load_steps=25 format=3 uid="uid://bs60a23ol6xyx"]
 
-[ext_resource type="Script" path="res://walls.gd" id="1_urjyi"]
-[ext_resource type="Texture2D" uid="uid://c23dvda5lvsnt" path="res://assets/walls/walls_Stone_tiles.png" id="2_ey018"]
-[ext_resource type="Texture2D" uid="uid://cclle765dp7fu" path="res://assets/walls/walls_1.png" id="3_f2yfv"]
-[ext_resource type="Texture2D" uid="uid://cphhiwbbtbh3d" path="res://assets/walls/walls_2.png" id="4_j50kf"]
+[ext_resource type="Script" path="res://src/tilesets/walls.gd" id="1_00ly5"]
+[ext_resource type="Texture2D" uid="uid://c23dvda5lvsnt" path="res://assets/walls/walls_Stone_tiles.png" id="2_guhfu"]
+[ext_resource type="Texture2D" uid="uid://cclle765dp7fu" path="res://assets/walls/walls_1.png" id="3_54yxc"]
+[ext_resource type="Texture2D" uid="uid://cphhiwbbtbh3d" path="res://assets/walls/walls_2.png" id="4_kkdr0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjmne"]
 resource_name = "foliage(Clone)"
 albedo_color = Color(0.166, 0.165, 0.165, 1)
-albedo_texture = ExtResource("2_ey018")
+albedo_texture = ExtResource("2_guhfu")
 metallic = 0.35
 texture_filter = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1fh7"]
 resource_name = "stoneDark(Clone)"
 albedo_color = Color(0.503, 0.429, 0.405, 1)
-albedo_texture = ExtResource("3_f2yfv")
+albedo_texture = ExtResource("3_54yxc")
 metallic = 0.5
 texture_filter = 1
 
@@ -73,20 +73,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3lcnw")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jyeom"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l4tvd"]
 points = PackedVector3Array(0.12498, 1, 0.499995, 0.12498, 1, -0.5, -0.12501, 1, 0.499995, 0.15, 0.19998, 0.499995, -0.12501, 1, -0.5, 0.15, 0.19998, -0.5, -0.15, 0.19998, 0.499995, 0.15, 0, 0.499995, -0.15, 0.19998, -0.5, 0.15, 0, -0.5, -0.15, 0, 0.499995, -0.15, 0, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khg27"]
 resource_name = "stoneLight(Clone)"
 albedo_color = Color(0.537, 0.526, 0.697, 1)
-albedo_texture = ExtResource("4_j50kf")
+albedo_texture = ExtResource("4_kkdr0")
 metallic = 0.5
 texture_filter = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u552m"]
 resource_name = "stoneDark(Clone)"
 albedo_color = Color(0.503, 0.429, 0.405, 1)
-albedo_texture = ExtResource("3_f2yfv")
+albedo_texture = ExtResource("3_54yxc")
 metallic = 0.5
 texture_filter = 1
 
@@ -144,20 +144,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_04kcx")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ewnwx"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ee6nv"]
 points = PackedVector3Array(0.474941, 1, 0.499995, 0.5, 0.19998, 0.499995, 0.474941, 1, -0.475039, -0.5, 1, 0.499995, 0.5, 0.19998, -0.5, 0.5, 0, 0.499995, -0.5, 1, -0.475039, -0.5, 0, 0.499995, 0.5, 0, -0.5, -0.5, 0.19998, -0.5, -0.5, 0, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt2t3"]
 resource_name = "stoneLight(Clone)"
 albedo_color = Color(0.537, 0.526, 0.697, 1)
-albedo_texture = ExtResource("4_j50kf")
+albedo_texture = ExtResource("4_kkdr0")
 metallic = 0.5
 texture_filter = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imm3b"]
 resource_name = "stoneDark(Clone)"
 albedo_color = Color(0.503, 0.429, 0.405, 1)
-albedo_texture = ExtResource("3_f2yfv")
+albedo_texture = ExtResource("3_54yxc")
 metallic = 0.5
 texture_filter = 1
 
@@ -215,20 +215,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gtjpj")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8df4w"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_73o76"]
 points = PackedVector3Array(0.12498, 1, 0.499995, 0.12498, 1, -0.5, -0.12501, 1, 0.499995, 0.15, 0.19998, 0.499995, -0.12501, 1, -0.5, 0.15, 0.19998, -0.5, -0.15, 0.19998, 0.499995, 0.15, 0, 0.499995, -0.15, 0.19998, -0.5, 0.15, 0, -0.5, -0.15, 0, 0.499995, -0.15, 0, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lu5b"]
 resource_name = "stoneLight(Clone)"
 albedo_color = Color(0.537, 0.526, 0.697, 1)
-albedo_texture = ExtResource("4_j50kf")
+albedo_texture = ExtResource("4_kkdr0")
 metallic = 0.5
 texture_filter = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pt1lc"]
 resource_name = "stoneDark(Clone)"
 albedo_color = Color(0.503, 0.429, 0.405, 1)
-albedo_texture = ExtResource("3_f2yfv")
+albedo_texture = ExtResource("3_54yxc")
 metallic = 0.5
 texture_filter = 1
 
@@ -286,48 +286,48 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g16h4")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2kld6"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_adnus"]
 points = PackedVector3Array(-0.125, 0, -0.5, -0.125, 0.349961, -0.5, 0.124999, 0, -0.5, -0.125, 0, 0.499995, -0.0750052, 0.4, -0.5, -0.125, 0.349961, 0.499995, 0.124999, 0.349961, -0.5, 0.124999, 0, 0.499995, 0.0749793, 0.4, -0.5, -0.0750052, 0.4, 0.499995, 0.124999, 0.349961, 0.499995, 0.0749793, 0.4, 0.499995)
 
 [node name="walls" type="Node3D"]
-script = ExtResource("1_urjyi")
+script = ExtResource("1_00ly5")
 
 [node name="stone" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 1.68587e-07, -1, -8.42937e-08, 1, 1.68587e-07, 1, 8.42937e-08, 0, 0, 0, 0.5)
 mesh = SubResource("ArrayMesh_lbnyc")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@17467" type="StaticBody3D" parent="stone"]
+[node name="@StaticBody3D@31562" type="StaticBody3D" parent="stone"]
 
-[node name="@CollisionShape3D@17468" type="CollisionShape3D" parent="stone/@StaticBody3D@17467"]
-shape = SubResource("ConvexPolygonShape3D_jyeom")
+[node name="@CollisionShape3D@31563" type="CollisionShape3D" parent="stone/@StaticBody3D@31562"]
+shape = SubResource("ConvexPolygonShape3D_l4tvd")
 
 [node name="floor_corner" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, 4.76837e-07, 0)
 mesh = SubResource("ArrayMesh_bk3lq")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@17469" type="StaticBody3D" parent="floor_corner"]
+[node name="@StaticBody3D@31564" type="StaticBody3D" parent="floor_corner"]
 
-[node name="@CollisionShape3D@17470" type="CollisionShape3D" parent="floor_corner/@StaticBody3D@17469"]
-shape = SubResource("ConvexPolygonShape3D_ewnwx")
+[node name="@CollisionShape3D@31565" type="CollisionShape3D" parent="floor_corner/@StaticBody3D@31564"]
+shape = SubResource("ConvexPolygonShape3D_ee6nv")
 
 [node name="wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 1.68587e-07, -1, -8.42937e-08, 1, 1.68587e-07, 1, 8.42937e-08, 0, -1.19209e-07, 2.38419e-07, 0.5)
 mesh = SubResource("ArrayMesh_1ae1x")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@17471" type="StaticBody3D" parent="wall"]
+[node name="@StaticBody3D@31566" type="StaticBody3D" parent="wall"]
 
-[node name="@CollisionShape3D@17472" type="CollisionShape3D" parent="wall/@StaticBody3D@17471"]
-shape = SubResource("ConvexPolygonShape3D_8df4w")
+[node name="@CollisionShape3D@31567" type="CollisionShape3D" parent="wall/@StaticBody3D@31566"]
+shape = SubResource("ConvexPolygonShape3D_73o76")
 
 [node name="barrier" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 1.68587e-07, -1, -8.42938e-08, 1, 1.68588e-07, 1, 8.42937e-08, 0, -4.76837e-07, 7.15256e-07, 0.5)
 mesh = SubResource("ArrayMesh_q6u27")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@17473" type="StaticBody3D" parent="barrier"]
+[node name="@StaticBody3D@31568" type="StaticBody3D" parent="barrier"]
 
-[node name="@CollisionShape3D@17474" type="CollisionShape3D" parent="barrier/@StaticBody3D@17473"]
-shape = SubResource("ConvexPolygonShape3D_2kld6")
+[node name="@CollisionShape3D@31569" type="CollisionShape3D" parent="barrier/@StaticBody3D@31568"]
+shape = SubResource("ConvexPolygonShape3D_adnus")
