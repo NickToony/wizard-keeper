@@ -26,8 +26,10 @@ mesh = SubResource("CapsuleMesh_70cfg")
 skeleton = NodePath("../../..")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_postprocessing = 1
 avoidance_enabled = true
 radius = 0.3
+neighbor_distance = 4.0
 
 [node name="Goblin" parent="." instance=ExtResource("2_sw6f5")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, -0.24174, 0)
