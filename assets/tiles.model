@@ -12,6 +12,6 @@
 
 :models
 
-[name:;collection:Golf;type:slope_center_straightB;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.2000, 1.0000);group:;locked:False;hidden:False;materials:foliage+bricks;]
 [name:;collection:Dungeons;type:stairs;position:(-1.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.5000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
-[name:;collection:Dungeons;type:floor;position:(0.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.1000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneLight;]
+[name:;collection:Dungeons;type:floor;position:(0.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.0810, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneLight;]
+[name:;collection:Golf;type:slope_center_straightB;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.1500, 1.0000);group:;locked:False;hidden:False;materials:foliage+bricks;]

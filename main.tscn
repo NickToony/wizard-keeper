@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmjp6174treub"]
+[gd_scene load_steps=5 format=3 uid="uid://bmjp6174treub"]
 
 [ext_resource type="PackedScene" uid="uid://bdcrlm21c8k2s" path="res://level.tscn" id="1_tudte"]
-[ext_resource type="Script" path="res://Player.gd" id="2_60j26"]
+[ext_resource type="PackedScene" uid="uid://4ox6h0uud5x5" path="res://Player.tscn" id="2_u75ku"]
 [ext_resource type="PackedScene" uid="uid://dmpqqlben7t5q" path="res://Enemy.tscn" id="3_bcg1e"]
 
 [sub_resource type="Environment" id="Environment_c8u53"]
@@ -9,14 +9,6 @@ background_mode = 1
 background_color = Color(0.0117647, 0.0117647, 0.0117647, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.52549, 0.52549, 0.52549, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
-radius = 0.15
-height = 0.6
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_70cfg"]
-radius = 0.15
-height = 0.6
 
 [node name="main" type="Node3D"]
 
@@ -32,27 +24,8 @@ environment = SubResource("Environment_c8u53")
 
 [node name="level" parent="." instance=ExtResource("1_tudte")]
 
-[node name="Player" type="CharacterBody3D" parent="level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08218, 0.767764, 0)
-floor_constant_speed = true
-floor_max_angle = 1.35438
-script = ExtResource("2_60j26")
-speed = 5
-fall_acceleration = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Player"]
-shape = SubResource("CapsuleShape3D_h2xl3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Player"]
-mesh = SubResource("CapsuleMesh_70cfg")
-skeleton = NodePath("../../..")
-
-[node name="Camera3D" type="Camera3D" parent="level/Player"]
-transform = Transform3D(-0.642788, -0.439385, 0.627507, 0, 0.819152, 0.573576, -0.766044, 0.368688, -0.526541, 5, 5, -4)
-projection = 1
-current = true
-size = 5.0
-far = 50.0
+[node name="Player" parent="level" instance=ExtResource("2_u75ku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0327, 1.37075, 0.994849)
 
 [node name="Enemy" parent="level" node_paths=PackedStringArray("target") instance=ExtResource("3_bcg1e")]
 target = NodePath("../Player")
