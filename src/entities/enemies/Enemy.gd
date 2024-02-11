@@ -48,8 +48,25 @@ func _process(delta):
 	# func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(target.global_position)
 	var reachable = navigation_agent.is_target_reachable()
+	
+	if position.distance_to(target.global_position) < 1:
 
-func _physics_process(delta):
+		#if (modelAnimation.current_animation != 'Attack'):
+		modelAnimation.play("Attack")
+			#print('attacking!')
+		return
+	
+	var speed = velocity.length()
+	if speed > 1:
+		modelAnimation.play("Run")
+		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+	elif speed > 0.1:
+		modelAnimation.play("Walk")
+		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+	else:
+		modelAnimation.play("Idle")
+
+func _physics_process(delta):	
 	if navigation_agent.is_navigation_finished():
 		return
 
@@ -63,13 +80,3 @@ func _physics_process(delta):
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
 	move_and_slide()
-	
-	var speed = velocity.length()
-	if speed > 1:
-		modelAnimation.play("Run")
-		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
-	elif speed > 0.1:
-		modelAnimation.play("Walk")
-		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
-	else:
-		modelAnimation.play("Idle")

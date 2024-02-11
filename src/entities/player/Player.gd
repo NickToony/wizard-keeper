@@ -100,6 +100,10 @@ func _physics_process(delta):
 	velocity = target_velocity
 	move_and_slide()
 	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		modelAnimation.play("Attack")
+		return
+	
 	if velocity != Vector3.ZERO:
 		modelAnimation.play("Run")
 		wizard.rotation.y = lerp_angle(wizard.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
