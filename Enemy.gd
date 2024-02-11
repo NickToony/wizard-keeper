@@ -38,6 +38,8 @@ extends CharacterBody3D
 
 @export var movement_speed: float = 4.0
 @onready var navigation_agent: NavigationAgent3D = get_node("NavigationAgent3D")
+@onready var modelAnimation: AnimationPlayer = $Goblin/AnimationPlayer
+@onready var goblin: Node3D = $Goblin
 
 func _ready() -> void:
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
@@ -61,3 +63,9 @@ func _physics_process(delta):
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
 	move_and_slide()
+	
+	if velocity != Vector3.ZERO:
+		modelAnimation.play("Run")
+		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+	else:
+		modelAnimation.play("Idle")

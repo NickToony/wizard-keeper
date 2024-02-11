@@ -29,6 +29,7 @@ environment = SubResource("Environment_c8u53")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0327, 0.510972, 0.994849)
 
 [node name="Enemy" parent="level" node_paths=PackedStringArray("target") instance=ExtResource("3_bcg1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6644, 0.355083, -0.0254896)
 target = NodePath("../Player")
 
 [node name="Enemy2" parent="level" node_paths=PackedStringArray("target") instance=ExtResource("3_bcg1e")]
@@ -36,5 +37,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0049, 0.3, 0)
 target = NodePath("../Player")
 
 [node name="Enemy3" parent="level" node_paths=PackedStringArray("target") instance=ExtResource("3_bcg1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2092, 2.74885, 5.73904)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1975, 1.79259, 4.92899)
 target = NodePath("../Player")
