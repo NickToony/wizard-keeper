@@ -1,0 +1,12 @@
+# Made using Asset Forge (2.4.0)
+
+:materials
+
+[name:woodLight;color:RGBA(0.816, 0.580, 0.420, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:tan;color:RGBA(0.933, 0.835, 0.663, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:metalLight;color:RGBA(0.950, 0.341, 1.000, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
+
+:models
+
+[name:;collection:Swords;type:hilt_smooth;position:(0.0000, -0.2000, 0.0000);rotation:(0.0000, 270.0000, 0.0000);scale:(0.1000, 0.7920, 0.2000);group:;locked:False;hidden:False;materials:woodLight+tan;]
+[name:;collection:Swords;type:blade_skew;position:(0.0000, 0.1000, 0.0000);rotation:(0.0000, 270.0000, 0.0000);scale:(0.1200, 0.1000, 0.2400);group:;locked:False;hidden:False;materials:metalLight;]

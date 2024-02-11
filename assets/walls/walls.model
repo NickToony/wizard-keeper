@@ -2,13 +2,16 @@
 
 :materials
 
-[name:stoneLight;color:RGBA(0.537, 0.526, 0.697, 1.000);scale:(1.0, 1.0);texture:Brick/greybricks.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
-[name:stoneDark;color:RGBA(0.503, 0.429, 0.405, 1.000);scale:(1.0, 1.0);texture:Brick/stone.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
-[name:foliage;color:RGBA(0.166, 0.165, 0.165, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:stoneLight;color:RGBA(0.312, 0.295, 0.559, 1.000);scale:(1.0, 1.0);texture:Brick/greybricks.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
+[name:stoneDark;color:RGBA(1.000, 0.983, 0.641, 1.000);scale:(1.0, 1.0);texture:Brick/greybricks.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
+[name:foliage;color:RGBA(0.890, 0.849, 0.582, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:wood;color:RGBA(0.828, 0.741, 0.639, 1.000);scale:(1.0, 1.0);texture:Brick/tiles.png;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:stone;color:RGBA(0.571, 0.559, 0.736, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.5;valueB:0;]
 
 :models
 
-[name:stone;collection:Dungeons;type:wall;position:(0.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneDark;]
-[name:;collection:Dungeons;type:floor_corner;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
-[name:;collection:Dungeons;type:wall;position:(-1.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
-[name:;collection:Dungeons;type:barrier;position:(-3.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:stonewall;collection:Dungeons;type:wall;position:(0.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneDark;]
+[name:stonecolumn;collection:Dungeons;type:column;position:(0.5000, 0.0000, -0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.1000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneDark;]
+[name:altwall;collection:Dungeons;type:wall;position:(-1.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneDark;]
+[name:stoneblock;collection:Dungeons;type:floor_corner;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneDark;]
+[name:stonefence;collection:Dungeons;type:barrier;position:(-3.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneDark+stoneDark;]

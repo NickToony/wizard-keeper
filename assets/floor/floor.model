@@ -2,16 +2,11 @@
 
 :materials
 
-[name:stoneLight;color:RGBA(0.537, 0.526, 0.697, 1.000);scale:(1.0, 1.0);texture:Brick/greybricks.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
-[name:stoneDark;color:RGBA(0.503, 0.429, 0.405, 1.000);scale:(1.0, 1.0);texture:Brick/stone.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
-[name:foliage;color:RGBA(0.166, 0.165, 0.165, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;mapping:0;valueA:0.35;valueB:0;]
-[name:bricks;color:RGBA(0.648, 0.173, 0.106, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0;]
-[name:steel;color:RGBA(0.101, 0.082, 0.400, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
-[name:_defaultMat;color:RGBA(1.000, 1.000, 1.000, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
-[name:dark;color:RGBA(0.193, 0.193, 0.193, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:stoneLight;color:RGBA(0.997, 1.000, 0.923, 1.000);scale:(1.0, 1.0);texture:Brick/greybricks.png;shader:Default;mapping:0;valueA:0.5;valueB:0;]
+[name:stoneDark;color:RGBA(0.552, 0.466, 0.466, 1.000);scale:(1.0, 1.0);texture:Stone/greybricks;shader:Default;mapping:0;valueA:0.25;valueB:0.25;]
 
 :models
 
-[name:;collection:Dungeons;type:stairs;position:(-1.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.6000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
-[name:;collection:Dungeons;type:floor;position:(0.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.0810, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneLight;]
-[name:;collection:Golf;type:slope_center_straightB;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 0.6500, 1.0000);group:;locked:False;hidden:False;materials:foliage+bricks;]
+[name:stonestairs;collection:Dungeons;type:stairs;position:(-1.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.6000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:stonefloor;collection:Dungeons;type:floor;position:(0.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.1000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneLight;]
+[name:stoneslope;collection:Golf;type:slope_center_straightB;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 0.6400, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneLight;]
