@@ -13,9 +13,9 @@ height = 0.6
 
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
-floor_max_angle = 1.35438
+floor_max_angle = 1.22173
 script = ExtResource("1_whpmj")
-speed = 5
+speed = 3
 fall_acceleration = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
