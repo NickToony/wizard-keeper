@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://4ox6h0uud5x5"]
+[gd_scene load_steps=5 format=3 uid="uid://cu7qes7pu3re8"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_whpmj"]
-[ext_resource type="PackedScene" path="res://assets/character/Wizard.gltf" id="2_mqdhi"]
+[ext_resource type="PackedScene" uid="uid://ciywvy5g1ocgt" path="res://assets/character/Wizard.gltf" id="2_mqdhi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
 radius = 0.15
@@ -12,9 +12,8 @@ radius = 0.15
 height = 0.6
 
 [node name="Player" type="CharacterBody3D"]
-wall_min_slide_angle = 3.14159
 floor_constant_speed = true
-floor_max_angle = 3.14159
+floor_max_angle = 1.35438
 script = ExtResource("1_whpmj")
 speed = 5
 fall_acceleration = 5
@@ -23,6 +22,7 @@ fall_acceleration = 5
 shape = SubResource("CapsuleShape3D_h2xl3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_70cfg")
 skeleton = NodePath("../../..")
 
@@ -35,4 +35,3 @@ far = 50.0
 
 [node name="Wizard" parent="." instance=ExtResource("2_mqdhi")]
 transform = Transform3D(-0.15, 0, 1.31134e-08, 0, 0.15, 0, -1.31134e-08, 0, -0.15, 0, -0.237146, 0)
-visible = false
