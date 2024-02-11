@@ -7,9 +7,14 @@ extends CharacterBody3D
 
 @onready var wizard: Node3D = $Wizard
 @onready var modelAnimation: AnimationPlayer = $Wizard/AnimationPlayer
+@onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 
 var target_velocity = Vector3.ZERO
 
+func _ready():
+	print('yes')
+	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
+	wizardArrayMesh.shadow_mesh = $MeshInstance3D.mesh
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO

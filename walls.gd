@@ -10,7 +10,7 @@ func _ready():
 		child.queue_free()
 		remove_child(child);
 
-	var meshScene = load("res://assets/walls.glb")
+	var meshScene = load("res://assets/walls/walls.glb")
 	var meshes = meshScene.instantiate()
 	for mesh: MeshInstance3D in meshes.get_children():
 		var copy = mesh.duplicate()

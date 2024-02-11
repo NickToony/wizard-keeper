@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcrhwgk7chwk1"
-path.s3tc="res://.godot/imported/tiles_Stone_tiles.png-baa8bb0db609a10a24006cba9be65718.s3tc.ctex"
+uid="uid://c23dvda5lvsnt"
+path.s3tc="res://.godot/imported/walls_Stone_tiles.png-0e1c77b0a29f0548d2591d256e052032.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/tiles_Stone_tiles.png"
-dest_files=["res://.godot/imported/tiles_Stone_tiles.png-baa8bb0db609a10a24006cba9be65718.s3tc.ctex"]
+source_file="res://assets/walls/walls_Stone_tiles.png"
+dest_files=["res://.godot/imported/walls_Stone_tiles.png-0e1c77b0a29f0548d2591d256e052032.s3tc.ctex"]
 
 [params]
 

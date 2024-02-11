@@ -11,3 +11,4 @@
 [name:stone;collection:Dungeons;type:wall;position:(0.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:foliage+stoneDark;]
 [name:;collection:Dungeons;type:floor_corner;position:(-2.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
 [name:;collection:Dungeons;type:wall;position:(-1.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]
+[name:;collection:Dungeons;type:barrier;position:(-3.0000, 0.0000, -0.5000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:stoneLight+stoneDark;]

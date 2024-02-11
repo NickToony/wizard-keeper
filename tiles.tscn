@@ -73,7 +73,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6jwm0")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_il3cs"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gve80"]
 points = PackedVector3Array(-0.315585, 1.00198, 0.501984, -0.315585, 1.00198, -0.508016, -0.499873, 0, 0.493968, 0.518016, 0.168358, 0.501984, -0.499873, 0, -0.5, -0.5, 0.994093, 0.494094, 0.494058, -5.55112e-17, 0.493968, -0.499873, 0.993968, -0.5, 0.357623, 0.344733, -0.508016, 0.494058, -5.55112e-17, -0.5, 0.020969, 0.681268, 0.501984, 0.518016, 0.168358, -0.508016, 0.357623, 0.344733, 0.501984, 0.020969, 0.681268, -0.508016)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfqsa"]
@@ -144,7 +144,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kmksv")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_adr0c"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lys4j"]
 points = PackedVector3Array(0.5, 0.999804, 0.5, -0.5, 0.000195793, -0.5, -0.5, 0.000195793, 0.5, -0.5, 0.999804, -0.5, 0.5, 0.000195793, -0.5, -0.5, 0.999804, 0.5, 0.5, 0.000195793, 0.5, 0.5, 0.999804, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeyex"]
@@ -213,7 +213,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_if5lx")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3b7jn"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v8db7"]
 points = PackedVector3Array(0.507937, 0.38883, 0.507937, -0.507937, -0.00783402, -0.476116, -0.507937, 0.515873, 0.507937, 0.507937, 0.119107, -0.492026, 0.507937, 0.515873, 0.492026, 0.507937, -0.00783402, -0.476116, -0.507937, 0.135, -0.460305, -0.507937, 0.357095, 0.444395, -0.507937, 0.103265, -0.507937, -0.507937, 0.38883, 0.507937, 0.507937, 0.293573, 0.285689, -0.507937, 0.515873, 0.492026, -0.507937, 0.00800794, -0.428484, 0.507937, 0.135, -0.460305, 0.507937, 0.00800794, -0.428484, 0.507937, 0.103265, -0.507937, 0.507937, 0.515873, 0.507937, 0.507937, 0.357095, 0.444395, -0.507937, 0.119107, -0.492026, -0.507937, 0.293573, 0.285689)
 
 [node name="tiles" type="Node3D"]
@@ -224,27 +224,27 @@ transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_itgae")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@22262" type="StaticBody3D" parent="stairs"]
+[node name="@StaticBody3D@17461" type="StaticBody3D" parent="stairs"]
 
-[node name="@CollisionShape3D@22263" type="CollisionShape3D" parent="stairs/@StaticBody3D@22262"]
-shape = SubResource("ConvexPolygonShape3D_il3cs")
+[node name="@CollisionShape3D@17462" type="CollisionShape3D" parent="stairs/@StaticBody3D@17461"]
+shape = SubResource("ConvexPolygonShape3D_gve80")
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.081, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_efihk")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@22264" type="StaticBody3D" parent="floor"]
+[node name="@StaticBody3D@17463" type="StaticBody3D" parent="floor"]
 
-[node name="@CollisionShape3D@22265" type="CollisionShape3D" parent="floor/@StaticBody3D@22264"]
-shape = SubResource("ConvexPolygonShape3D_adr0c")
+[node name="@CollisionShape3D@17464" type="CollisionShape3D" parent="floor/@StaticBody3D@17463"]
+shape = SubResource("ConvexPolygonShape3D_lys4j")
 
 [node name="slope_center_straightB" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 1.09582e-07, -1, -8.42937e-08, 0.65, 1.68587e-07, 1, 5.47909e-08, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_rlusb")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@22266" type="StaticBody3D" parent="slope_center_straightB"]
+[node name="@StaticBody3D@17465" type="StaticBody3D" parent="slope_center_straightB"]
 
-[node name="@CollisionShape3D@22267" type="CollisionShape3D" parent="slope_center_straightB/@StaticBody3D@22266"]
-shape = SubResource("ConvexPolygonShape3D_3b7jn")
+[node name="@CollisionShape3D@17466" type="CollisionShape3D" parent="slope_center_straightB/@StaticBody3D@17465"]
+shape = SubResource("ConvexPolygonShape3D_v8db7")
