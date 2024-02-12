@@ -43,13 +43,22 @@ move_right={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="collide"
+3d_physics/layer_2="player"
+3d_physics/layer_3="enemy"
+3d_physics/layer_4="player_projectile"
+3d_physics/layer_5="enemy_projectile"
+3d_physics/layer_9="look"
+
 [navigation]
 
 3d/default_cell_size=0.1
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 
 [shader_globals]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://da1u7a1sdc60h"]
+
+[ext_resource type="Script" path="res://src/attacks/projectile.gd" id="1_yasej"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ge15r"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iick1"]
+radius = 0.1
+
+[node name="Projectile" type="Area3D"]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_yasej")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ge15r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iick1")

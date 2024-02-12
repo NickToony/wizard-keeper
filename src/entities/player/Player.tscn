@@ -33,7 +33,9 @@ shader_parameter/grazing_angle_modulation_factor = 50.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_887m4"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["players"]]
+collision_layer = 2
+collision_mask = 17
 floor_constant_speed = true
 floor_max_angle = 1.22173
 script = ExtResource("1_whpmj")
@@ -65,8 +67,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_gjey3")
 transform = Transform3D(-0.15, 0, 1.31134e-08, 0, 0.15, 0, -1.31134e-08, 0, -0.15, 0, -0.237146, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-collision_layer = 256
-collision_mask = 256
+visible = false
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+visible = false
 shape = SubResource("WorldBoundaryShape3D_887m4")

@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var modelAnimation: AnimationPlayer = $Wizard/AnimationPlayer
 @onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 @onready var skeleton: Skeleton3D = $Wizard/EnemyArmature/Skeleton3D
+@onready var rightArmBone = skeleton.find_bone("Arm.R")
 
 var weaponMesh: Node3D
 
@@ -16,6 +17,11 @@ var target_velocity = Vector3.ZERO
 var weapon_target = Vector3.ZERO
 var target_lerp = 0
 var casting = false
+var attackCooldown = 0
+var health = 100
+var dead = false
+
+var projectileScene = preload("res://src/attacks/projectile.tscn")
 
 func _ready():
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
@@ -33,18 +39,16 @@ func _ready():
 	
 	modelAnimation.process_priority = -1
 	
+	modelAnimation.get_animation("Death").loop_mode = Animation.LOOP_NONE
+	modelAnimation.get_animation("Attack").loop_mode = Animation.LOOP_NONE
+	
 	
 func _process(delta):
-	#if weapon_target != Vector3.ZERO:
-		#lerp_target = lerp_target.lerp(weapon_target, 10 * delta)
-	#else:
-		#if targetting:
-			#lerp_target = lerp_target.lerp(position, 10 * delta)
-			#if lerp_target.distance_to(position) < 0.1:
-				#targetting = false
-				#lerp_target = position
-		#else:
-			#lerp_target = position
+	if health < 0:
+		if !dead:
+			modelAnimation.play('Death')
+			dead = true
+		return
 	
 	var pointing_at = position
 	if casting:
@@ -54,8 +58,10 @@ func _process(delta):
 		if target_lerp > 0:
 			target_lerp -= 5 * delta;
 	if target_lerp > 0:
-		var target_pos = skeleton.to_local(skeleton.global_position.lerp(weapon_target, max(target_lerp, 0.01)))
-		var rightArmBone = skeleton.find_bone("Arm.R")
+		var lerpy = max(target_lerp, 0.01)
+		if lerpy < 0.5:
+			lerpy /= 4
+		var target_pos = skeleton.to_local(skeleton.global_position.lerp(weapon_target, lerpy))
 		var bonePos = skeleton.get_bone_pose_position(rightArmBone)
 		var pose : Transform3D = skeleton.get_bone_global_pose(rightArmBone)
 		pose = pose.orthonormalized()
@@ -65,29 +71,29 @@ func _process(delta):
 		pose_new.basis = pose_new.basis.rotated(pose_new.basis.x, deg_to_rad(90))
 		skeleton.set_bone_pose_rotation(rightArmBone, pose_new.basis)
 		
-		#var headBone = skeleton.find_bone("Head")
-		#target_pos = skeleton.to_local(weapon_target)
-		#pose = skeleton.get_bone_global_pose(headBone)
-		#var bonePos = skeleton.get_bone_pose_position(headBone)
-		#pose = pose.orthonormalized()
-		#pose_new = pose.lookisng_at(Vector3(target_pos.x, bonePos.y, target_pos.z), Vector3(0,1,0), true)
-		#pose_new = pose_new.orthonormalized()
-
-		#pose_new.basis.z = pose_new.basis.z.clamp(Vector3(0,0,0), Vector3(.3, .3, .3))
-		#skeleton.set_bone_pose_rotation(headBone, pose_new.basis)
-		
 		weaponMesh.position = Vector3(0, 1, 0.1)
-		#weaponMesh.rotation.x = -deg_to_rad(110)
-		#weaponMesh.rotation.x = lerp_angle(weaponMesh.rotation.x, -deg_to_rad(110), 10 * delta)
-		weaponMesh.rotation.x = lerp_angle(-PI, -deg_to_rad(110), target_lerp)
+		weaponMesh.rotation.x = lerp_angle(-PI, -deg_to_rad(110), lerpy)
 	else:
 		weaponMesh.position = Vector3(0, 1, 1)
 		weaponMesh.rotation.x = 0
-		#weaponMesh.rotation.x = 0
-		#weaponMesh.rotation.x = lerp_angle(weaponMesh.rotation.x, 0, 10 * delta)
+		
+	attackCooldown -= 1
+	if casting && attackCooldown <= 0:
+		attackCooldown = 60;
+		var projectile = projectileScene.instantiate()
+		get_parent().add_child(projectile)
+		projectile.global_position = weaponMesh.global_position
+		projectile.look_at(weapon_target, Vector3(0, 1, 0), true)
+		projectile.update()
+
+		
+		
 
 
 func _physics_process(delta):
+	if dead:
+		return
+	
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("move_right"):
@@ -107,7 +113,7 @@ func _physics_process(delta):
 	target_velocity.z = direction.z * speed
 
 	# Vertical Velocity
-	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
+	if !is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
 	# Moving the Character
@@ -150,7 +156,7 @@ func _physics_process(delta):
 			#var bone_pos = skeleton.get_bone_rest(bone_index)
 			#skeleton.set_bone_pose_rotation(bone_index, bone_pos.looking_at(lookPos).orthonormalized())
 			
-			weapon_target = lookPos
+			weapon_target = lookPos + Vector3(0, 0.3, 0)
 			casting = true
 	else:
 		#weapon_target = Vector3.ZERO
