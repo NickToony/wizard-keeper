@@ -30,7 +30,7 @@ render_mode unshaded, blend_mix, depth_draw_never, depth_test_disabled;
 		line below.
 */
 #define SUPPORT_MOBILE
-//#define NAIVE_NORMAL_RECONSTRUCTION
+#define NAIVE_NORMAL_RECONSTRUCTION
 
 group_uniforms outline;
 uniform vec4 outlineColor: source_color = vec4(0.0, 0.0, 0.0, 0.78);

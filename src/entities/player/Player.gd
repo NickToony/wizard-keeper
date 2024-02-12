@@ -14,7 +14,8 @@ var weaponMesh: Node3D
 
 var target_velocity = Vector3.ZERO
 var weapon_target = Vector3.ZERO
-var lerp_target = Vector3.ZERO
+var target_lerp = 0
+var casting = false
 
 func _ready():
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
@@ -34,21 +35,32 @@ func _ready():
 	
 	
 func _process(delta):
-	if weapon_target != Vector3.ZERO:
-		lerp_target = lerp_target.lerp(weapon_target, 0.1)
-	else:
-		if lerp_target.distance_to(position) > 0.2:
-			lerp_target = lerp_target.lerp(position, 0.1)
-		else:
-			lerp_target = position
+	#if weapon_target != Vector3.ZERO:
+		#lerp_target = lerp_target.lerp(weapon_target, 10 * delta)
+	#else:
+		#if targetting:
+			#lerp_target = lerp_target.lerp(position, 10 * delta)
+			#if lerp_target.distance_to(position) < 0.1:
+				#targetting = false
+				#lerp_target = position
+		#else:
+			#lerp_target = position
 	
-	if lerp_target != position:
-		var target_pos = skeleton.to_local(lerp_target)
+	var pointing_at = position
+	if casting:
+		if target_lerp < 1:
+			target_lerp += 5 * delta;
+	else:
+		if target_lerp > 0:
+			target_lerp -= 5 * delta;
+	if target_lerp > 0:
+		var target_pos = skeleton.to_local(skeleton.global_position.lerp(weapon_target, max(target_lerp, 0.01)))
 		var rightArmBone = skeleton.find_bone("Arm.R")
 		var bonePos = skeleton.get_bone_pose_position(rightArmBone)
 		var pose : Transform3D = skeleton.get_bone_global_pose(rightArmBone)
 		pose = pose.orthonormalized()
-		var pose_new = pose.looking_at(Vector3(target_pos.x, skeleton.position.y, target_pos.z), Vector3(0,1,0), true)
+		#var pose_new = pose.looking_at(Vector3(target_pos.x, skeleton.position.y, target_pos.z), Vector3(0,1,0), true)
+		var pose_new = pose.looking_at(target_pos, Vector3(0,1,0), true)
 		pose_new = pose_new.orthonormalized()
 		pose_new.basis = pose_new.basis.rotated(pose_new.basis.x, deg_to_rad(90))
 		skeleton.set_bone_pose_rotation(rightArmBone, pose_new.basis)
@@ -66,11 +78,13 @@ func _process(delta):
 		
 		weaponMesh.position = Vector3(0, 1, 0.1)
 		#weaponMesh.rotation.x = -deg_to_rad(110)
-		weaponMesh.rotation.x = lerp_angle(weaponMesh.rotation.x, -deg_to_rad(110), 0.2)
+		#weaponMesh.rotation.x = lerp_angle(weaponMesh.rotation.x, -deg_to_rad(110), 10 * delta)
+		weaponMesh.rotation.x = lerp_angle(-PI, -deg_to_rad(110), target_lerp)
 	else:
 		weaponMesh.position = Vector3(0, 1, 1)
+		weaponMesh.rotation.x = 0
 		#weaponMesh.rotation.x = 0
-		weaponMesh.rotation.x = lerp_angle(weaponMesh.rotation.x, 0, 0.2)
+		#weaponMesh.rotation.x = lerp_angle(weaponMesh.rotation.x, 0, 10 * delta)
 
 
 func _physics_process(delta):
@@ -106,7 +120,7 @@ func _physics_process(delta):
 	
 	if velocity != Vector3.ZERO:
 		modelAnimation.play("Run")
-		wizard.rotation.y = lerp_angle(wizard.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+		wizard.rotation.y = lerp_angle(wizard.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 10 * delta)
 	else:
 		modelAnimation.play("Idle")
 		
@@ -124,6 +138,7 @@ func _physics_process(delta):
 		var from = camera.project_ray_origin(camera.get_viewport().get_mouse_position())
 		var to = from + camera.project_ray_normal(camera.get_viewport().get_mouse_position()) * 100
 		var query = PhysicsRayQueryParameters3D.create(from, to)
+		query.collision_mask = pow(2, 9-1)
 		var intersection = spaceState.intersect_ray(query)
 			
 		if !intersection.is_empty():
@@ -136,5 +151,7 @@ func _physics_process(delta):
 			#skeleton.set_bone_pose_rotation(bone_index, bone_pos.looking_at(lookPos).orthonormalized())
 			
 			weapon_target = lookPos
+			casting = true
 	else:
-		weapon_target = Vector3.ZERO
+		#weapon_target = Vector3.ZERO
+		casting = false
