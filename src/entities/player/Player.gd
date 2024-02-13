@@ -22,7 +22,8 @@ var weapon_target = Vector3.ZERO
 var target_lerp = 0
 var casting = false
 var attackCooldown = 0
-var health = 9999
+var health = 200
+var maxHealth = health
 var dead = false
 
 var projectileScene = preload("res://src/attacks/projectile.tscn")

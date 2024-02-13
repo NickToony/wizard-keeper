@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmjp6174treub"]
+[gd_scene load_steps=8 format=3 uid="uid://bmjp6174treub"]
 
 [ext_resource type="PackedScene" uid="uid://bdcrlm21c8k2s" path="res://src/levels/level.tscn" id="1_tudte"]
 [ext_resource type="PackedScene" uid="uid://cu7qes7pu3re8" path="res://src/entities/player/Player.tscn" id="2_u75ku"]
 [ext_resource type="PackedScene" uid="uid://dmpqqlben7t5q" path="res://src/entities/enemies/Enemy.tscn" id="3_bcg1e"]
+[ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="4_sx7a1"]
+[ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="5_1k4ri"]
+[ext_resource type="Script" path="res://src/interface/HealthBar.gd" id="6_vmyeu"]
 
 [sub_resource type="Environment" id="Environment_c8u53"]
 background_mode = 1
@@ -43,3 +46,19 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 287.0
+offset_bottom = 50.0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("4_sx7a1")
+texture_progress = ExtResource("5_1k4ri")
+script = ExtResource("6_vmyeu")
