@@ -9,7 +9,11 @@ extends CharacterBody3D
 @onready var modelAnimation: AnimationPlayer = $Wizard/AnimationPlayer
 @onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 @onready var skeleton: Skeleton3D = $Wizard/EnemyArmature/Skeleton3D
-@onready var rightArmBone = skeleton.find_bone("Arm.R")
+var rightArmBone
+var leftArmBone
+
+var rightArmAttachment: BoneAttachment3D
+var leftArmAttachment: BoneAttachment3D
 
 var weaponMesh: Node3D
 
@@ -18,24 +22,35 @@ var weapon_target = Vector3.ZERO
 var target_lerp = 0
 var casting = false
 var attackCooldown = 0
-var health = 100
+var health = 9999
 var dead = false
 
 var projectileScene = preload("res://src/attacks/projectile.tscn")
+var currentArm = 0
 
 func _ready():
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
 	wizardArrayMesh.shadow_mesh = $MeshInstance3D.mesh
 	
-	var boneAttachment: BoneAttachment3D = BoneAttachment3D.new()
-	boneAttachment.bone_idx = skeleton.find_bone('Arm.R')
-	skeleton.add_child(boneAttachment)
+	rightArmBone = skeleton.find_bone("Arm.R")
+	leftArmBone = skeleton.find_bone("Arm.L")
+	
+	rightArmAttachment = BoneAttachment3D.new()
+	rightArmAttachment.bone_idx = rightArmBone
+	skeleton.add_child(rightArmAttachment)
+	
+	leftArmAttachment = BoneAttachment3D.new()
+	leftArmAttachment.bone_idx = leftArmBone
+	skeleton.add_child(leftArmAttachment)
+	
+	
 	weaponMesh = load("res://src/weapons/staff.tscn").instantiate()
 	weaponMesh.position.x = 0
 	weaponMesh.position.y = 1
 	weaponMesh.position.z = 1
 	weaponMesh.scale = Vector3(10,10,10)
-	boneAttachment.add_child(weaponMesh)
+	rightArmAttachment.add_child(weaponMesh)
+	currentArm = rightArmBone
 	
 	modelAnimation.process_priority = -1
 	
@@ -62,14 +77,29 @@ func _process(delta):
 		if lerpy < 0.5:
 			lerpy /= 4
 		var target_pos = skeleton.to_local(skeleton.global_position.lerp(weapon_target, lerpy))
-		var bonePos = skeleton.get_bone_pose_position(rightArmBone)
-		var pose : Transform3D = skeleton.get_bone_global_pose(rightArmBone)
+		var bonePos = skeleton.get_bone_pose_position(currentArm)
+		var pose : Transform3D = skeleton.get_bone_global_pose(currentArm)
 		pose = pose.orthonormalized()
 		#var pose_new = pose.looking_at(Vector3(target_pos.x, skeleton.position.y, target_pos.z), Vector3(0,1,0), true)
 		var pose_new = pose.looking_at(target_pos, Vector3(0,1,0), true)
 		pose_new = pose_new.orthonormalized()
 		pose_new.basis = pose_new.basis.rotated(pose_new.basis.x, deg_to_rad(90))
-		skeleton.set_bone_pose_rotation(rightArmBone, pose_new.basis)
+		skeleton.set_bone_pose_rotation(currentArm, pose_new.basis)
+		
+		#print(position.angle_to(target_pos))
+		if position.angle_to(target_pos) > PI/2:
+			if currentArm != leftArmBone:
+				currentArm = leftArmBone
+				rightArmAttachment.remove_child(weaponMesh)
+				leftArmAttachment.add_child(weaponMesh)
+				target_lerp = 0.2
+		else:
+			if currentArm != rightArmBone:
+				currentArm = rightArmBone
+				leftArmAttachment.remove_child(weaponMesh)
+				rightArmAttachment.add_child(weaponMesh)
+				target_lerp = 0.2
+			
 		
 		weaponMesh.position = Vector3(0, 1, 0.1)
 		weaponMesh.rotation.x = lerp_angle(-PI, -deg_to_rad(110), lerpy)
