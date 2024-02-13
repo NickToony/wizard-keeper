@@ -1,5 +1,13 @@
 extends Node
 
+
+var PROJECTILE_BASIC = preload("res://src/attacks/projectile.tscn")
+
+var TRAP_POOL = preload("res://src/traps/PoolTrap.tscn")
+var TRAP_WALL_SPIKE = preload("res://src/traps/WallSpikeTrap.tscn")
+
+var UNIT_GOBLIN = preload("res://src/entities/enemies/Enemy.tscn")
+
 enum GameMode {
 	Pause,
 	Build,
@@ -7,6 +15,7 @@ enum GameMode {
 }
 
 var game_mode: GameMode = GameMode.Play
+var current_trap = TRAP_POOL
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -28,3 +37,10 @@ func _process(delta):
 		for player in get_tree().get_nodes_in_group("players"):
 			player.process_mode = Node.PROCESS_MODE_ALWAYS if game_mode == GameMode.Build else Node.PROCESS_MODE_INHERIT
 	
+	if game_mode == GameMode.Build:
+		if Input.is_action_just_pressed("bar1"):
+			current_trap = TRAP_POOL
+		if Input.is_action_just_pressed("bar2"):
+			current_trap = TRAP_WALL_SPIKE
+		if Input.is_action_just_pressed("bar3"):
+			current_trap = UNIT_GOBLIN;

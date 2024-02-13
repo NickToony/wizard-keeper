@@ -29,10 +29,8 @@ var dead = false
 
 var currentArm = 0
 var canAttack = false
+var canBuild = false
 var building
-
-var projectileScene = preload("res://src/attacks/projectile.tscn")
-var trapScene = preload("res://src/traps/WallSpikeTrap.tscn")
 
 func _ready():
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
@@ -80,6 +78,7 @@ func _process(delta):
 		return
 		
 	canAttack = State.game_mode == State.GameMode.Play
+	canBuild = State.game_mode == State.GameMode.Build
 	
 	var pointing_at = position
 	if casting:
@@ -140,7 +139,7 @@ func _process(delta):
 	attackCooldown -= 1
 	if casting && attackCooldown <= 0:
 		attackCooldown = 60;
-		var projectile = projectileScene.instantiate()
+		var projectile = State.PROJECTILE_BASIC.instantiate()
 		get_parent().add_child(projectile)
 		projectile.global_position = weaponMesh.global_position
 		projectile.look_at(weapon_target, Vector3(0, 1, 0), true)
@@ -166,12 +165,13 @@ func _physics_process(delta):
 	if !intersection.is_empty():
 		mousePosition = intersection.position
 		
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !building:
+	if canBuild && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !building:
 		building = true
 		modelAnimation.play("Attack")
 		
-		var trap = trapScene.instantiate()
+		var trap = State.current_trap.instantiate()
 		trap.position = mousePosition
+		trap.rotation.y = -PI/2
 		get_parent().add_child(trap)
 		return
 	if building:

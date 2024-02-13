@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=6 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
 [ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="2_y7kw4"]
 [ext_resource type="Script" path="res://src/interface/HealthBar.gd" id="3_jvwfl"]
 [ext_resource type="Script" path="res://src/interface/BuildMode.gd" id="4_a2yxu"]
+[ext_resource type="Script" path="res://src/interface/PauseMode.gd" id="5_5uprp"]
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -41,3 +42,17 @@ offset_top = 916.0
 offset_right = 1068.0
 offset_bottom = 1037.0
 text = "Trap"
+
+[node name="PauseMode" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_5uprp")
+
+[node name="Label" type="Label" parent="PauseMode"]
+layout_mode = 0
+offset_left = 909.0
+offset_top = 488.0
+offset_right = 971.0
+offset_bottom = 511.0
+text = "PAUSED"
