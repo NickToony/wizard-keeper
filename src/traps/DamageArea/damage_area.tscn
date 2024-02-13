@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b17vjwo6prqo"]
+
+[ext_resource type="Script" path="res://src/traps/DamageArea/DamageArea.gd" id="1_0lsjc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_074xq"]
+size = Vector3(1.3833, 0.988831, 0.785156)
+
+[node name="DamageArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_0lsjc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0613403, 0)
+shape = SubResource("BoxShape3D_074xq")

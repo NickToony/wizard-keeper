@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c27y82t7fanjr"]
+
+[ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
+[ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="2_y7kw4"]
+[ext_resource type="Script" path="res://src/interface/HealthBar.gd" id="3_jvwfl"]
+[ext_resource type="Script" path="res://src/interface/BuildMode.gd" id="4_a2yxu"]
+
+[node name="UI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 287.0
+offset_bottom = 50.0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("1_m8tr0")
+texture_progress = ExtResource("2_y7kw4")
+script = ExtResource("3_jvwfl")
+
+[node name="BuildMode" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_a2yxu")
+
+[node name="Button" type="Button" parent="BuildMode"]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 916.0
+offset_right = 1068.0
+offset_bottom = 1037.0
+text = "Trap"
