@@ -37,3 +37,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0049, 0.3, 0)
 
 [node name="Enemy3" parent="level" instance=ExtResource("3_bcg1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1975, 1.79259, 4.92899)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
