@@ -85,6 +85,7 @@ func _process(delta):
 		modelAnimation.play("Idle")
 
 func _physics_process(delta):
+	return
 	var targetVelocity = Vector3.ZERO;
 	if health <= 0:
 		pass;

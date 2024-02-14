@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxayqe1qmq5b"]
+
+[ext_resource type="Script" path="res://src/entities/damagelabel/DamageText.gd" id="1_8yefr"]
+
+[node name="DamageText" type="Label3D"]
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "100"
+font_size = 14
+script = ExtResource("1_8yefr")

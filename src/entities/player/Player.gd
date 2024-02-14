@@ -9,6 +9,8 @@ extends CharacterBody3D
 @onready var modelAnimation: AnimationPlayer = $Wizard/AnimationPlayer
 @onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 @onready var skeleton: Skeleton3D = $Wizard/EnemyArmature/Skeleton3D
+@onready var camera: Camera3D = $Camera3D
+
 var rightArmBone
 var leftArmBone
 var headBone
@@ -20,19 +22,30 @@ var weaponMesh: Node3D
 
 var target_velocity = Vector3.ZERO
 var weapon_target = Vector3.ZERO
+var mousePosition = Vector3.ZERO
+
+#Animation
 var target_lerp = 0
 var casting = false
-var attackCooldown = 0
+
+#Stats
 var health = 1000
 var maxHealth = health
 var dead = false
 
+var attackCooldown = 0
+
 var currentArm = 0
 var canAttack = false
 var canBuild = false
-var building
+var canMove = true
+var building = false
+
+var currentWeapon
 
 func _ready():
+	currentWeapon = Weapons.getWeapon("staff_flame_thrower")
+	
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
 	wizardArrayMesh.shadow_mesh = $MeshInstance3D.mesh
 	
@@ -80,6 +93,28 @@ func _process(delta):
 	canAttack = State.game_mode == State.GameMode.Play
 	canBuild = State.game_mode == State.GameMode.Build
 	
+	animateArmsAndWeapon(delta)
+		
+	attackCooldown -= 100 * delta
+	if casting && attackCooldown <= 0:
+		attackCooldown = 60 / currentWeapon.rof;
+		var offset = 0
+		var offsetIncrement = 0
+		if currentWeapon.count > 1:
+			offset = -currentWeapon.spread * currentWeapon.count
+			offsetIncrement = currentWeapon.spread * 2
+		
+		for i in range(currentWeapon.count):
+			var projectile = State.PROJECTILE_BASIC.instantiate()
+			get_parent().add_child(projectile)
+			projectile.global_position = weaponMesh.global_position
+			projectile.look_at(weapon_target, Vector3(0, 1, 0), true)
+			projectile.rotation.y -= offset
+			offset += offsetIncrement
+			projectile.weapon = currentWeapon
+			projectile.update(velocity)
+
+func animateArmsAndWeapon(delta):
 	var pointing_at = position
 	if casting:
 		if target_lerp < 1:
@@ -95,7 +130,7 @@ func _process(delta):
 		var bonePos = skeleton.get_bone_pose_position(currentArm)
 		var pose : Transform3D = skeleton.get_bone_global_pose(currentArm)
 		pose = pose.orthonormalized()
-		#var pose_new = pose.looking_at(Vector3(target_pos.x, skeleton.position.y, target_pos.z), Vector3(0,1,0), true)
+
 		var pose_new = pose.looking_at(target_pos, Vector3(0,1,0), true)
 		pose_new = pose_new.orthonormalized()
 		pose_new.basis = pose_new.basis.rotated(pose_new.basis.x, deg_to_rad(90))
@@ -115,68 +150,55 @@ func _process(delta):
 				leftArmAttachment.remove_child(weaponMesh)
 				rightArmAttachment.add_child(weaponMesh)
 				target_lerp = 0.2
-				
-		#var turn = 1 if angleToTarget < PI/4 || angleToTarget > (2*PI) - (PI/4) else 0
-		#print(rad_to_deg(angleToTarget))
-		#skeleton.set_bone_pose_rotation(headBone, skeleton.get_bone_pose(headBone).rotated(Vector3(0, 1 if currentArm == leftArmBone else -1, 0), turn).basis)
-			#var headPose = skeleton.get_bone_global_pose(headBone)
-		#var newPose = headPose.looking_at(Vector3(target_pos.x, skeleton.to_global(skeleton.get_bone_pose_position(headBone)).y, target_pos.z), Vector3(0,1,0), true)
-		#skeleton.set_bone_pose_rotation(headBone, newPose.basis)
-		
-
-		#var turn = skeleton.get_bone_pose_rotation(currentArm).get_angle()
-		#print(turn)
-		#skeleton.set_bone_pose_rotation(headBone, skeleton.get_bone_pose(headBone).rotated(Vector3(0, 1 if currentArm == leftArmBone else -1, 0), turn).basis)
-		
-		#var angle = Vector2(global_position.x, global_position.y).angle_to_point(Vector2(target_position.x, target_pos.y))
 		
 		weaponMesh.position = Vector3(0, 1, 0.1)
 		weaponMesh.rotation.x = lerp_angle(-PI, -deg_to_rad(110), lerpy)
 	else:
 		weaponMesh.position = Vector3(0, 1, 1)
 		weaponMesh.rotation.x = 0
-		
-	attackCooldown -= 1
-	if casting && attackCooldown <= 0:
-		attackCooldown = 60;
-		var projectile = State.PROJECTILE_BASIC.instantiate()
-		get_parent().add_child(projectile)
-		projectile.global_position = weaponMesh.global_position
-		projectile.look_at(weapon_target, Vector3(0, 1, 0), true)
-		projectile.update()
-
-		
-		
 
 
 func _physics_process(delta):
 	if dead:
 		return
 		
-	var mousePosition
-	var spaceState = get_world_3d().direct_space_state
-	var camera: Camera3D = $Camera3D
-	var from = camera.project_ray_origin(camera.get_viewport().get_mouse_position())
-	var to = from + camera.project_ray_normal(camera.get_viewport().get_mouse_position()) * 100
-	var query = PhysicsRayQueryParameters3D.create(from, to)
-	query.collision_mask = pow(2, 9-1)
-	var intersection = spaceState.intersect_ray(query)
+	mousePosition = getMousePosition()
+	canMove = true
+	
+	if building:
+		canMove = false
+		canAttack = false
+		canBuild = false
+	
+	if mousePosition:
+		if canBuild:
+			processBuild()
+			
+		if canAttack:
+			processAttack()
+	
+	if canMove:
+		processMovement(delta)
 		
-	if !intersection.is_empty():
-		mousePosition = intersection.position
-		
-	if canBuild && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !building:
+func processBuild():
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !building:
 		building = true
+		canMove = false
 		modelAnimation.play("Attack")
 		
 		var trap = State.current_trap.instantiate()
 		trap.position = mousePosition
 		trap.rotation.y = -PI/2
 		get_parent().add_child(trap)
-		return
-	if building:
-		return;
-	
+		
+func processAttack():
+	if mousePosition && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			weapon_target = mousePosition + Vector3(0, 0.3, 0)
+			casting = true
+	else:
+		casting = false
+		
+func processMovement(delta):
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("move_right"):
@@ -208,26 +230,14 @@ func _physics_process(delta):
 		wizard.rotation.y = lerp_angle(wizard.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 10 * delta)
 	else:
 		modelAnimation.play("Idle")
+
+func getMousePosition():
+	var spaceState = get_world_3d().direct_space_state
+	var from = camera.project_ray_origin(camera.get_viewport().get_mouse_position())
+	var to = from + camera.project_ray_normal(camera.get_viewport().get_mouse_position()) * 100
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.collision_mask = pow(2, 9-1)
+	var intersection = spaceState.intersect_ray(query)
 		
-	#var bone_index = skeleton.find_bone('Arm.L')
-	#weapon.transform = weapon.transform * skeleton.get_bone_global_pose(bone)
-	#var offset = weapon.rotation * Vector3(1, 0, 0)
-	#weapon.rotation.x += PI/2
-	#weapon.position = skeleton.get_bone_pose_position(bone) + (Vector3(0, 1, 0).tran)
-	#weapon.transform = skeleton.transform * skeleton.get_bone_global_pose(bone_index)
-	
-	
-	if canAttack && mousePosition && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			#var lookPos = intersection.position
-			#var wizard: Node3D = $Wizard
-			#lookPos.y = wizard.global_position.y
-			#wizard.look_at(lookPos, Vector3(0, 1, 0), true)
-			#var bone_index = skeleton.find_bone('Arm.L')
-			#var bone_pos = skeleton.get_bone_rest(bone_index)
-			#skeleton.set_bone_pose_rotation(bone_index, bone_pos.looking_at(lookPos).orthonormalized())
-			
-			weapon_target = mousePosition + Vector3(0, 0.3, 0)
-			casting = true
-	else:
-		#weapon_target = Vector3.ZERO
-		casting = false
+	if !intersection.is_empty():
+		return intersection.position

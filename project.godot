@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 State="*res://src/state/state.tscn"
+Weapons="*res://configs/Weapons.gd"
 
 [display]
 
