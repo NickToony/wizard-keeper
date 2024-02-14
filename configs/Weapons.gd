@@ -13,23 +13,21 @@ var Weapons = [
 		"model": "staff.glb",
 		"spread": 0.05,
 		"passthrough": false,
-		"triggerrate": 1,
 		"upgrades": [
 			{
 				"id": "staff_fire",
 				"name": "Fire Staff",
 				"damage": 60,
-				"rof": 2,
-				"speed": 50,
-
+				"rof": 0.5,
+				"speed": 2,
 				"upgrades": [
 					{
 						"id": "staff_flame_thrower",
 						"name": "Flame Thrower",
 						"range": 2,
 						"speed": 4,
-						"count": 5,
-						"damage": 5,
+						"count": 6,
+						"damage": 6,
 						"passthrough": true,
 					}
 				]
@@ -41,7 +39,19 @@ var Weapons = [
 				"rof": 8,
 				"speed": 50,
 			}
-		]
+		],
+	}, {
+		"id": "implosion",
+		"name": "Implosion",
+		"damage": 50,
+		"rof": 0.1,
+		"count": 20,
+		"range": 5,
+		"speed": 2,
+		"icon": "sword.png",
+		"model": "staff.glb",
+		"spread": 0.5,
+		"passthrough": true,
 	}
 ]
 

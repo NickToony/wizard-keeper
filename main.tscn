@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmjp6174treub"]
+[gd_scene load_steps=4 format=3 uid="uid://bmjp6174treub"]
 
 [ext_resource type="PackedScene" uid="uid://bdcrlm21c8k2s" path="res://src/levels/level.tscn" id="1_tudte"]
 [ext_resource type="PackedScene" uid="uid://cu7qes7pu3re8" path="res://src/entities/player/Player.tscn" id="2_u75ku"]
-[ext_resource type="PackedScene" uid="uid://c27y82t7fanjr" path="res://src/interface/ui.tscn" id="4_tfgc0"]
 
 [sub_resource type="Environment" id="Environment_c8u53"]
 background_mode = 1
@@ -28,5 +27,3 @@ environment = SubResource("Environment_c8u53")
 
 [node name="Player" parent="level" instance=ExtResource("2_u75ku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0327, 0.510972, 0.994849)
-
-[node name="UI" parent="." instance=ExtResource("4_tfgc0")]

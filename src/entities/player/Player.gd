@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 @onready var skeleton: Skeleton3D = $Wizard/EnemyArmature/Skeleton3D
 @onready var camera: Camera3D = $Camera3D
+@onready var weaponBar = $UI/PlayMode/WeaponBarContainer/WeaponBar
 
 var rightArmBone
 var leftArmBone
@@ -44,7 +45,7 @@ var building = false
 var currentWeapon
 
 func _ready():
-	currentWeapon = Weapons.getWeapon("staff_flame_thrower")
+	changeWeapon("staff")
 	
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
 	wizardArrayMesh.shadow_mesh = $MeshInstance3D.mesh
@@ -76,6 +77,12 @@ func _ready():
 	modelAnimation.get_animation("Attack").loop_mode = Animation.LOOP_NONE
 	
 	modelAnimation.animation_finished.connect(_on_animation_finished)
+	
+	weaponBar.weapon_selected.connect(changeWeapon)
+	
+func changeWeapon(weaponId):
+	currentWeapon = Weapons.getWeapon(weaponId)
+	weaponBar.setSelected(weaponId)
 	
 func _on_animation_finished(animation: String):
 	match animation:
@@ -181,7 +188,7 @@ func _physics_process(delta):
 		processMovement(delta)
 		
 func processBuild():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !building:
+	if Input.is_action_just_pressed("mouse_left") && !building:
 		building = true
 		canMove = false
 		modelAnimation.play("Attack")
@@ -192,7 +199,7 @@ func processBuild():
 		get_parent().add_child(trap)
 		
 func processAttack():
-	if mousePosition && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if mousePosition && Input.is_action_pressed("mouse_left"):
 			weapon_target = mousePosition + Vector3(0, 0.3, 0)
 			casting = true
 	else:

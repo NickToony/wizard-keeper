@@ -17,6 +17,8 @@ enum GameMode {
 var game_mode: GameMode = GameMode.Play
 var current_trap = TRAP_POOL
 
+var availableWeapons = ["staff", "staff_fire", "staff_flame_thrower", "implosion"]
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
