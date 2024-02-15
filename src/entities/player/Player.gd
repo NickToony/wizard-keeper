@@ -100,6 +100,10 @@ func _process(delta):
 	canAttack = State.game_mode == State.GameMode.Play
 	canBuild = State.game_mode == State.GameMode.Build
 	
+	if building:
+		canMove = false
+		canAttack = false
+	
 	animateArmsAndWeapon(delta)
 		
 	attackCooldown -= 100 * delta
@@ -170,38 +174,23 @@ func _physics_process(delta):
 		return
 		
 	mousePosition = getMousePosition()
-	canMove = true
-	
-	if building:
-		canMove = false
-		canAttack = false
-		canBuild = false
+	canMove = !building
 	
 	if mousePosition:
-		if canBuild:
-			processBuild()
-			
 		if canAttack:
 			processAttack()
 	
 	if canMove:
 		processMovement(delta)
 		
-func processBuild():
-	if Input.is_action_just_pressed("mouse_left") && !building:
-		building = true
-		canMove = false
-		modelAnimation.play("Attack")
-		
-		var trap = State.current_trap.instantiate()
-		trap.position = mousePosition
-		trap.rotation.y = -PI/2
-		get_parent().add_child(trap)
+func triggerBuild():
+	building = true
+	modelAnimation.play("Attack")
 		
 func processAttack():
 	if mousePosition && Input.is_action_pressed("mouse_left"):
-			weapon_target = mousePosition + Vector3(0, 0.3, 0)
-			casting = true
+		weapon_target = mousePosition + Vector3(0, 0.3, 0)
+		casting = true
 	else:
 		casting = false
 		

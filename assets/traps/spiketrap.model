@@ -8,12 +8,12 @@
 
 :models
 
-[name:;collection:Swords;type:blade_broken;position:(0.3000, 0.2000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Primitives;type:block;position:(0.0000, 0.0000, -0.4000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 0.2000);group:;locked:False;hidden:False;materials:_defaultMat;]
-[name:;collection:Swords;type:blade_broken;position:(0.3000, 0.8000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Swords;type:blade_broken;position:(-0.3000, 0.8000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Swords;type:blade_broken;position:(-0.3000, 0.2000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Swords;type:blade_broken;position:(0.0000, 0.3000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Swords;type:blade_broken;position:(0.0000, 0.7000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Swords;type:blade_broken;position:(0.3000, 0.5000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
-[name:;collection:Swords;type:blade_broken;position:(-0.3000, 0.5000, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Primitives;type:block;position:(0.0000, 0.0000, -0.4000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.9000, 0.2000);group:;locked:False;hidden:False;materials:_defaultMat;]
+[name:;collection:Swords;type:blade_broken;position:(-0.3000, 0.7200, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(-0.3000, 0.1800, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(-0.3000, 0.4500, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(0.0000, 0.2700, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(0.0000, 0.6300, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(0.3000, 0.1800, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(0.3000, 0.7200, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Swords;type:blade_broken;position:(0.3000, 0.4500, -0.3000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.3000, 0.4000, 0.9000);group:;locked:False;hidden:False;materials:metalLight;]

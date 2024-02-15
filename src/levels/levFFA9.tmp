@@ -898,6 +898,4 @@ visible = false
 [node name="TrapPlacer" type="Node3D" parent="."]
 script = ExtResource("7_3dtuj")
 
-[node name="WallTraps" type="Node3D" parent="."]
-
-[node name="FloorTraps" type="Node3D" parent="."]
+[node name="Traps" type="Node3D" parent="."]

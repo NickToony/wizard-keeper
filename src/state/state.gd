@@ -3,9 +3,6 @@ extends Node
 
 var PROJECTILE_BASIC = preload("res://src/attacks/projectile.tscn")
 
-var TRAP_POOL = preload("res://src/traps/PoolTrap.tscn")
-var TRAP_WALL_SPIKE = preload("res://src/traps/WallSpikeTrap.tscn")
-
 var UNIT_GOBLIN = preload("res://src/entities/enemies/Enemy.tscn")
 
 enum GameMode {
@@ -15,7 +12,7 @@ enum GameMode {
 }
 
 var game_mode: GameMode = GameMode.Play
-var current_trap = TRAP_POOL
+var current_trap = "pool"
 
 var availableWeapons = ["staff", "staff_fire", "staff_flame_thrower", "implosion"]
 
@@ -41,8 +38,6 @@ func _process(delta):
 	
 	if game_mode == GameMode.Build:
 		if Input.is_action_just_pressed("bar1"):
-			current_trap = TRAP_POOL
+			current_trap = "pool"
 		if Input.is_action_just_pressed("bar2"):
-			current_trap = TRAP_WALL_SPIKE
-		if Input.is_action_just_pressed("bar3"):
-			current_trap = UNIT_GOBLIN;
+			current_trap = "spikes"

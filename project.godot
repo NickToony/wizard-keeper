@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 State="*res://src/state/state.tscn"
 Weapons="*res://configs/Weapons.gd"
+Traps="*res://configs/Traps.gd"
 
 [display]
 
