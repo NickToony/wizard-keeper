@@ -147,8 +147,8 @@ func animateArmsAndWeapon(delta):
 		pose_new.basis = pose_new.basis.rotated(pose_new.basis.x, deg_to_rad(90))
 		skeleton.set_bone_pose_rotation(currentArm, pose_new.basis)
 		
-		#print(position.angle_to(target_pos))
-		var angleToTarget = position.angle_to(target_pos)
+		# Why does this work??
+		var angleToTarget = (position+Vector3(-10, 0, 0)).angle_to(target_pos)
 		if angleToTarget > PI/2:
 			if currentArm != leftArmBone:
 				currentArm = leftArmBone

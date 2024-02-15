@@ -1,11 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://nduvkknr53np"]
+[gd_scene load_steps=2 format=3 uid="uid://nduvkknr53np"]
 
-[ext_resource type="PackedScene" uid="uid://bsi6g54ejqxup" path="res://assets/traps/pool.glb" id="1_w6vij"]
 [ext_resource type="PackedScene" uid="uid://b17vjwo6prqo" path="res://src/traps/DamageArea/damage_area.tscn" id="2_l3ykn"]
 
 [node name="PoolTrap" type="Node3D"]
 
-[node name="pool" parent="." instance=ExtResource("1_w6vij")]
+[node name="pool" type="Node3D" parent="."]
 
 [node name="DamageArea" parent="." instance=ExtResource("2_l3ykn")]
 
