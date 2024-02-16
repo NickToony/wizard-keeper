@@ -1,20 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxqr8eb1gdvki"]
+[gd_scene load_steps=2 format=3 uid="uid://bxqr8eb1gdvki"]
 
 [ext_resource type="Script" path="res://src/manager/manager.gd" id="1_j5p6l"]
-[ext_resource type="Script" path="res://src/resources/level_part.gd" id="2_n77oi"]
-
-[sub_resource type="Resource" id="Resource_233dt"]
-script = ExtResource("2_n77oi")
-monsters = Array[int]([0, 0, 0, 0, 0, 0])
-
-[sub_resource type="Resource" id="Resource_wtjbs"]
-script = ExtResource("2_n77oi")
-monsters = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-
-[sub_resource type="Resource" id="Resource_2bmn1"]
-script = ExtResource("2_n77oi")
-monsters = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [node name="Manager" type="Node"]
 script = ExtResource("1_j5p6l")
-stages = Array[ExtResource("2_n77oi")]([SubResource("Resource_233dt"), SubResource("Resource_wtjbs"), SubResource("Resource_2bmn1")])

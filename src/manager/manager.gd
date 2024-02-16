@@ -3,11 +3,12 @@ extends Node
 
 @onready var enemies = $"../Enemies"
 
-@export var stages: Array[LevelPart] = [] 
+@export var levelName: String = "level1"
 
 var toSpawn = []
 var step = 0
 var stageStep = 0
+var level = Levels.levels[levelName]
 
 func _ready():
 
@@ -28,11 +29,14 @@ func _physics_process(delta):
 	if State.game_mode == State.GameMode.Build:
 		if toSpawn.size() > 0:
 			return
-		if step >= stages.size():
+		if step >= level.size():
 			return
 		
-		var stage = stages[step]
-		toSpawn = stage.monsters
+		var stage = level[step]
+		toSpawn = []
+		for enemies in stage.enemies:
+			for i in range(enemies.count):
+				toSpawn.append(enemies.type)
 		stageStep = 0
 		
 		step += 1
@@ -41,8 +45,8 @@ func spawnEnemy():
 	for spawn in get_tree().get_nodes_in_group("spawns"):
 		if !spawn.isOccupied():
 			var mob
-			match toSpawn[0]:
-				LevelPart.Spawnables.Goblin:
+			match toSpawn[stageStep]:
+				Levels.Spawnable.Goblin:
 					mob = load("res://src/entities/enemies/Enemy.tscn")
 			
 			if mob:

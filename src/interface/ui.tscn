@@ -46,7 +46,10 @@ offset_left = 801.0
 offset_top = 916.0
 offset_right = 1068.0
 offset_bottom = 1037.0
-text = "Trap"
+text = "Build mode
+Left click to place
+1/2 to change trap
+B to proceed to Play"
 
 [node name="PauseMode" type="Control" parent="."]
 anchors_preset = 0

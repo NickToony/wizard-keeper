@@ -179,6 +179,8 @@ func _physics_process(delta):
 	if mousePosition:
 		if canAttack:
 			processAttack()
+		else:
+			casting = false
 	
 	if canMove:
 		processMovement(delta)
