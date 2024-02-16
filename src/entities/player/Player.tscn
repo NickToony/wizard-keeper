@@ -80,3 +80,7 @@ shape = SubResource("WorldBoundaryShape3D_887m4")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+unit_size = 1.0
+max_db = -10.0

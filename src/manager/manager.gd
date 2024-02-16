@@ -9,6 +9,8 @@ extends Node
 @onready var actionMusic = $ActionMusic
 @onready var animationPlayer = $AnimationPlayer
 
+var enemyScene = preload("res://src/entities/enemies/Enemy.tscn")
+
 var toSpawn = []
 var step = 0
 var stageStep = 0
@@ -48,6 +50,7 @@ func _physics_process(delta):
 			State.nextWave = State.nextWave + str(enemies.count) + " " + Levels.Spawnable.keys()[enemies.type] + "s   "
 			for i in range(enemies.count):
 				toSpawn.append(enemies.type)
+		toSpawn.shuffle()
 		stageStep = 0
 		
 		step += 1
@@ -58,11 +61,16 @@ func spawnEnemy():
 			var mob
 			match toSpawn[stageStep]:
 				Levels.Spawnable.Goblin:
-					mob = load("res://src/entities/enemies/Enemy.tscn")
+					mob = Enemies.Definitions.Goblin
+				Levels.Spawnable.Zombie:
+					mob = Enemies.Definitions.Zombie
+				Levels.Spawnable.Demon:
+					mob = Enemies.Definitions.Demon
 			
 			if mob:
-				var instance = mob.instantiate()
+				var instance = enemyScene.instantiate()
 				instance.position = spawn.position
+				instance.definition = mob
 				enemies.add_child(instance)
 			
 			stageStep += 1

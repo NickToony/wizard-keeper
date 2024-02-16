@@ -13,6 +13,7 @@ var Weapons = [
 		"model": "staff.glb",
 		"spread": 0.05,
 		"passthrough": false,
+		"sound": "res://assets/sound/laser2.ogg",
 		"upgrades": [
 			{
 				"id": "staff_fire",

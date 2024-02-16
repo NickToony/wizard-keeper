@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmpqqlben7t5q"]
+[gd_scene load_steps=7 format=3 uid="uid://dmpqqlben7t5q"]
 
 [ext_resource type="Script" path="res://src/entities/enemies/Enemy.gd" id="1_bvr3j"]
 [ext_resource type="PackedScene" uid="uid://cbuf3x7qk1str" path="res://assets/enemies/Goblin.gltf" id="2_sw6f5"]
+[ext_resource type="AudioStream" uid="uid://cjsn12rj5ba07" path="res://assets/sound/creature4.ogg" id="3_k07x3"]
+[ext_resource type="AudioStream" uid="uid://cnlemioeimlhn" path="res://assets/sound/pickup2.ogg" id="4_k7npv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
 radius = 0.15
@@ -17,7 +19,6 @@ collision_mask = 31
 floor_constant_speed = true
 floor_max_angle = 1.35438
 script = ExtResource("1_bvr3j")
-movement_speed = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_h2xl3")
@@ -36,3 +37,11 @@ neighbor_distance = 4.0
 
 [node name="Goblin" parent="." instance=ExtResource("2_sw6f5")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, -0.294925, 0)
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_k07x3")
+unit_size = 1.0
+
+[node name="ResSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_k7npv")
+unit_size = 1.0

@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 @onready var skeleton: Skeleton3D = $Wizard/EnemyArmature/Skeleton3D
 @onready var camera: Camera3D = $Camera3D
+@onready var shootSound: AudioStreamPlayer3D = $ShootSound
 
 
 var rightArmBone
@@ -83,6 +84,8 @@ func _ready():
 
 func changeWeapon():
 	currentWeapon = State.currentWeaponData()
+	if currentWeapon:
+		shootSound.stream = load(currentWeapon.sound)
 	target_lerp = 0
 	
 func _on_animation_finished(animation: String):
@@ -119,6 +122,7 @@ func _process(delta):
 	attackCooldown -= 100 * delta
 	if casting && attackCooldown <= 0:
 		attackCooldown = 60 / currentWeapon.rof;
+		shootSound.play()
 		var offset = 0
 		var offsetIncrement = 0
 		if currentWeapon.count > 1:

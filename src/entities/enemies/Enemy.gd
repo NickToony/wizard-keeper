@@ -2,42 +2,61 @@ extends CharacterBody3D
 
 
 @onready var navigation_agent: NavigationAgent3D = get_node("NavigationAgent3D")
-@onready var modelAnimation: AnimationPlayer = $Goblin/AnimationPlayer
-@onready var goblin: Node3D = $Goblin
+@onready var modelAnimation: AnimationPlayer
+@onready var model: Node3D
+@onready var goblin = $Goblin
 
-@export var movement_speed: float = 4.0
 @export var fall_acceleration = 75
 
 var damageLabelScene = preload("res://src/entities/damagelabel/DamageText.tscn")
 
 var target
 var health = 100
-var damage = 10
+var maxHealth = health
+var definition
+var respawn = false
 
 func _ready() -> void:
-	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
-	modelAnimation.animation_finished.connect(_on_animation_finished)
-	modelAnimation.get_animation("Death").loop_mode = Animation.LOOP_NONE
-	modelAnimation.get_animation("Attack").loop_mode = Animation.LOOP_NONE
-	
-	navigation_agent.max_speed = movement_speed
+	health = definition.health
+	maxHealth = health
+	model = load(definition.mesh).instantiate()
+	modelAnimation = model.get_node("AnimationPlayer")
+	navigation_agent.max_speed = definition.speed
+	model.position = goblin.position
+	model.scale = Vector3(definition.scale, definition.scale, definition.scale)
+	respawn = definition.respawn
+	remove_child(goblin)
+	add_child(model)
 	
 	target = get_tree().get_nodes_in_group("players")[0]
 	
 	var exit = get_tree().get_nodes_in_group("exit")[0]
 	navigation_agent.set_target_position(exit.global_position)
 	
+	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
+	modelAnimation.animation_finished.connect(_on_animation_finished)
+	modelAnimation.get_animation("Death").loop_mode = Animation.LOOP_NONE
+	modelAnimation.get_animation("Attack").loop_mode = Animation.LOOP_NONE
+	
 func _on_animation_finished(animation: String):
+	modelAnimation.speed_scale = 1
 	match animation:
 		"Death":
-			queue_free()
+			if !respawn:
+				queue_free()
+			else:
+				$ResSound.play()
+				respawn = false
+				health = maxHealth
 		"Attack":
 			if is_instance_valid(target):
-				target.health -= damage
+				target.health -= definition.damage
 
 func _process(delta):
 	if health <= 0:
-		modelAnimation.play("Death")
+		if !modelAnimation.current_animation == "Death":
+			modelAnimation.play("Death")
+			$DeathSound.play()
 		return
 	
 	# func set_movement_target(movement_target: Vector3):
@@ -46,17 +65,18 @@ func _process(delta):
 	
 		if position.distance_to(target.global_position) < 1:
 			modelAnimation.play("Attack")
+			modelAnimation.speed_scale = definition.attackspeed
 			var dir =  global_position.direction_to(target.global_position)
-			goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-dir.x, -dir.z) + PI, 0.2)
+			model.rotation.y = lerp_angle(model.rotation.y, atan2(-dir.x, -dir.z) + PI, 0.2)
 			return
 	
 	var speed = velocity.length()
 	if speed > 1:
 		modelAnimation.play("Run")
-		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
 	elif speed > 0.1:
 		modelAnimation.play("Walk")
-		goblin.rotation.y = lerp_angle(goblin.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
 	else:
 		modelAnimation.play("Idle")
 
@@ -66,7 +86,7 @@ func _physics_process(delta):
 		pass
 	elif !navigation_agent.is_navigation_finished():
 		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-		targetVelocity = global_position.direction_to(next_path_position) * movement_speed
+		targetVelocity = global_position.direction_to(next_path_position) * definition.speed
 
 	if navigation_agent.avoidance_enabled:
 		navigation_agent.set_velocity(targetVelocity)

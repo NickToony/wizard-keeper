@@ -22,19 +22,19 @@ enum WeaponIndex {
 }
 
 var game_mode: GameMode = GameMode.Play
-var modeLast = game_mode
-var music = false
-var lives = 20
+var music = true
 var isPaused = false
 
+var lives = 20
 var weaponLeft = "staff"
 var weaponRight = "staff_flame_thrower"
 var weaponCurrent = WeaponIndex.Left
 var traps = ["pool", "spikes", null, null]
 var trapCurrent
-var nextWave = 'ddd'
+var nextWave = ''
 
 func _ready():
+	reset()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	emit_signal('weapons_updated')
 	emit_signal('traps_updated')
@@ -76,8 +76,6 @@ func _process(delta):
 			trapCurrent = null
 			emit_signal("weapon_changed")
 			emit_signal("trap_changed")
-			
-			print('change weapon', weaponCurrent)
 	elif setTrap:
 		var realIndex = setTrap - 1
 		if realIndex != trapCurrent:
@@ -85,8 +83,6 @@ func _process(delta):
 			weaponCurrent = WeaponIndex.None
 			emit_signal("weapon_changed")
 			emit_signal("trap_changed")
-			
-			print('change trap', trapCurrent)
 
 func currentWeapon():
 	if weaponCurrent == WeaponIndex.None:
@@ -95,7 +91,7 @@ func currentWeapon():
 	return weaponLeft if weaponCurrent == WeaponIndex.Left else weaponRight
 	
 func currentWeaponData():
-	if weaponCurrent == WeaponIndex.None:
+	if currentWeapon() == null:
 		return
 	
 	return Weapons.getWeapon(currentWeapon())
@@ -110,3 +106,12 @@ func currentTrapData():
 	var trap = currentTrap()
 	
 	return Traps.getTrap(trap) if trap != null else null
+
+func reset():
+	lives = 20
+	weaponLeft = "staff"
+	weaponRight = null
+	weaponCurrent = WeaponIndex.Left
+	traps = ["pool", "spikes", null, null]
+	trapCurrent
+	nextWave = ''
