@@ -18,6 +18,7 @@ offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 script = ExtResource("2_5l2bo")

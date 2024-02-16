@@ -5,17 +5,23 @@ extends Node
 
 @export var levelName: String = "level1"
 
+@onready var calmMusic = $CalmMusic
+@onready var actionMusic = $ActionMusic
+@onready var animationPlayer = $AnimationPlayer
+
 var toSpawn = []
 var step = 0
 var stageStep = 0
 var level = Levels.levels[levelName]
 
 func _ready():
-
 	pass
 	
 func _physics_process(delta):
 	if State.game_mode == State.GameMode.Play:
+		if !actionMusic.playing:
+			crossfade_to()
+		
 		if stageStep < toSpawn.size():
 			spawnEnemy()
 			return
@@ -27,6 +33,9 @@ func _physics_process(delta):
 		toSpawn = []
 	
 	if State.game_mode == State.GameMode.Build:
+		if !calmMusic.playing:
+			crossfade_to()
+		
 		if toSpawn.size() > 0:
 			return
 		if step >= level.size():
@@ -57,3 +66,25 @@ func spawnEnemy():
 			stageStep += 1
 			
 			break
+
+
+# crossfades to a new audio stream
+func crossfade_to() -> void:
+	if !State.music:
+		return
+	
+	# If both tracks are playing, we're calling the function in the middle of a fade.
+	# We return early to avoid jumps in the sound.
+	if calmMusic.playing and actionMusic.playing:
+		return
+
+	# The `playing` property of the stream players tells us which track is active. 
+	# If it's track two, we fade to track one, and vice-versa.
+	if actionMusic.playing:
+		#calmMusic.stream = audio_stream
+		calmMusic.play()
+		animationPlayer.play("FadeToCalm")
+	else:
+		#actionMusic.stream = audio_stream
+		actionMusic.play()
+		animationPlayer.play("FadeToAction")

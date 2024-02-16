@@ -29,7 +29,6 @@ skeleton = NodePath("../../..")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
-path_postprocessing = 1
 avoidance_enabled = true
 radius = 0.3
 neighbor_distance = 4.0

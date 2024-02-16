@@ -77,3 +77,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 visible = false
 shape = SubResource("WorldBoundaryShape3D_887m4")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0atuy7lcp57n"]
+[gd_scene load_steps=6 format=3 uid="uid://0atuy7lcp57n"]
 
 [ext_resource type="Script" path="res://src/traps/WallSpikeTrap.gd" id="1_2vq2q"]
 [ext_resource type="PackedScene" uid="uid://b17vjwo6prqo" path="res://src/traps/DamageArea/damage_area.tscn" id="2_h42h2"]
 [ext_resource type="PackedScene" uid="uid://1hr166cumrf5" path="res://assets/traps/spiketrap.glb" id="2_sol5b"]
+[ext_resource type="AudioStream" uid="uid://bvsjytjxj7n32" path="res://assets/sound/stab.ogg" id="4_mu2mt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gnsg"]
 size = Vector3(1, 0.896484, 1.47607)
@@ -20,5 +21,9 @@ onlyFireIfTargets = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447705, -0.238037)
 shape = SubResource("BoxShape3D_1gnsg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_mu2mt")
+unit_size = 1.0
 
 [editable path="DamageArea"]

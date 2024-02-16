@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 var blades: Array[Node3D]
 var currentScale = 0
 var baseScale = 0
@@ -30,3 +32,4 @@ func _process(delta):
 
 func _on_tick():
 	lunging = true
+	audio.play()
