@@ -20,7 +20,12 @@ func _ready() -> void:
 	modelAnimation.get_animation("Death").loop_mode = Animation.LOOP_NONE
 	modelAnimation.get_animation("Attack").loop_mode = Animation.LOOP_NONE
 	
+	navigation_agent.max_speed = movement_speed
+	
 	target = get_tree().get_nodes_in_group("players")[0]
+	
+	var exit = get_tree().get_nodes_in_group("exit")[0]
+	navigation_agent.set_target_position(exit.global_position)
 	
 func _on_animation_finished(animation: String):
 	match animation:
@@ -37,7 +42,7 @@ func _process(delta):
 	
 	# func set_movement_target(movement_target: Vector3):
 	if target && is_instance_valid(target):
-		navigation_agent.set_target_position(target.global_position)
+		#navigation_agent.set_target_position(target.global_position)
 	
 		if position.distance_to(target.global_position) < 1:
 			modelAnimation.play("Attack")
@@ -57,8 +62,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	var targetVelocity = Vector3.ZERO;
-	if health <= 0:
-		pass;
+	if health <= 0 || modelAnimation.current_animation == 'Attack':
+		pass
 	elif !navigation_agent.is_navigation_finished():
 		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 		targetVelocity = global_position.direction_to(next_path_position) * movement_speed
@@ -69,6 +74,9 @@ func _physics_process(delta):
 		_on_velocity_computed(targetVelocity)
 
 func _on_velocity_computed(safe_velocity: Vector3):
+	if health <= 0:
+		return
+	
 	velocity = safe_velocity
 	
 		# Vertical Velocity

@@ -15,6 +15,7 @@ var game_mode: GameMode = GameMode.Play
 var current_trap = "pool"
 var modeLast = game_mode
 var music = false
+var lives = 20
 
 var availableWeapons = ["staff", "staff_fire", "staff_flame_thrower", "implosion"]
 

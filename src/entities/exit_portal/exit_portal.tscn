@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnqc52eyo1bh2"]
+
+[ext_resource type="Script" path="res://src/entities/exit_portal/exit_portal.gd" id="1_3o1n8"]
+[ext_resource type="PackedScene" uid="uid://c2kes7xgfr2x5" path="res://assets/portal/portal.glb" id="1_qbc7j"]
+
+[sub_resource type="Animation" id="Animation_212tn"]
+resource_name = "Animate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("portal/inner_portal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.5, 0.88, 0.21, 1, 1, 0.45, 0.8, 0.1, 2, 1, 0.5, 0.88, 0.21)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gcvpw"]
+_data = {
+"Animate": SubResource("Animation_212tn")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vfuc"]
+size = Vector3(1.62207, 2.42004, 1.51758)
+
+[node name="ExitPortal" type="Node3D" groups=["exit"]]
+script = ExtResource("1_3o1n8")
+
+[node name="portal" parent="." instance=ExtResource("1_qbc7j")]
+
+[node name="turbine_ring_" parent="portal" index="1"]
+transform = Transform3D(1, 4.4781e-08, 2.6483e-15, 0, -4.64433e-08, 1.4375, 4.21468e-08, -1.0625, -6.28351e-08, 1.78814e-07, 0.95, 0.1)
+
+[node name="inner_portal" parent="portal" index="2"]
+transform = Transform3D(0.473701, 0, 0, 0, 0.837921, 0, 0, 0, 0.152142, 1.78814e-07, 0.9264, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gcvpw")
+}
+autoplay = "Animate"
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.710022, 0)
+shape = SubResource("BoxShape3D_7vfuc")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="portal"]

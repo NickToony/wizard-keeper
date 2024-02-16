@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=10 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
 [ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="2_y7kw4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/interface/PlayMode.gd" id="6_s0yy7"]
 [ext_resource type="Script" path="res://src/interface/WeaponBar.gd" id="7_tkb27"]
 [ext_resource type="PackedScene" uid="uid://c6xwsmjhw8yvi" path="res://src/interface/weaponbar/weapon_button.tscn" id="8_b1td6"]
+[ext_resource type="Script" path="res://src/interface/Lives.gd" id="9_bjq5a"]
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -101,3 +102,13 @@ layout_mode = 2
 
 [node name="WeaponButton2" parent="PlayMode/WeaponBarContainer/WeaponBar" instance=ExtResource("8_b1td6")]
 layout_mode = 2
+
+[node name="Lives" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("9_bjq5a")

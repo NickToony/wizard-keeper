@@ -30,7 +30,7 @@ var target_lerp = 0
 var casting = false
 
 #Stats
-var health = 1000
+var health = 100
 var maxHealth = health
 var dead = false
 
@@ -41,6 +41,8 @@ var canAttack = false
 var canBuild = false
 var canMove = true
 var building = false
+
+var respawnCounter = -1
 
 var currentWeapon
 
@@ -88,6 +90,8 @@ func _on_animation_finished(animation: String):
 	match animation:
 		"Attack":
 			building = false
+		"Death":
+			respawnCounter = 100
 	
 	
 func _process(delta):
@@ -95,6 +99,13 @@ func _process(delta):
 		if !dead:
 			modelAnimation.play('Death')
 			dead = true
+			respawnCounter = 1000
+		elif respawnCounter <= 0:
+			global_position = get_tree().get_nodes_in_group('exit')[0].global_position + Vector3(0, 1, 0)
+			health = maxHealth
+			dead = false
+		else:
+			respawnCounter -= 1
 		return
 		
 	canAttack = State.game_mode == State.GameMode.Play
@@ -148,7 +159,7 @@ func animateArmsAndWeapon(delta):
 		skeleton.set_bone_pose_rotation(currentArm, pose_new.basis)
 		
 		# Why does this work??
-		var angleToTarget = (position+Vector3(-10, 0, 0)).angle_to(target_pos)
+		var angleToTarget = (position+Vector3(-100, 0, 0)).angle_to(target_pos)
 		if angleToTarget > PI/2:
 			if currentArm != leftArmBone:
 				currentArm = leftArmBone
