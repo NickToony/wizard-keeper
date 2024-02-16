@@ -1,19 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://0atuy7lcp57n"]
+[gd_scene load_steps=5 format=3 uid="uid://0atuy7lcp57n"]
 
 [ext_resource type="Script" path="res://src/traps/WallSpikeTrap.gd" id="1_2vq2q"]
 [ext_resource type="PackedScene" uid="uid://b17vjwo6prqo" path="res://src/traps/DamageArea/damage_area.tscn" id="2_h42h2"]
+[ext_resource type="PackedScene" uid="uid://1hr166cumrf5" path="res://assets/traps/spiketrap.glb" id="2_sol5b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gnsg"]
+size = Vector3(1, 0.896484, 1.47607)
 
 [node name="WallSpikeTrap" type="Node3D"]
 script = ExtResource("1_2vq2q")
 
-[node name="spiketrap" type="Node3D" parent="."]
+[node name="spiketrap" parent="." instance=ExtResource("2_sol5b")]
 
 [node name="DamageArea" parent="." instance=ExtResource("2_h42h2")]
 tickRate = 120
 damage = 50
 onlyFireIfTargets = true
 
-[node name="CollisionShape3D" parent="DamageArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.202087, 0.49942, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447705, -0.238037)
+shape = SubResource("BoxShape3D_1gnsg")
 
 [editable path="DamageArea"]

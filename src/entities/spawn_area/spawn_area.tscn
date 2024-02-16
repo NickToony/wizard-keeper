@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2mn6j6a0u3d3"]
+
+[ext_resource type="Script" path="res://src/entities/spawn_area/spawn_area.gd" id="1_6o8de"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4yago"]
+
+[node name="SpawnArea" type="Area3D" groups=["spawns"]]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_6o8de")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4yago")

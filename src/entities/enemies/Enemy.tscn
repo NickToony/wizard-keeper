@@ -17,7 +17,7 @@ collision_mask = 31
 floor_constant_speed = true
 floor_max_angle = 1.35438
 script = ExtResource("1_bvr3j")
-movement_speed = 2.0
+movement_speed = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_h2xl3")

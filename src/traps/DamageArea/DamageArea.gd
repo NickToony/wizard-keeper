@@ -2,7 +2,6 @@ extends Area3D
 
 signal trap_ticked
 
-
 @export var tickRate = 60
 @export var damage = 20
 @export var onlyFireIfTargets = false
@@ -21,6 +20,7 @@ func _process(_delta):
 		tick = tickRate
 		for target in targets:
 			target.health -= damage
+			target.damaged(damage)
 		emit_signal("trap_ticked")
 
 func _on_body_entered(body: Node3D):

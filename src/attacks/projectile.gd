@@ -38,10 +38,7 @@ func _on_body_entered(body: Node3D):
 	
 	if (body.is_in_group('enemies')):
 		body.health -= weapon.damage
-		var damageLabel = damageLabelScene.instantiate()
-		damageLabel.text = str(weapon.damage)
-		damageLabel.position = position
-		get_parent().add_child(damageLabel)
+		body.damaged(weapon.damage)
 		if weapon.passthrough:
 			return
 	queue_free()

@@ -1,11 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://nduvkknr53np"]
+[gd_scene load_steps=4 format=3 uid="uid://nduvkknr53np"]
 
+[ext_resource type="PackedScene" uid="uid://bsi6g54ejqxup" path="res://assets/traps/pool.glb" id="1_lf2b2"]
 [ext_resource type="PackedScene" uid="uid://b17vjwo6prqo" path="res://src/traps/DamageArea/damage_area.tscn" id="2_l3ykn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8kp23"]
+size = Vector3(0.874023, 0.44281, 0.931885)
 
 [node name="PoolTrap" type="Node3D"]
 
-[node name="pool" type="Node3D" parent="."]
+[node name="pool" parent="." instance=ExtResource("1_lf2b2")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="DamageArea" parent="." instance=ExtResource("2_l3ykn")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.278595, 0)
+shape = SubResource("BoxShape3D_8kp23")
 
 [editable path="DamageArea"]

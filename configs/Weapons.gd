@@ -29,6 +29,7 @@ var Weapons = [
 						"count": 6,
 						"damage": 6,
 						"passthrough": true,
+						"rof": 2,
 					}
 				]
 			},

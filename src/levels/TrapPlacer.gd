@@ -98,7 +98,8 @@ func _process(delta):
 			var trapInstance = load(trap.scenePath).instantiate()
 			trapInstance.position = snapPosition
 			if !trap.wall:
-				trapInstance.rotation.z = PI/2
+				#trapInstance.rotation.z = PI/2
+				pass
 			else:
 				trapInstance.rotation.y = buildMeshInstance.rotation.y
 			trapLayer.add_child(trapInstance)

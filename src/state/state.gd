@@ -13,6 +13,7 @@ enum GameMode {
 
 var game_mode: GameMode = GameMode.Play
 var current_trap = "pool"
+var modeLast = game_mode
 
 var availableWeapons = ["staff", "staff_fire", "staff_flame_thrower", "implosion"]
 
@@ -25,7 +26,11 @@ func _process(delta):
 	
 	var gameModeChanged = false
 	if pressPause:
-		game_mode = GameMode.Play if game_mode == GameMode.Pause else GameMode.Pause
+		if game_mode == GameMode.Pause:
+			game_mode = modeLast
+		else:
+			modeLast = game_mode
+			game_mode = GameMode.Pause
 		gameModeChanged = true
 	elif game_mode != GameMode.Pause && pressBuild:
 		game_mode = GameMode.Build if game_mode == GameMode.Play else GameMode.Play
