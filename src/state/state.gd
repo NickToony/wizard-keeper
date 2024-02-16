@@ -26,6 +26,7 @@ var music = true
 var isPaused = false
 
 var lives = 20
+var gold = 0
 var weaponLeft = "staff"
 var weaponRight = "staff_flame_thrower"
 var weaponCurrent = WeaponIndex.Left

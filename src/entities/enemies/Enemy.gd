@@ -43,6 +43,7 @@ func _on_animation_finished(animation: String):
 	match animation:
 		"Death":
 			if !respawn:
+				State.gold += definition.gold
 				queue_free()
 			else:
 				$ResSound.play()
