@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu7qes7pu3re8"]
+[gd_scene load_steps=11 format=3 uid="uid://cu7qes7pu3re8"]
 
 [ext_resource type="Script" path="res://src/entities/player/Player.gd" id="1_whpmj"]
 [ext_resource type="PackedScene" uid="uid://c27y82t7fanjr" path="res://src/interface/ui.tscn" id="2_is7at"]
 [ext_resource type="PackedScene" uid="uid://ciywvy5g1ocgt" path="res://assets/character/Wizard.gltf" id="2_mqdhi"]
 [ext_resource type="Shader" path="res://shaders/postprocess.gdshader" id="2_prys7"]
+[ext_resource type="Script" path="res://src/entities/player/Camera3D.gd" id="3_3ar7x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2xl3"]
 radius = 0.15
@@ -59,6 +60,7 @@ projection = 1
 current = true
 size = 4.0
 far = 50.0
+script = ExtResource("3_3ar7x")
 
 [node name="Postprocessing" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(1, 5.96046e-08, -2.98023e-08, 0, 1, 0, -5.96046e-08, -7.45058e-08, 1, 0, 2.38419e-07, -0.801158)

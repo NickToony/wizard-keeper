@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=18 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
 [ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="2_y7kw4"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" path="res://src/interface/PlayDisplay.gd" id="11_3q85v"]
 [ext_resource type="Script" path="res://src/interface/NextWave.gd" id="11_xaouc"]
 [ext_resource type="Script" path="res://src/interface/PlayHint.gd" id="12_il7ql"]
+[ext_resource type="Script" path="res://src/interface/CutsceneDisplay.gd" id="15_0m2de"]
+[ext_resource type="Script" path="res://src/interface/Actor.gd" id="16_87sjr"]
+[ext_resource type="Script" path="res://src/interface/Content.gd" id="16_evlyw"]
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -192,3 +195,52 @@ text = "HINT"
 horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("12_il7ql")
+
+[node name="CutsceneDisplay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("15_0m2de")
+
+[node name="PanelContainer" type="PanelContainer" parent="CutsceneDisplay"]
+layout_mode = 2
+offset_left = -250.0
+offset_top = -300.0
+offset_right = 250.0
+offset_bottom = -250.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CutsceneDisplay/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Actor" type="Label" parent="CutsceneDisplay/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Actor
+"
+horizontal_alignment = 1
+script = ExtResource("16_87sjr")
+
+[node name="Content" type="Label" parent="CutsceneDisplay/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "Content"
+autowrap_mode = 2
+script = ExtResource("16_evlyw")
+
+[node name="Next" type="Label" parent="CutsceneDisplay/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press space to proceed"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CutsceneDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

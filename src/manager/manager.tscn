@@ -97,6 +97,7 @@ volume_db = -80.0
 
 [node name="ActionMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_f36pb")
+volume_db = -20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

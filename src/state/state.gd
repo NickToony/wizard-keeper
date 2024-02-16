@@ -13,6 +13,7 @@ signal trap_changed
 enum GameMode {
 	Wait,
 	Play,
+	Cutscene,
 }
 
 enum WeaponIndex {
@@ -21,7 +22,7 @@ enum WeaponIndex {
 	Right
 }
 
-var game_mode: GameMode = GameMode.Play
+var game_mode: GameMode = GameMode.Wait
 var music = true
 var isPaused = false
 
@@ -33,6 +34,11 @@ var weaponCurrent = WeaponIndex.Left
 var traps = ["pool", "spikes", null, null]
 var trapCurrent
 var nextWave = ''
+
+var cutsceneContent = ''
+var cutsceneActor = ''
+var cutscenePlay = false
+var cutscenePosition = null
 
 func _ready():
 	reset()
@@ -49,10 +55,22 @@ func _process(delta):
 	var gameModeChanged = false
 	if pressPause:
 		isPaused = !isPaused
-		get_tree().paused = isPaused
 	if pressBuild && game_mode == GameMode.Wait:
 		game_mode = GameMode.Play
 		gameModeChanged = true
+	
+	if isPaused:
+		get_tree().paused = true
+	else:
+		get_tree().paused = false
+	
+	if game_mode == GameMode.Cutscene:
+		if cutscenePosition:
+			get_tree().paused = true
+		
+		if Input.is_action_just_pressed("next"):
+			game_mode = GameMode.Wait if !cutscenePlay else GameMode.Play
+			return
 	
 	var setWeapon
 	var setTrap
@@ -116,3 +134,4 @@ func reset():
 	traps = ["pool", "spikes", null, null]
 	trapCurrent
 	nextWave = ''
+	game_mode = GameMode.Wait
