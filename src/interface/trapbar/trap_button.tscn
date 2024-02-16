@@ -1,25 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6xwsmjhw8yvi"]
+[gd_scene load_steps=6 format=3 uid="uid://e62lfa0b33ab"]
 
-[ext_resource type="Script" path="res://src/interface/weaponbar/weapon_button.gd" id="1_60i21"]
-[ext_resource type="Texture2D" uid="uid://gxky60ffp74u" path="res://assets/ui/buttonSquare_blue.png" id="1_jid1q"]
-[ext_resource type="Texture2D" uid="uid://d4haxchsofua8" path="res://assets/ui/buttonSquare_grey_pressed.png" id="2_4p3xd"]
-[ext_resource type="Texture2D" uid="uid://tvwb5dqognmq" path="res://assets/icons/sword.png" id="4_pcw71"]
+[ext_resource type="Texture2D" uid="uid://gxky60ffp74u" path="res://assets/ui/buttonSquare_blue.png" id="1_uo8yh"]
+[ext_resource type="Texture2D" uid="uid://d4haxchsofua8" path="res://assets/ui/buttonSquare_grey_pressed.png" id="2_s4aby"]
+[ext_resource type="Script" path="res://src/interface/trapbar/trap_button.gd" id="3_tr03j"]
+[ext_resource type="Texture2D" uid="uid://tvwb5dqognmq" path="res://assets/icons/sword.png" id="4_hlm0t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tb7kc"]
 font_size = 8
 
-[node name="WeaponButton" type="TextureButton"]
+[node name="TrapButton" type="TextureButton"]
 clip_contents = true
 custom_minimum_size = Vector2(96, 96)
 offset_right = 64.64
 offset_bottom = 64.28
 toggle_mode = true
 button_mask = 0
-texture_normal = ExtResource("1_jid1q")
-texture_pressed = ExtResource("2_4p3xd")
-texture_disabled = ExtResource("2_4p3xd")
+texture_normal = ExtResource("1_uo8yh")
+texture_pressed = ExtResource("2_s4aby")
+texture_disabled = ExtResource("2_s4aby")
 stretch_mode = 0
-script = ExtResource("1_60i21")
+script = ExtResource("3_tr03j")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -47,11 +47,11 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer"]
 layout_mode = 2
-texture = ExtResource("4_pcw71")
+texture = ExtResource("4_hlm0t")
 
 [node name="Key" type="Label" parent="."]
 layout_mode = 1
 offset_left = 8.0
-offset_right = 16.0
+offset_right = 48.0
 offset_bottom = 23.0
 text = "?"

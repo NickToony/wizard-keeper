@@ -1,21 +1,31 @@
 extends TextureButton
 
-var weapon
-var selected = false
+var weaponIndex = 0
+
+@export var keyLabel = '?'
 
 @onready var label = $Label
+@onready var key = $Key
 
 func _ready():
-	if weapon:
-		label.text = weapon.id
 	button_mask = MOUSE_BUTTON_MASK_LEFT
+	State.weapons_updated.connect(update)
+	State.weapon_changed.connect(update)
 	update()
+	
+	key.text = keyLabel
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font_size = 10
 	pass
-
-func setSelected(selected):
-	self.selected = selected
-	update()
 
 func update():
-	button_pressed = selected
-	pass
+	button_pressed = State.weaponCurrent == weaponIndex
+	var weapon = State.weaponLeft if weaponIndex == State.WeaponIndex.Left else State.weaponRight
+	if weapon:
+		var weaponData = Weapons.getWeapon(weapon)
+		label.text = weaponData.name
+	else:
+		label.text = ''
+		
+	label.label_settings.font_color = Color.BLACK if button_pressed else Color.WHITE
+	key.add_theme_color_override("font_color", Color.BLACK if button_pressed else Color.WHITE) 

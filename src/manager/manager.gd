@@ -29,10 +29,10 @@ func _physics_process(delta):
 		if get_tree().get_nodes_in_group("enemies").size() > 0:
 			return
 			
-		State.game_mode = State.GameMode.Build
+		State.game_mode = State.GameMode.Wait
 		toSpawn = []
 	
-	if State.game_mode == State.GameMode.Build:
+	if State.game_mode == State.GameMode.Wait:
 		if !calmMusic.playing:
 			crossfade_to()
 		
@@ -43,7 +43,9 @@ func _physics_process(delta):
 		
 		var stage = level[step]
 		toSpawn = []
+		State.nextWave = ""
 		for enemies in stage.enemies:
+			State.nextWave = State.nextWave + str(enemies.count) + " " + Levels.Spawnable.keys()[enemies.type] + "s   "
 			for i in range(enemies.count):
 				toSpawn.append(enemies.type)
 		stageStep = 0

@@ -18,14 +18,14 @@ func _ready():
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
 func _process(delta):
-	if State.game_mode == State.GameMode.Build && player.mousePosition && !player.building:
-		if lastTrapId != State.current_trap:
-			lastTrapId = State.current_trap
+	if State.currentTrap() && player.mousePosition && !player.building:
+		if lastTrapId != State.currentTrap():
+			lastTrapId = State.currentTrap()
 			
 			if buildMeshInstance:
 				remove_child(buildMeshInstance)
 			
-			trap = Traps.getTrap(State.current_trap)
+			trap = State.currentTrapData()
 			var buildMesh = load(trap.meshPath)
 			buildMeshInstance = buildMesh.instantiate()
 			if !trap.wall:

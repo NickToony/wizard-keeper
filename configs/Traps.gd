@@ -6,14 +6,16 @@ var Traps = [
 		"name": "Wall o Spikes",
 		"wall": true,
 		"meshPath": "res://assets/traps/spiketrap.glb",
-		"scenePath": "res://src/traps/WallSpikeTrap.tscn"
+		"scenePath": "res://src/traps/WallSpikeTrap.tscn",
+		"icon": "res://assets/icons/sword.png"
 	},
 	{
 		"id": "pool",
 		"name": "Nasty Pool",
 		"wall": false,
 		"meshPath": "res://assets/traps/pool.glb",
-		"scenePath": "res://src/traps/PoolTrap.tscn"
+		"scenePath": "res://src/traps/PoolTrap.tscn",
+		"icon": "res://assets/icons/sword.png"
 	}
 ]
 

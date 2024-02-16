@@ -5,22 +5,41 @@ var PROJECTILE_BASIC = preload("res://src/attacks/projectile.tscn")
 
 var UNIT_GOBLIN = preload("res://src/entities/enemies/Enemy.tscn")
 
+signal weapons_updated
+signal weapon_changed
+signal traps_updated
+signal trap_changed
+
 enum GameMode {
-	Build,
+	Wait,
 	Play,
 }
 
+enum WeaponIndex {
+	None,
+	Left,
+	Right
+}
+
 var game_mode: GameMode = GameMode.Play
-var current_trap = "pool"
 var modeLast = game_mode
 var music = false
 var lives = 20
 var isPaused = false
 
-var availableWeapons = ["staff", "staff_fire", "staff_flame_thrower", "implosion"]
+var weaponLeft = "staff"
+var weaponRight = "staff_flame_thrower"
+var weaponCurrent = WeaponIndex.Left
+var traps = ["pool", "spikes", null, null]
+var trapCurrent
+var nextWave = 'ddd'
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	emit_signal('weapons_updated')
+	emit_signal('traps_updated')
+	emit_signal("weapon_changed")
+	emit_signal("trap_changed")
 
 func _process(delta):
 	var pressBuild = Input.is_action_just_pressed("build_mode")
@@ -30,17 +49,64 @@ func _process(delta):
 	if pressPause:
 		isPaused = !isPaused
 		get_tree().paused = isPaused
-	if pressBuild:
-		game_mode = GameMode.Build if game_mode == GameMode.Play else GameMode.Play
+	if pressBuild && game_mode == GameMode.Wait:
+		game_mode = GameMode.Play
 		gameModeChanged = true
-		
-	#if gameModeChanged:
-		#get_tree().paused = game_mode != GameMode.Play
-		#for player in get_tree().get_nodes_in_group("players"):
-			#player.process_mode = Node.PROCESS_MODE_ALWAYS if game_mode == GameMode.Build else Node.PROCESS_MODE_INHERIT
 	
-	if game_mode == GameMode.Build:
-		if Input.is_action_just_pressed("bar1"):
-			current_trap = "pool"
-		if Input.is_action_just_pressed("bar2"):
-			current_trap = "spikes"
+	var setWeapon
+	var setTrap
+	if Input.is_action_just_pressed("weapon_left"):
+		setWeapon = WeaponIndex.Left
+
+	if Input.is_action_just_pressed("weapon_right"):
+		setWeapon = WeaponIndex.Right
+		
+	if Input.is_action_just_pressed("trap1"):
+		setTrap = 1
+	if Input.is_action_just_pressed("trap2"):
+		setTrap = 2
+	if Input.is_action_just_pressed("trap3"):
+		setTrap = 3
+	if Input.is_action_just_pressed("trap4"):
+		setTrap = 4
+	
+	if setWeapon:
+		if setWeapon != weaponCurrent:
+			weaponCurrent = setWeapon
+			trapCurrent = null
+			emit_signal("weapon_changed")
+			emit_signal("trap_changed")
+			
+			print('change weapon', weaponCurrent)
+	elif setTrap:
+		var realIndex = setTrap - 1
+		if realIndex != trapCurrent:
+			trapCurrent = realIndex
+			weaponCurrent = WeaponIndex.None
+			emit_signal("weapon_changed")
+			emit_signal("trap_changed")
+			
+			print('change trap', trapCurrent)
+
+func currentWeapon():
+	if weaponCurrent == WeaponIndex.None:
+		return
+	
+	return weaponLeft if weaponCurrent == WeaponIndex.Left else weaponRight
+	
+func currentWeaponData():
+	if weaponCurrent == WeaponIndex.None:
+		return
+	
+	return Weapons.getWeapon(currentWeapon())
+
+func currentTrap():
+	if trapCurrent == null:
+		return
+	
+	return traps[trapCurrent]
+	
+func currentTrapData():
+	var trap = currentTrap()
+	
+	return Traps.getTrap(trap) if trap != null else null

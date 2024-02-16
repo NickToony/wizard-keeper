@@ -10,7 +10,7 @@ extends CharacterBody3D
 @onready var wizardMesh: MeshInstance3D = $Wizard/EnemyArmature/Skeleton3D/Wizard
 @onready var skeleton: Skeleton3D = $Wizard/EnemyArmature/Skeleton3D
 @onready var camera: Camera3D = $Camera3D
-@onready var weaponBar = $UI/PlayMode/WeaponBarContainer/WeaponBar
+
 
 var rightArmBone
 var leftArmBone
@@ -46,9 +46,7 @@ var respawnCounter = -1
 
 var currentWeapon
 
-func _ready():
-	changeWeapon("staff")
-	
+func _ready():	
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
 	wizardArrayMesh.shadow_mesh = $MeshInstance3D.mesh
 	
@@ -80,11 +78,12 @@ func _ready():
 	
 	modelAnimation.animation_finished.connect(_on_animation_finished)
 	
-	weaponBar.weapon_selected.connect(changeWeapon)
-	
-func changeWeapon(weaponId):
-	currentWeapon = Weapons.getWeapon(weaponId)
-	weaponBar.setSelected(weaponId)
+	State.weapon_changed.connect(changeWeapon)
+	changeWeapon()
+
+func changeWeapon():
+	currentWeapon = State.currentWeaponData()
+	target_lerp = 0
 	
 func _on_animation_finished(animation: String):
 	match animation:
@@ -108,8 +107,8 @@ func _process(delta):
 			respawnCounter -= 1
 		return
 		
-	canAttack = State.game_mode == State.GameMode.Play
-	canBuild = State.game_mode == State.GameMode.Build
+	canAttack = !!currentWeapon
+	canBuild = !!State.trapCurrent
 	
 	if building:
 		canMove = false
