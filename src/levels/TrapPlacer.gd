@@ -16,7 +16,6 @@ var lastTrapId = null
 func _ready():	
 	player = get_tree().get_nodes_in_group("players")[0]
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta):
 	if State.game_mode == State.GameMode.Build && player.mousePosition && !player.building:
