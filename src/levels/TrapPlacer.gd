@@ -1,8 +1,8 @@
 extends Node3D
 
-@onready var floors: GridMap = $"../floors"
-@onready var walls: GridMap = $"../walls"
-@onready var scenery: GridMap = $"../scenery"
+@onready var floors: GridMap = $"../World/floors"
+@onready var walls: GridMap = $"../World/walls"
+@onready var scenery: GridMap = $"../World/scenery"
 @onready var wallTraps: Node3D = $"../WallTraps"
 @onready var floorTraps: Node3D = $"../FloorTraps"
 
