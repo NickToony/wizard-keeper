@@ -35,7 +35,6 @@ var levels = {
 				{ "type": Spawnable.Goblin, "count": 5 },
 			],
 			"weapons": ["staff", null],
-			"traps": [],
 		},
 		{
 			"cutscenes": [{
@@ -63,7 +62,6 @@ var levels = {
 			"enemies": [
 				{ "type": Spawnable.Goblin, "count": 10 }
 			],
-			"weapons": [],
 			"traps": ["pool"],
 			"gold": 100,
 		},
@@ -81,7 +79,6 @@ var levels = {
 			"enemies": [
 				{ "type": Spawnable.Goblin, "count": 20 }
 			],
-			"weapons": [],
 			"traps": ["pool", "spikes"],
 		},
 		{
@@ -111,7 +108,6 @@ var levels = {
 				{ "type": Spawnable.Zombie, "count": 15 }
 			],
 			"weapons": ["staff", "staff_flame_thrower"],
-			"traps": [],
 		},
 		{
 			"cutscenes": [{
@@ -135,13 +131,20 @@ var levels = {
 			"enemies": [
 				{ "type": Spawnable.Demon, "count": 10 }
 			],
-			"weapons": [],
-			"traps": [],
 		},
 		{
+			"shop": true,
 			"cutscenes": [{
 				"actor": "Wizard",
 				"text": "This is beyond anything I've seen before. Whatever powerful magic is causing this, I must not let it escape.",
+				"target": null,
+			},{
+				"actor": "Wizard",
+				"text": "It's time to call upon more of my arsenal to push this evil back.",
+				"target": null,
+			},{
+				"actor": "TUTORIAL",
+				"text": "The shop gives you a selection of randomised items to buy.",
 				"target": null,
 			}],
 			"attackscenes": [{
@@ -154,8 +157,6 @@ var levels = {
 				{ "type": Spawnable.Zombie, "count": 20 },
 				{ "type": Spawnable.Goblin, "count": 20 }
 			],
-			"weapons": [],
-			"traps": [],
 		},
 		{
 			"cutscenes": [{
@@ -173,15 +174,13 @@ var levels = {
 				{ "type": Spawnable.Zombie, "count": 30 },
 				{ "type": Spawnable.Goblin, "count": 30 }
 			],
-			"weapons": [],
-			"traps": [],
 		}
 	],
 	"testlevel": [
 		{
 			"cutscenes": [{
 				"actor": "Wizard",
-				"text": "Here comes a huge wave",
+				"text": "Here comes a huge wave of enemies. Good thing I saved up all my pennies. It's time to prepare.",
 				"target": null,	
 			}],
 			"attackscenes": [{

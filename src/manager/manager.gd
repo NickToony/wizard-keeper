@@ -14,6 +14,7 @@ var stageStep = 0
 var cutsceneIndex = 0
 var attacksceneIndex = 0
 var attackscenes = []
+var shop = false
 @onready var level = Levels.levels[levelName]
 
 func _ready():
@@ -61,6 +62,12 @@ func _physics_process(delta):
 			State.game_mode = State.GameMode.Cutscene
 			return
 		
+		if shop:
+			State.shop = true
+			State.rerolls = 0
+			shop = false
+			return
+		
 		if toSpawn.size() > 0:
 			return
 		if step >= level.size():
@@ -80,20 +87,20 @@ func _physics_process(delta):
 			for i in range(enemies.count):
 				toSpawn.append(enemies.type)
 		toSpawn.shuffle()
-		cutscenes = stage.cutscenes
-		attackscenes = stage.attackscenes
+		cutscenes = stage.cutscenes if stage.has('cutscenes') else []
+		attackscenes = stage.attackscenes if stage.has('attackscenes') else []
 		cutsceneIndex = 0
 		attacksceneIndex = 0
 		stageStep = 0
 		if stage.has('gold'):
 			State.gold += stage.gold
+		shop = false
 		if stage.has('shop') && stage.shop:
-			State.shop = true
-			State.rerolls = 0
+			shop = true
 		
-		if stage.weapons.size():
+		if stage.has('weapons') && stage.weapons.size():
 			State.setWeapons(stage.weapons[0], stage.weapons[1])
-		if stage.traps.size():
+		if stage.has('traps') && stage.traps.size():
 			State.setTraps(stage.traps)
 		
 		step += 1

@@ -80,5 +80,5 @@ func _on_buy():
 	
 	queue_free()
 	
-	if get_parent().get_child_count() == 1:
-		State.shop = false
+	#if get_parent().get_child_count() == 1:
+		#State.shop = false
