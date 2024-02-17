@@ -95,6 +95,7 @@ func _process(delta):
 			player.triggerBuild()
 			
 			var trapInstance = load(trap.scenePath).instantiate()
+			trapInstance.trap = trap
 			trapInstance.position = snapPosition
 			if !trap.wall:
 				#trapInstance.rotation.z = PI/2

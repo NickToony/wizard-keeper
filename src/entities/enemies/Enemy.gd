@@ -98,7 +98,7 @@ func _physics_process(delta):
 	if burningTime:
 		burningTime -= 1
 		if burningTime % 30 == 0:
-			damaged(1, Color.RED)
+			damaged(ceil(burningTime/60) + 1, Color.RED)
 	if slowTime:
 		slowTime -= 1
 	if stunTime:

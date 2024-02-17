@@ -3,7 +3,7 @@ extends Node
 var Definitions: Dictionary = {
 	"Goblin": {
 		"mesh": "res://assets/enemies/Goblin.gltf",
-		"health": 100,
+		"health": 150,
 		"speed": 1,
 		"attackspeed": 1,
 		"damage": 10,
@@ -20,7 +20,7 @@ var Definitions: Dictionary = {
 	},
 	"Demon": {
 		"mesh": "res://assets/enemies/Demon.gltf",
-		"health": 25,
+		"health": 100,
 		"speed": 3,
 		"damage": 5,
 		"attackspeed": 2,

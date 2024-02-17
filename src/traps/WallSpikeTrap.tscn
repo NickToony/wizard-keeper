@@ -14,8 +14,7 @@ script = ExtResource("1_2vq2q")
 [node name="spiketrap" parent="." instance=ExtResource("2_sol5b")]
 
 [node name="DamageArea" parent="." instance=ExtResource("2_h42h2")]
-tickRate = 120
-damage = 50
+monitorable = false
 onlyFireIfTargets = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]

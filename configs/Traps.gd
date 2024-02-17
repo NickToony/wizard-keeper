@@ -9,7 +9,14 @@ var Traps = [
 		"scenePath": "res://src/traps/WallSpikeTrap.tscn",
 		"icon": "res://assets/icons/sword.png",
 		"description": "Spike trap mounted on the wall. High damage, but needs time to recharge.",
-		"cost": 50
+		"cost": 50,
+		"damage": 50,
+		"cooldown": 5,
+		"stun": 0,
+		"burning": 0,
+		"poison": 0,
+		"slow": 0,
+		"aoe": 0,
 	},
 	{
 		"id": "pool",
@@ -19,7 +26,9 @@ var Traps = [
 		"scenePath": "res://src/traps/PoolTrap.tscn",
 		"icon": "res://assets/icons/sword.png",
 		"description": "A pool of acidic goo. Hurts enemies as they walk over it, but magically harmless to wizards!",
-		"cost": 20,
+		"cost": 25,
+		"damage": 10,
+		"cooldown": 1,
 	}
 ]
 

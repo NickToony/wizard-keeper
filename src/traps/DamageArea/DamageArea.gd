@@ -3,11 +3,10 @@ extends Area3D
 signal trap_ticked
 signal trap_ticked_effective
 
-@export var tickRate = 60
-@export var damage = 20
 @export var onlyFireIfTargets = false
 var targets = []
-var tick = tickRate
+var tick = 100
+var trap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,12 +14,15 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 	pass
 	
+func setup():
+	tick = trap.cooldown * 60
+	
 func _process(_delta):
 	tick -= _delta * 100
 	if tick < 0 && (!onlyFireIfTargets || targets.size() > 0):
-		tick = tickRate
+		tick = trap.cooldown * 60
 		for target in targets:
-			target.damaged(damage)
+			target.damaged(trap.damage)
 		emit_signal("trap_ticked")
 		if targets.size() > 0:
 			emit_signal("trap_ticked_effective")
