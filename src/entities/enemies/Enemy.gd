@@ -15,6 +15,12 @@ var health = 100
 var maxHealth = health
 var definition
 var respawn = false
+		
+var stunTime = 0
+var burningTime = 0
+var poisonTime = 0
+var slowTime = 0
+var statusCountdown = 60
 
 func _ready() -> void:
 	health = definition.health
@@ -85,12 +91,25 @@ func _process(delta):
 		modelAnimation.play("Idle")
 
 func _physics_process(delta):
+	if poisonTime:
+		poisonTime -= 1
+		if poisonTime % 30 == 0:
+			damaged(5, Color.GREEN)
+	if burningTime:
+		burningTime -= 1
+		if burningTime % 30 == 0:
+			damaged(1, Color.RED)
+	if slowTime:
+		slowTime -= 1
+	if stunTime:
+		stunTime -= 1
+	
 	var targetVelocity = Vector3.ZERO;
-	if health <= 0 || modelAnimation.current_animation == 'Attack':
+	if health <= 0 || modelAnimation.current_animation == 'Attack' || stunTime > 0:
 		pass
 	elif !navigation_agent.is_navigation_finished():
 		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-		targetVelocity = global_position.direction_to(next_path_position) * definition.speed
+		targetVelocity = global_position.direction_to(next_path_position) * (definition.speed / 2 if slowTime > 0 else definition.speed)
 	else:
 		var exit = get_tree().get_nodes_in_group("exit")[0]
 		navigation_agent.set_target_position(exit.global_position)
@@ -112,8 +131,10 @@ func _on_velocity_computed(safe_velocity: Vector3):
 	
 	move_and_slide()
 
-func damaged(amount):
+func damaged(amount, color = Color.BLACK):
+	health -= amount
 	var damageLabel = damageLabelScene.instantiate()
 	damageLabel.text = str(amount)
 	damageLabel.position = global_position
+	damageLabel.color = color
 	get_parent().add_child(damageLabel)

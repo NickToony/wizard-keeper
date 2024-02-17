@@ -20,7 +20,6 @@ func _process(_delta):
 	if tick < 0 && (!onlyFireIfTargets || targets.size() > 0):
 		tick = tickRate
 		for target in targets:
-			target.health -= damage
 			target.damaged(damage)
 		emit_signal("trap_ticked")
 		if targets.size() > 0:

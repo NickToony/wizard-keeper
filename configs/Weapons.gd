@@ -17,15 +17,22 @@ var Weapons = [
 		"sound": "res://assets/sound/laser2.ogg",
 		"cost": 25,
 		"color": "#3BE7AF",
+		"stun": 0,
+		"burning": 0,
+		"poison": 0,
+		"slow": 0,
+		"aoe": 0,
 		"upgrades": [
 			{
 				"id": "staff_fire",
 				"name": "Fire Staff",
-				"damage": 60,
+				"damage": 50,
 				"rof": 0.5,
 				"speed": 2,
 				"color": "#E7593B",
 				"description": "Slow and heavy hitting, explodes on contact.",
+				"burning": 20,
+				"aoe": 0.5,
 				"upgrades": [
 					{
 						"id": "staff_flame_thrower",
@@ -37,18 +44,22 @@ var Weapons = [
 						"damage": 6,
 						"penetration": 3,
 						"rof": 2,
+						"burning": 5,
+						"aoe": 0,
 					},
 					{
 						"id": "staff_meteor",
 						"name": "Meteor",
-						"description": "Cataclysmic. Slow but devastating. Explodes of contact.",
+						"description": "Cataclysmic. Slow but devastating. Large explosion on contact.",
 						"range": 20,
 						"speed": 1,
 						"count": 1,
 						"damage": 100,
 						"penetration": 0,
 						"rof": 0.4,
-						"colour": "#D2641C"
+						"colour": "#D2641C",
+						"burning": 10,
+						"aoe": 1,
 					}
 				]
 			},
@@ -61,6 +72,7 @@ var Weapons = [
 				"speed": 5,
 				"color": "#4C7CF2",
 				"penetration": 1,
+				"slow": 1,
 			},
 			{
 				"id": "staff_rock",
@@ -72,6 +84,20 @@ var Weapons = [
 				"range": 20,
 				"speed": 3,
 				"color": "#583218",
+				"stun": 1,
+			},
+			{
+				"id": "staff_poison",
+				"name": "Poison Dart",
+				"description": "Quick moving dart that slows and poisons an enemy.",
+				"damage": 20,
+				"rof": 1,
+				"count": 1,
+				"range": 20,
+				"speed": 8,
+				"color": "#87DB47",
+				"slow": 3,
+				"poison": 5,
 			},
 			{
 				"id": "implosion",

@@ -39,8 +39,16 @@ func _physics_process(delta):
 func _on_body_entered(body: Node3D):
 	
 	if (body.is_in_group('enemies')):
-		body.health -= weapon.damage
 		body.damaged(weapon.damage)
+		if weapon.poison:
+			body.poisonTime = weapon.poison * 60
+		if weapon.stun:
+			body.stunTime = weapon.stun * 60
+		if weapon.slow:
+			body.slowTime = weapon.slow * 60
+		if weapon.burning:
+			body.burningTime = weapon.burning * 60
+		
 		if penetrated < weapon.penetration:
 			penetrated += 1
 			return
