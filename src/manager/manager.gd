@@ -87,6 +87,11 @@ func _physics_process(delta):
 		attacksceneIndex = 0
 		stageStep = 0
 		
+		if stage.weapons.size():
+			State.setWeapons(stage.weapons[0], stage.weapons[1])
+		if stage.traps.size():
+			State.setTraps(stage.traps)
+		
 		step += 1
 
 func spawnEnemy():

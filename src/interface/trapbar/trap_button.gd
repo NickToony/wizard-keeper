@@ -29,6 +29,7 @@ func update():
 			var trapData = Traps.getTrap(State.traps[trapIndex])
 			label.text = trapData.name
 			icon.texture = load(trapData.icon)
+			icon.visible = true
 			return
 	label.text = ''
 	icon.visible = false

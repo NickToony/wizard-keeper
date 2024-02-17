@@ -28,11 +28,11 @@ var isPaused = false
 
 var lives = 20
 var gold = 0
-var weaponLeft = "staff"
-var weaponRight = "staff_flame_thrower"
+var weaponLeft = null
+var weaponRight = null
 var weaponCurrent = WeaponIndex.Left
-var traps = ["pool", "spikes", null, null]
-var trapCurrent
+var traps = [null, null, null, null]
+var trapCurrent = null
 var nextWave = ''
 
 var cutsceneContent = ''
@@ -65,7 +65,7 @@ func _process(delta):
 		get_tree().paused = false
 	
 	if game_mode == GameMode.Cutscene:
-		if cutscenePosition:
+		if cutscenePosition || get_tree().get_first_node_in_group("enemies") != null:
 			get_tree().paused = true
 		
 		if Input.is_action_just_pressed("next"):
@@ -91,10 +91,18 @@ func _process(delta):
 	
 	if setWeapon:
 		if setWeapon != weaponCurrent:
-			weaponCurrent = setWeapon
-			trapCurrent = null
-			emit_signal("weapon_changed")
-			emit_signal("trap_changed")
+			var valid = true
+			
+			if setWeapon == WeaponIndex.Left && !weaponLeft:
+				valid = false
+			elif setWeapon == WeaponIndex.Right && !weaponRight:
+				valid = false
+			
+			if valid:
+				weaponCurrent = setWeapon
+				trapCurrent = null
+				emit_signal("weapon_changed")
+				emit_signal("trap_changed")
 	elif setTrap:
 		var realIndex = setTrap - 1
 		if realIndex != trapCurrent:
@@ -128,10 +136,26 @@ func currentTrapData():
 
 func reset():
 	lives = 20
-	weaponLeft = "staff"
+	weaponLeft = null
 	weaponRight = null
-	weaponCurrent = WeaponIndex.Left
-	traps = ["pool", "spikes", null, null]
-	trapCurrent
+	weaponCurrent = WeaponIndex.None
+	traps = [null, null, null, null]
+	trapCurrent = null
 	nextWave = ''
 	game_mode = GameMode.Wait
+
+func setWeapons(left, right):
+	weaponLeft = left
+	weaponRight = right
+	if weaponCurrent == WeaponIndex.None:
+		if weaponLeft:
+			weaponCurrent = WeaponIndex.Left
+		elif weaponRight:
+			weaponCurrent = WeaponIndex.Right
+	emit_signal('weapons_updated')
+	emit_signal("weapon_changed")
+	
+func setTraps(newTraps):
+	traps = newTraps
+	emit_signal('traps_updated')
+	emit_signal("trap_changed")

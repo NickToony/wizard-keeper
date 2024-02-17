@@ -33,7 +33,9 @@ var levels = {
 			}],
 			"enemies": [
 				{ "type": Spawnable.Goblin, "count": 5 },
-			]
+			],
+			"weapons": ["staff", null],
+			"traps": [],
 		},
 		{
 			"cutscenes": [{
@@ -60,14 +62,18 @@ var levels = {
 			}],
 			"enemies": [
 				{ "type": Spawnable.Goblin, "count": 10 }
-			]
+			],
+			"weapons": [],
+			"traps": ["pool"],
 		},
 		{
 			"cutscenes": [],
 			"attackscenes": [],
 			"enemies": [
 				{ "type": Spawnable.Goblin, "count": 100 }
-			]
+			],
+			"weapons": [],
+			"traps": [],
 		}
 	]
 }
