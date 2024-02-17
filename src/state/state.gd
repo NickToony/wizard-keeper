@@ -126,6 +126,9 @@ func currentWeaponData():
 func currentTrap():
 	if trapCurrent == null:
 		return
+		
+	if trapCurrent >= traps.size():
+		return null
 	
 	return traps[trapCurrent]
 	

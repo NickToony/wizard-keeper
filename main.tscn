@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmjp6174treub"]
 
-[ext_resource type="PackedScene" uid="uid://bdcrlm21c8k2s" path="res://src/levels/level.tscn" id="1_tudte"]
+[ext_resource type="PackedScene" uid="uid://cvr6ceqwy7l3s" path="res://src/levels/tutorial.tscn" id="1_6lp22"]
 
 [sub_resource type="Environment" id="Environment_c8u53"]
 background_mode = 1
@@ -10,6 +10,8 @@ ambient_light_color = Color(0.52549, 0.52549, 0.52549, 1)
 glow_hdr_luminance_cap = 214.77
 
 [node name="main" type="Node3D"]
+
+[node name="Level" parent="." instance=ExtResource("1_6lp22")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.124077, -0.539832, 0.832578, 0.428468, 0.727658, 0.535658, -0.894997, 0.423195, 0.141015, 10.3663, 7.59075, 6.69605)
@@ -21,5 +23,3 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c8u53")
-
-[node name="level" parent="." instance=ExtResource("1_tudte")]
