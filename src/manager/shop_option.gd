@@ -10,6 +10,7 @@ var option: Dictionary
 
 var weapon
 var trap
+var goldCost = 0
 
 func _ready():
 	button.pressed.connect(_on_buy)
@@ -19,15 +20,19 @@ func _ready():
 		title.text = trap.name
 		description.text = trap.description
 		cost.text = str(trap.cost) + " gold"
+		#goldCost = trap.cost
 		type.text = "TRAP"
 	elif option.has("weapon") && option.weapon != null:
 		weapon = Weapons.getWeapon(option.weapon)
 		title.text = weapon.name
 		description.text = weapon.description
 		cost.text = str(weapon.cost) + " gold"
+		#goldCost = weapon.cost
 		type.text = getItemLevel(weapon)
 	
 	update()
+	State.weapons_updated.connect(update)
+	State.traps_updated.connect(update)
 		
 func update():
 	if weapon:
@@ -56,7 +61,8 @@ func update():
 	if button.disabled:
 		button.text = "Too Many, Sell One First"
 	else:
-		button.text = "Buy"
+		button.text = "Purchase"
+		
 		
 func getItemLevel(weapon):
 	match weapon.level:

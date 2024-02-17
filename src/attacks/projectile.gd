@@ -11,10 +11,12 @@ var playerVelocity
 var triggerTime = 0
 var targets = []
 var targetMap = {}
+var penetrated = 0
 
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	
 
 #func _process(delta):
 	#if weapon.passthrough:
@@ -39,7 +41,8 @@ func _on_body_entered(body: Node3D):
 	if (body.is_in_group('enemies')):
 		body.health -= weapon.damage
 		body.damaged(weapon.damage)
-		if weapon.passthrough:
+		if penetrated < weapon.penetration:
+			penetrated += 1
 			return
 	queue_free()
 	
@@ -53,3 +56,7 @@ func update(playerVelocity):
 		velocity += playerVelocity
 	position += global_transform.basis.z.normalized() * 0.3
 	startPos = position
+	
+	if weapon:
+		mesh.material_override = StandardMaterial3D.new()
+		mesh.material_override.albedo_color = Color(weapon.color)

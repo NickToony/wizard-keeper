@@ -47,11 +47,15 @@ var levels = {
 				"target": null,
 			}, {
 				"actor": "Wizard",
-				"text": "As a Wizard of the Order, I am sworn to protect the upper realms. I can place some traps to catch the enemies off guard.",
-				"target": null,
+				"text": "As a Wizard of the Order, I am sworn to protect the portal to upper realms.",
+				"target": "exit",
 			},{
+				"actor": "Wizard",
+				"text": "I should place some traps along the route to the portal to limit their escape.",
+				"target": "exit",
+			}, {
 				"actor": "TUTORIAL",
-				"text": "1,2,3,4 can be used to select traps to place. Use Q/E to switch back to a weapon any time.",
+				"text": "1,2,3,4 can be used to select traps to place. Use Q/E to switch back to a weapon any time. Left click to place a trap.",
 				"target": null,
 			}],
 			"attackscenes": [{

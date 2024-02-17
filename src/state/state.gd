@@ -156,6 +156,7 @@ func reset():
 	game_mode = GameMode.Wait
 	gameEnd = false
 	rerolls = 0
+	gold = 0
 
 func setWeapons(left, right):
 	weaponLeft = left
