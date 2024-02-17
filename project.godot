@@ -22,6 +22,7 @@ Weapons="*res://configs/Weapons.gd"
 Traps="*res://configs/Traps.gd"
 Levels="*res://configs/Levels.gd"
 Enemies="*res://configs/Enemies.gd"
+Music="*res://src/manager/music.tscn"
 
 [display]
 

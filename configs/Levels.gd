@@ -65,6 +65,7 @@ var levels = {
 			],
 			"weapons": [],
 			"traps": ["pool"],
+			"gold": 100,
 		},
 		{
 			"cutscenes": [{
@@ -195,6 +196,7 @@ var levels = {
 			],
 			"weapons": ["staff", "staff_flame_thrower"],
 			"traps": ["pool", "spikes"],
+			"gold": 1000,
 		},
 	]
 }
