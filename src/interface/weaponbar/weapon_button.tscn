@@ -1,18 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6xwsmjhw8yvi"]
+[gd_scene load_steps=8 format=3 uid="uid://c6xwsmjhw8yvi"]
 
+[ext_resource type="Script" path="res://src/interface/weaponbar/WeaponContainer.gd" id="1_7q5hu"]
 [ext_resource type="Script" path="res://src/interface/weaponbar/weapon_button.gd" id="1_60i21"]
 [ext_resource type="Texture2D" uid="uid://gxky60ffp74u" path="res://assets/ui/buttonSquare_blue.png" id="1_jid1q"]
 [ext_resource type="Texture2D" uid="uid://d4haxchsofua8" path="res://assets/ui/buttonSquare_grey_pressed.png" id="2_4p3xd"]
+[ext_resource type="Script" path="res://src/interface/weaponbar/Sell.gd" id="2_ed1v7"]
 [ext_resource type="Texture2D" uid="uid://tvwb5dqognmq" path="res://assets/icons/sword.png" id="4_pcw71"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tb7kc"]
 font_size = 8
 
-[node name="WeaponButton" type="TextureButton"]
+[node name="WeaponContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7q5hu")
+
+[node name="PanelContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="Sell" type="Button" parent="PanelContainer"]
+layout_mode = 2
+offset_right = 96.0
+offset_bottom = 31.0
+text = "Sell
+"
+script = ExtResource("2_ed1v7")
+
+[node name="IconButton" type="TextureButton" parent="."]
 clip_contents = true
 custom_minimum_size = Vector2(96, 96)
-offset_right = 64.64
-offset_bottom = 64.28
+layout_mode = 2
 toggle_mode = true
 button_mask = 0
 texture_normal = ExtResource("1_jid1q")
@@ -21,7 +39,7 @@ texture_disabled = ExtResource("2_4p3xd")
 stretch_mode = 0
 script = ExtResource("1_60i21")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="IconButton"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -37,7 +55,7 @@ text = "testmctest"
 label_settings = SubResource("LabelSettings_tb7kc")
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="IconButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,13 +63,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="IconButton/CenterContainer"]
 layout_mode = 2
 texture = ExtResource("4_pcw71")
 
-[node name="Key" type="Label" parent="."]
+[node name="Key" type="Label" parent="IconButton"]
 layout_mode = 1
 offset_left = 8.0
 offset_right = 16.0
 offset_bottom = 23.0
 text = "?"
+
+[connection signal="pressed" from="PanelContainer/Sell" to="." method="_on_sell_pressed"]

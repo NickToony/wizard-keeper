@@ -197,3 +197,8 @@ func addTrap(newTrap):
 	
 	emit_signal('traps_updated')
 	emit_signal("trap_changed")
+
+func removeTrap(index):
+	traps[index] = null
+	emit_signal('traps_updated')
+	emit_signal("trap_changed")
