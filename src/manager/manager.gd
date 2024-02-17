@@ -89,6 +89,7 @@ func _physics_process(delta):
 			State.gold += stage.gold
 		if stage.has('shop') && stage.shop:
 			State.shop = true
+			State.rerolls = 0
 		
 		if stage.weapons.size():
 			State.setWeapons(stage.weapons[0], stage.weapons[1])

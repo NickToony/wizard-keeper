@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://5hwcqxux1ihw"]
+[gd_scene load_steps=6 format=3 uid="uid://5hwcqxux1ihw"]
 
 [ext_resource type="Script" path="res://src/shop/shop.gd" id="1_e6mh5"]
 [ext_resource type="Script" path="res://src/shop/ShopOptions.gd" id="1_o0ae6"]
 [ext_resource type="PackedScene" uid="uid://c3yn4h8vh0t1v" path="res://src/manager/shop_option.tscn" id="1_wi1a8"]
 [ext_resource type="Script" path="res://src/shop/CloseShop.gd" id="3_h5e7j"]
+[ext_resource type="Script" path="res://src/shop/Reroll.gd" id="5_jnkrm"]
 
 [node name="Shop" type="Control"]
 process_mode = 3
@@ -62,4 +63,14 @@ action_mode = 0
 text = "Close Shop"
 script = ExtResource("3_h5e7j")
 
+[node name="Reroll" type="Button" parent="CenterContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+action_mode = 0
+text = "Close Shop"
+script = ExtResource("5_jnkrm")
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Close" to="CenterContainer/VBoxContainer/Close" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Reroll" to="CenterContainer/VBoxContainer/ShopOptions" method="_on_reroll_pressed"]

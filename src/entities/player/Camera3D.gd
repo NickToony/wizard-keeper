@@ -7,7 +7,7 @@ func _ready():
 	basePos = position
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _process(delta):
+func _physics_process(delta):
 	var targetPos = basePos
 	var asGlobal = false
 	if State.game_mode == State.GameMode.Cutscene && State.cutscenePosition != null:

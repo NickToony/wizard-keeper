@@ -31,6 +31,7 @@ var trapCurrent = null
 var nextWave = ''
 var gameEnd = false
 var shop = false
+var rerolls = 0
 
 var cutsceneContent = ''
 var cutsceneActor = ''
@@ -52,7 +53,7 @@ func _process(delta):
 	var gameModeChanged = false
 	if pressPause:
 		isPaused = !isPaused
-	if pressBuild && game_mode == GameMode.Wait:
+	if pressBuild && game_mode == GameMode.Wait && !shop:
 		game_mode = GameMode.Play
 		gameModeChanged = true
 	
@@ -154,6 +155,7 @@ func reset():
 	nextWave = ''
 	game_mode = GameMode.Wait
 	gameEnd = false
+	rerolls = 0
 
 func setWeapons(left, right):
 	weaponLeft = left
@@ -168,5 +170,29 @@ func setWeapons(left, right):
 	
 func setTraps(newTraps):
 	traps = newTraps
+	emit_signal('traps_updated')
+	emit_signal("trap_changed")
+
+func addWeapon(newWeapon):
+	if !weaponLeft:
+		setWeapons(newWeapon, State.weaponRight)
+	else:
+		setWeapons(State.weaponLeft, newWeapon)
+
+func addTrap(newTrap):
+	if traps.size() < 4:
+		traps.append(newTrap)
+		print('append trap')
+	else:
+		var freeIndex = -1
+		var i = 0
+		for t in State.traps:
+			if t == null:
+				freeIndex = i
+				break
+			i += 1
+		if freeIndex >= 0:
+			traps[freeIndex] = newTrap
+	
 	emit_signal('traps_updated')
 	emit_signal("trap_changed")

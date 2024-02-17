@@ -194,8 +194,8 @@ var levels = {
 				{ "type": Spawnable.Zombie, "count": 25 },
 				{ "type": Spawnable.Demon, "count": 10 },
 			],
-			"weapons": ["staff", "staff_flame_thrower"],
-			"traps": ["pool", "spikes"],
+			"weapons": [],
+			"traps": [],
 			"gold": 1000,
 			"shop": true
 		},

@@ -5,5 +5,4 @@ func _ready():
 
 func _on_pressed():
 	State.shop = false
-	print('close')
 	pass

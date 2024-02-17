@@ -39,25 +39,27 @@ var Weapons = [
 			{
 				"id": "staff_water",
 				"name": "Water Staff",
+				"description": "Give your enemies a nice bath. Low damage, rapid fire.",
 				"damage": 10,
-				"rof": 8,
-				"speed": 50,
+				"rof": 4,
+				"speed": 5,
+			},
+			{
+				"id": "implosion",
+				"name": "Implosion",
+				"damage": 50,
+				"rof": 0.3,
+				"count": 20,
+				"range": 5,
+				"speed": 2,
+				"icon": "sword.png",
+				"model": "staff.glb",
+				"spread": 0.5,
+				"passthrough": true,
+				"description": "Testing",
+				"cost": 100,
 			}
 		],
-	}, {
-		"id": "implosion",
-		"name": "Implosion",
-		"damage": 50,
-		"rof": 0.1,
-		"count": 20,
-		"range": 5,
-		"speed": 2,
-		"icon": "sword.png",
-		"model": "staff.glb",
-		"spread": 0.5,
-		"passthrough": true,
-		"description": "Testing",
-		"cost": 100,
 	}
 ]
 

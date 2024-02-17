@@ -2,11 +2,17 @@ extends HBoxContainer
 
 var optionScene = preload("res://src/manager/shop_option.tscn")
 var options = []
+var shopLast = false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	generateOptions()
 	pass
+	
+func _process(delta):
+	if shopLast != State.shop:
+		shopLast = State.shop
+		if State.shop:
+			generateOptions()
 	
 func generateOptions():
 	options = []
@@ -48,3 +54,12 @@ func generateOptions():
 		instance.option = option
 		instance.process_mode = Node.PROCESS_MODE_ALWAYS
 		add_child(instance)
+
+
+func _on_reroll_pressed():
+	var cost = State.rerolls * 25
+	if cost < State.gold:
+		State.rerolls += 1
+		State.gold -= cost
+		generateOptions()
+	pass
