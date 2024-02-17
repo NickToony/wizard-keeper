@@ -32,7 +32,7 @@ var Weapons = [
 				"color": "#E7593B",
 				"description": "Slow and heavy hitting, explodes on contact.",
 				"burning": 20,
-				"aoe": 0.5,
+				"aoe": 1,
 				"upgrades": [
 					{
 						"id": "staff_flame_thrower",
@@ -59,7 +59,7 @@ var Weapons = [
 						"rof": 0.4,
 						"colour": "#D2641C",
 						"burning": 10,
-						"aoe": 1,
+						"aoe": 3,
 					}
 				]
 			},

@@ -33,7 +33,7 @@ func _ready():
 
 func _physics_process(delta):
 	if exploding:
-		explosionMesh.scale += delta * Vector3(7,7,7)
+		explosionMesh.scale += delta * Vector3(10,10,10)
 		if explosionMesh.scale.x > weapon.aoe:
 			queue_free()
 		return
@@ -47,16 +47,8 @@ func _on_body_entered(body: Node3D):
 	if exploding:
 		return
 	
-	if (body.is_in_group('enemies')):
-		body.damaged(weapon.damage)
-		if weapon.poison:
-			body.poisonTime = weapon.poison * 60
-		if weapon.stun:
-			body.stunTime = weapon.stun * 60
-		if weapon.slow:
-			body.slowTime = weapon.slow * 60
-		if weapon.burning:
-			body.burningTime = weapon.burning * 60
+	if !weapon.aoe && body.is_in_group('enemies'):
+		damageBody(body)
 		
 		if penetrated < weapon.penetration:
 			penetrated += 1
@@ -71,8 +63,23 @@ func _on_body_entered(body: Node3D):
 		explosionMesh.mesh.radius = 0.5
 		add_child(explosionMesh)
 		mesh.queue_free()
+		
+		for enemy in get_tree().get_nodes_in_group('enemies'):
+			if enemy.global_position.distance_to(global_position) <= weapon.aoe/2.0:
+				damageBody(enemy)
 	else:
 		queue_free()
+		
+func damageBody(body):
+	body.damaged(weapon.damage)
+	if weapon.poison:
+		body.poisonTime = weapon.poison * 60
+	if weapon.stun:
+		body.stunTime = weapon.stun * 60
+	if weapon.slow:
+		body.slowTime = weapon.slow * 60
+	if weapon.burning:
+		body.burningTime = weapon.burning * 60
 
 func update(playerVelocity):	
 	velocity = (global_transform.basis.z.normalized() * weapon.speed)
