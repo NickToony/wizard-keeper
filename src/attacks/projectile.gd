@@ -9,13 +9,14 @@ var weapon
 var startPos
 var playerVelocity
 var triggerTime = 0
-var targets = []
+
 var targetMap = {}
 var penetrated = 0
+var exploding = false
+var explosionMesh = null
 
 func _ready():
 	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
 	
 
 #func _process(delta):
@@ -31,12 +32,20 @@ func _ready():
 				#get_parent().add_child(damageLabel)
 
 func _physics_process(delta):
+	if exploding:
+		explosionMesh.scale += delta * Vector3(7,7,7)
+		if explosionMesh.scale.x > weapon.aoe:
+			queue_free()
+		return
+	
 	position += velocity * delta
 	
 	if position.distance_squared_to(startPos) > weapon.range * weapon.range:
 		queue_free()
 	
 func _on_body_entered(body: Node3D):
+	if exploding:
+		return
 	
 	if (body.is_in_group('enemies')):
 		body.damaged(weapon.damage)
@@ -52,13 +61,20 @@ func _on_body_entered(body: Node3D):
 		if penetrated < weapon.penetration:
 			penetrated += 1
 			return
-	queue_free()
-	
-func _on_body_exited(body: Node3D):
-	if body.is_in_group('enemies'):
-		targets.erase(body)
+	if weapon.aoe:
+		exploding = true
+		explosionMesh = MeshInstance3D.new()
+		explosionMesh.mesh = SphereMesh.new()
+		explosionMesh.mesh.material = StandardMaterial3D.new()
+		explosionMesh.mesh.material.albedo_color = Color(weapon.color)
+		explosionMesh.scale = Vector3.ZERO
+		explosionMesh.mesh.radius = 0.5
+		add_child(explosionMesh)
+		mesh.queue_free()
+	else:
+		queue_free()
 
-func update(playerVelocity):
+func update(playerVelocity):	
 	velocity = (global_transform.basis.z.normalized() * weapon.speed)
 	if ((velocity + playerVelocity).length_squared() > velocity.length_squared()):
 		velocity += playerVelocity
