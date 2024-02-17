@@ -60,6 +60,9 @@ func _process(delta):
 			$DeathSound.play()
 		return
 	
+	if global_position.y < -10:
+		health -= 1
+	
 	# func set_movement_target(movement_target: Vector3):
 	if target && is_instance_valid(target):
 		#navigation_agent.set_target_position(target.global_position)
@@ -88,6 +91,9 @@ func _physics_process(delta):
 	elif !navigation_agent.is_navigation_finished():
 		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 		targetVelocity = global_position.direction_to(next_path_position) * definition.speed
+	else:
+		var exit = get_tree().get_nodes_in_group("exit")[0]
+		navigation_agent.set_target_position(exit.global_position)
 
 	if navigation_agent.avoidance_enabled:
 		navigation_agent.set_velocity(targetVelocity)

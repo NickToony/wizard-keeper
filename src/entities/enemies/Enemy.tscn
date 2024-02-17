@@ -15,7 +15,7 @@ height = 0.6
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 collision_layer = 4
-collision_mask = 31
+collision_mask = 25
 floor_constant_speed = true
 floor_max_angle = 1.35438
 script = ExtResource("1_bvr3j")
@@ -32,8 +32,8 @@ skeleton = NodePath("../../..")
 path_height_offset = 0.5
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 0.3
-neighbor_distance = 4.0
+radius = 0.1
+neighbor_distance = 1.0
 
 [node name="Goblin" parent="." instance=ExtResource("2_sw6f5")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, -0.294925, 0)
