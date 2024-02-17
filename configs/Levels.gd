@@ -7,7 +7,7 @@ enum Spawnable {
 }
 
 var levels = {
-	"level1": [
+	"tutorial": [
 		{
 			"cutscenes": [{
 				"actor": "Wizard",
@@ -67,10 +67,110 @@ var levels = {
 			"traps": ["pool"],
 		},
 		{
-			"cutscenes": [],
-			"attackscenes": [],
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "Time to dust off some of my more deadly traps. The spike trap can be placed on a wall and will hit all enemies in a short area in front of it.",
+				"target": null,
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "As expected...",
+				"target": "enemies",
+			}],
 			"enemies": [
-				{ "type": Spawnable.Goblin, "count": 100 }
+				{ "type": Spawnable.Goblin, "count": 20 }
+			],
+			"weapons": [],
+			"traps": ["pool", "spikes"],
+		},
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "Some more firepower would help. I could try using a different spell.",
+				"target": null,
+			}, {
+				"actor": "TUTORIAL",
+				"text": "You can now use the Flame Thrower spell. Toggle between spells with Q/E",
+				"target": null,
+			}],
+			"attackscenes": [{
+				"actor": "Zombies",
+				"text": "[Groan]...",
+				"target": "enemies",
+			}, {
+				"actor": "Wizard",
+				"text": "Zombies as well? I guess we know what happened to the corpses of the long dead prisoners then.",
+				"target": "enemies",
+			}, {
+				"actor": "TUTORIAL",
+				"text": "Zombies are slower, but have higher health. They also have a tendency to stand right back up after dying.",
+				"target": null,
+			}],
+			"enemies": [
+				{ "type": Spawnable.Zombie, "count": 15 }
+			],
+			"weapons": ["staff", "staff_flame_thrower"],
+			"traps": [],
+		},
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "Zombies, what next?",
+				"target": null,
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "What is this dark magic...?",
+				"target": "enemies",
+			}, {
+				"actor": "Wizard",
+				"text": "They move faster than anything of this realm.",
+				"target": "enemies",
+			}, {
+				"actor": "TUTORIAL",
+				"text": "Demons are very fast, but are quite vulnerable in this world. Kill them fast.",
+				"target": null,
+			}],
+			"enemies": [
+				{ "type": Spawnable.Demon, "count": 10 }
+			],
+			"weapons": [],
+			"traps": [],
+		},
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "This is beyond anything I've seen before. Whatever powerful magic is causing this, I must not let it escape.",
+				"target": null,
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "They're very keen to get through...",
+				"target": "enemies",
+			}],
+			"enemies": [
+				{ "type": Spawnable.Demon, "count": 10 },
+				{ "type": Spawnable.Zombie, "count": 20 },
+				{ "type": Spawnable.Goblin, "count": 20 }
+			],
+			"weapons": [],
+			"traps": [],
+		},
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "Surely there can't be many left.",
+				"target": null,
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "I see...",
+				"target": "enemies",
+			}],
+			"enemies": [
+				{ "type": Spawnable.Demon, "count": 15 },
+				{ "type": Spawnable.Zombie, "count": 30 },
+				{ "type": Spawnable.Goblin, "count": 30 }
 			],
 			"weapons": [],
 			"traps": [],

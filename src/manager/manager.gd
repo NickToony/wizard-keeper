@@ -18,7 +18,7 @@ var stageStep = 0
 var cutsceneIndex = 0
 var attacksceneIndex = 0
 var attackscenes = []
-var level = Levels.levels[levelName]
+@onready var level = Levels.levels[levelName]
 
 func _ready():
 	calmMusic.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -27,26 +27,30 @@ func _ready():
 	pass
 	
 func _physics_process(delta):
-	#if State.game_mode == State.GameMode.Cutscene:
-		#if !calmMusic.playing:
-			#crossfade_to(calmMusic)
-		#return
+	if State.lives < 0:
+		# Game over
+		State.cutsceneContent = "Too many have escaped, the towns are overwhelmed. I have failed my duty.."
+		State.cutsceneActor = "Wizard"
+		State.cutscenePosition = null
+		State.gameEnd = true
+		State.game_mode = State.GameMode.Cutscene
+		return;
 	
 	if State.game_mode == State.GameMode.Play:
 		if !actionMusic.playing:
 			crossfade_to(actionMusic)
 		
-		if stageStep < toSpawn.size():
-			spawnEnemy()
-			return
-		
-		if stageStep > 2 && attacksceneIndex < attackscenes.size():
+		if stageStep > 4 && attacksceneIndex < attackscenes.size():
 			State.cutsceneContent = attackscenes[attacksceneIndex].text
 			State.cutsceneActor = attackscenes[attacksceneIndex].actor
 			State.cutscenePosition = attackscenes[attacksceneIndex].target
 			State.cutscenePlay = true
 			attacksceneIndex += 1
 			State.game_mode = State.GameMode.Cutscene
+			return
+		
+		if stageStep < toSpawn.size():
+			spawnEnemy()
 			return
 		
 		if get_tree().get_nodes_in_group("enemies").size() > 0:
@@ -66,11 +70,18 @@ func _physics_process(delta):
 			cutsceneIndex += 1
 			State.game_mode = State.GameMode.Cutscene
 			State.cutscenePlay = false
+			State.game_mode = State.GameMode.Cutscene
 			return
 		
 		if toSpawn.size() > 0:
 			return
 		if step >= level.size():
+			# Game over
+			State.cutsceneContent = "I've held them back for now. Time to check the other dungeons."
+			State.cutsceneActor = "Wizard"
+			State.cutscenePosition = null
+			State.gameEnd = true
+			State.game_mode = State.GameMode.Cutscene
 			return
 		
 		var stage = level[step]

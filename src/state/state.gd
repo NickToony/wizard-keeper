@@ -34,6 +34,7 @@ var weaponCurrent = WeaponIndex.Left
 var traps = [null, null, null, null]
 var trapCurrent = null
 var nextWave = ''
+var gameEnd = false
 
 var cutsceneContent = ''
 var cutsceneActor = ''
@@ -70,6 +71,8 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("next"):
 			game_mode = GameMode.Wait if !cutscenePlay else GameMode.Play
+			if gameEnd:
+				get_tree().change_scene_to_file("res://wrapper.tscn")
 			return
 	
 	var setWeapon
@@ -88,6 +91,10 @@ func _process(delta):
 		setTrap = 3
 	if Input.is_action_just_pressed("trap4"):
 		setTrap = 4
+		
+	if Input.is_key_pressed(KEY_P):
+		for enemy in get_tree().get_nodes_in_group("enemies"):
+			enemy.health -= 10
 	
 	if setWeapon:
 		if setWeapon != weaponCurrent:
@@ -146,6 +153,7 @@ func reset():
 	trapCurrent = null
 	nextWave = ''
 	game_mode = GameMode.Wait
+	gameEnd = false
 
 func setWeapons(left, right):
 	weaponLeft = left
