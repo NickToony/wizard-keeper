@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Camera3D
 @onready var shootSound: AudioStreamPlayer3D = $ShootSound
 
+var projectScene = preload("res://src/attacks/projectile.tscn")
 
 var rightArmBone
 var leftArmBone
@@ -47,7 +48,7 @@ var respawnCounter = -1
 
 var currentWeapon
 
-func _ready():	
+func _ready():
 	var wizardArrayMesh: ArrayMesh = wizardMesh.mesh
 	wizardArrayMesh.shadow_mesh = $MeshInstance3D.mesh
 	
@@ -130,7 +131,7 @@ func _process(delta):
 			offsetIncrement = currentWeapon.spread * 2
 		
 		for i in range(currentWeapon.count):
-			var projectile = State.PROJECTILE_BASIC.instantiate()
+			var projectile = projectScene.instantiate()
 			get_parent().add_child(projectile)
 			projectile.global_position = weaponMesh.global_position
 			projectile.look_at(weapon_target, Vector3(0, 1, 0), true)

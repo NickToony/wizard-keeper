@@ -175,5 +175,26 @@ var levels = {
 			"weapons": [],
 			"traps": [],
 		}
+	],
+	"testlevel": [
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "Here comes a huge wave",
+				"target": null,	
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "Here they come!",
+				"target": "enemies",
+			}],
+			"enemies": [
+				{ "type": Spawnable.Goblin, "count": 25 },
+				{ "type": Spawnable.Zombie, "count": 25 },
+				{ "type": Spawnable.Demon, "count": 10 },
+			],
+			"weapons": ["staff", "staff_flame_thrower"],
+			"traps": ["pool", "spikes"],
+		},
 	]
 }

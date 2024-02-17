@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://shaders/ps1.gdshader" id="1_k8qtc"]
 [ext_resource type="Script" path="res://Postprocess.gd" id="2_5l2bo"]
-[ext_resource type="PackedScene" uid="uid://bmjp6174treub" path="res://main.tscn" id="2_iyv2q"]
+[ext_resource type="PackedScene" uid="uid://decd6wqe38mqe" path="res://src/menus/MainMenu.tscn" id="3_wumny"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dnte6"]
 shader = ExtResource("1_k8qtc")
@@ -23,4 +23,5 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 script = ExtResource("2_5l2bo")
 
-[node name="main" parent="SubViewport" instance=ExtResource("2_iyv2q")]
+[node name="MainMenu" parent="." instance=ExtResource("3_wumny")]
+layout_mode = 2

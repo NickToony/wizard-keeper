@@ -1,10 +1,5 @@
 extends Node
 
-
-var PROJECTILE_BASIC = preload("res://src/attacks/projectile.tscn")
-
-var UNIT_GOBLIN = preload("res://src/entities/enemies/Enemy.tscn")
-
 signal weapons_updated
 signal weapon_changed
 signal traps_updated

@@ -1,13 +1,13 @@
 [gd_scene load_steps=79 format=3 uid="uid://bdcrlm21c8k2s"]
 
 [ext_resource type="Texture2D" uid="uid://dhl1fpggbaxag" path="res://assets/floor/floor_0.png" id="1_1yl04"]
+[ext_resource type="Script" path="res://src/manager/TrapPlacer.gd" id="1_5math"]
 [ext_resource type="PackedScene" uid="uid://bxqr8eb1gdvki" path="res://src/manager/manager.tscn" id="1_ox2dh"]
 [ext_resource type="Texture2D" uid="uid://cqql67v8ac4bp" path="res://assets/floor/floor_Stone_greybricks.png" id="2_mgpl6"]
 [ext_resource type="PackedScene" uid="uid://bbu6wtvq40n6u" path="res://src/entities/lights/simple/SimpleLight.tscn" id="3_buuja"]
 [ext_resource type="Texture2D" uid="uid://c23dvda5lvsnt" path="res://assets/walls/walls_Stone_tiles.png" id="4_adegj"]
 [ext_resource type="Texture2D" uid="uid://bmg8vhffl7td" path="res://assets/scenery/column/column_Stone_tiles.png" id="5_tku8q"]
 [ext_resource type="Texture2D" uid="uid://cclle765dp7fu" path="res://assets/walls/walls_1.png" id="5_xnhmv"]
-[ext_resource type="Script" path="res://src/levels/TrapPlacer.gd" id="7_3dtuj"]
 [ext_resource type="PackedScene" uid="uid://d2mn6j6a0u3d3" path="res://src/entities/spawn_area/spawn_area.tscn" id="8_opunr"]
 [ext_resource type="PackedScene" uid="uid://cnqc52eyo1bh2" path="res://src/entities/exit_portal/exit_portal.tscn" id="10_xmtsd"]
 [ext_resource type="PackedScene" uid="uid://cu7qes7pu3re8" path="res://src/entities/player/Player.tscn" id="11_lqh1e"]
@@ -839,7 +839,7 @@ metadata/_editor_source_scene = "res://scenery.tscn"
 [node name="Level" type="Node3D"]
 
 [node name="TrapPlacer" type="Node3D" parent="."]
-script = ExtResource("7_3dtuj")
+script = ExtResource("1_5math")
 
 [node name="WallTraps" type="Node3D" parent="."]
 
