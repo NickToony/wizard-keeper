@@ -1,6 +1,7 @@
 extends Camera3D
 
 var basePos
+var locked = true
 
 func _ready():
 	basePos = position
@@ -14,10 +15,15 @@ func _process(delta):
 		if target:
 			targetPos = basePos + target.global_position
 			asGlobal = true
+			locked = false
 	else:
 		targetPos = basePos
 	
-	if asGlobal:
+	if locked:
+		position = targetPos
+	elif asGlobal:
 		global_position = global_position.lerp(targetPos, 0.2)
 	else:
 		position = position.lerp(targetPos, 0.2)
+		if position.distance_to(targetPos) < 10:
+			locked = true

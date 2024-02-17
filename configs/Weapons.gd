@@ -4,6 +4,7 @@ var Weapons = [
 	{
 		"id": "staff",
 		"name": "Staff",
+		"description": "Basic staff that fires a single long ranged projectile.",
 		"damage": 20,
 		"rof": 1,
 		"count": 1,
@@ -14,6 +15,7 @@ var Weapons = [
 		"spread": 0.05,
 		"passthrough": false,
 		"sound": "res://assets/sound/laser2.ogg",
+		"cost": 25,
 		"upgrades": [
 			{
 				"id": "staff_fire",
@@ -54,27 +56,33 @@ var Weapons = [
 		"model": "staff.glb",
 		"spread": 0.5,
 		"passthrough": true,
+		"description": "Testing",
+		"cost": 100,
 	}
 ]
 
 var weaponMap = {}
 
 func _ready():
-	loadWeapons(Weapons, null);
+	loadWeapons(Weapons, null, 1);
 	print (weaponMap)
 
-func loadWeapons(weaponArray: Array, parent):
+func loadWeapons(weaponArray: Array, parent, level):
 	for weapon in weaponArray:
 		if !weapon.has("upgrades"):
 			weapon.upgrades = []
 			
 		var upgrades = []
 		weaponMap[weapon.id] = weapon
+		weaponMap[weapon.id].level = level
 		if parent:
 			weaponMap[weapon.id].merge(parent)
+			weapon.parent = parent
+		else:
+			weapon.parent = null
 		# Nested load
 		if weapon["upgrades"].size() > 0:
-			loadWeapons(weapon.upgrades, weaponMap[weapon.id])
+			loadWeapons(weapon.upgrades, weaponMap[weapon.id], level + 1)
 			# Covert upgrades to array of ids
 			for upgrade in weapon.upgrades:
 				upgrades.append(upgrade.id)

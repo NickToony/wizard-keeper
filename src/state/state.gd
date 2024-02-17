@@ -30,6 +30,7 @@ var traps = [null, null, null, null]
 var trapCurrent = null
 var nextWave = ''
 var gameEnd = false
+var shop = false
 
 var cutsceneContent = ''
 var cutsceneActor = ''
@@ -69,6 +70,10 @@ func _process(delta):
 			if gameEnd:
 				get_tree().change_scene_to_file("res://wrapper.tscn")
 			return
+	
+	if shop:
+		get_tree().paused = true
+		return
 	
 	var setWeapon
 	var setTrap

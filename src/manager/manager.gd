@@ -50,8 +50,8 @@ func _physics_process(delta):
 		State.game_mode = State.GameMode.Wait
 		toSpawn = []
 	
-	if State.game_mode == State.GameMode.Wait:			
-		if cutsceneIndex < cutscenes.size():
+	if State.game_mode == State.GameMode.Wait:
+		if cutsceneIndex < cutscenes.size() && !State.shop:
 			State.cutsceneContent = cutscenes[cutsceneIndex].text
 			State.cutsceneActor = cutscenes[cutsceneIndex].actor
 			State.cutscenePosition = cutscenes[cutsceneIndex].target
@@ -87,6 +87,8 @@ func _physics_process(delta):
 		stageStep = 0
 		if stage.has('gold'):
 			State.gold += stage.gold
+		if stage.has('shop') && stage.shop:
+			State.shop = true
 		
 		if stage.weapons.size():
 			State.setWeapons(stage.weapons[0], stage.weapons[1])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=19 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
 [ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="2_y7kw4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://src/interface/CutsceneDisplay.gd" id="15_0m2de"]
 [ext_resource type="Script" path="res://src/interface/Actor.gd" id="16_87sjr"]
 [ext_resource type="Script" path="res://src/interface/Content.gd" id="16_evlyw"]
+[ext_resource type="PackedScene" uid="uid://5hwcqxux1ihw" path="res://src/shop/shop.tscn" id="18_4yqyh"]
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -145,6 +146,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("10_mojjs")
 
 [node name="WaitHint" type="Label" parent="WaitDisplay"]
@@ -179,6 +181,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("11_3q85v")
 
 [node name="PlayHint" type="Label" parent="PlayDisplay"]
@@ -237,10 +240,5 @@ layout_mode = 2
 text = "Press space to proceed"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="CutsceneDisplay"]
+[node name="Shop" parent="." instance=ExtResource("18_4yqyh")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

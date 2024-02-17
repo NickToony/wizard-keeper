@@ -197,6 +197,7 @@ var levels = {
 			"weapons": ["staff", "staff_flame_thrower"],
 			"traps": ["pool", "spikes"],
 			"gold": 1000,
+			"shop": true
 		},
 	]
 }

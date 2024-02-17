@@ -12,11 +12,13 @@ shader_parameter/colors = 12
 shader_parameter/dither_size = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
+process_mode = 3
 material = SubResource("ShaderMaterial_dnte6")
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="."]
+process_mode = 3
 handle_input_locally = false
 audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)

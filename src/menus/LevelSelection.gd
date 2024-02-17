@@ -12,6 +12,9 @@ func _ready():
 		button.text = level
 		button.pressed.connect(func(): goToLevel(level))
 		add_child(button)
+	
+	Music.reset()
+	State.reset()
 	pass
 
 func goToLevel(levelName):
@@ -19,6 +22,5 @@ func goToLevel(levelName):
 	var level = load("res://src/levels/" + levelName + ".tscn").instantiate()
 	main.add_child(level)
 	rootScene.add_child(main)
-	rootScene.remove_child(self)
-	queue_free()
+	get_parent().get_parent().queue_free()
 	pass

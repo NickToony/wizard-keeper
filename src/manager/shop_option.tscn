@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3yn4h8vh0t1v"]
+
+[ext_resource type="Script" path="res://src/manager/shop_option.gd" id="1_ab2dl"]
+[ext_resource type="Texture2D" uid="uid://tvwb5dqognmq" path="res://assets/icons/sword.png" id="1_b81tk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ydmtd"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_n88i3"]
+font_size = 12
+
+[node name="ShopOption" type="PanelContainer"]
+script = ExtResource("1_ab2dl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Type" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+text = "Type"
+label_settings = SubResource("LabelSettings_ydmtd")
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_b81tk")
+stretch_mode = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+text = "Title
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+text = "Description of the item goes here, interestingly."
+label_settings = SubResource("LabelSettings_n88i3")
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "25 Gold"
+horizontal_alignment = 1
+
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Purchase"

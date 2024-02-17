@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://5hwcqxux1ihw"]
+
+[ext_resource type="Script" path="res://src/shop/shop.gd" id="1_e6mh5"]
+[ext_resource type="Script" path="res://src/shop/ShopOptions.gd" id="1_o0ae6"]
+[ext_resource type="PackedScene" uid="uid://c3yn4h8vh0t1v" path="res://src/manager/shop_option.tscn" id="1_wi1a8"]
+[ext_resource type="Script" path="res://src/shop/CloseShop.gd" id="3_h5e7j"]
+
+[node name="Shop" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_e6mh5")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShopOptions" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("1_o0ae6")
+
+[node name="ShopOption" parent="CenterContainer/VBoxContainer/ShopOptions" instance=ExtResource("1_wi1a8")]
+layout_mode = 2
+
+[node name="ShopOption2" parent="CenterContainer/VBoxContainer/ShopOptions" instance=ExtResource("1_wi1a8")]
+layout_mode = 2
+
+[node name="ShopOption3" parent="CenterContainer/VBoxContainer/ShopOptions" instance=ExtResource("1_wi1a8")]
+layout_mode = 2
+
+[node name="ShopOption4" parent="CenterContainer/VBoxContainer/ShopOptions" instance=ExtResource("1_wi1a8")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Close" type="Button" parent="CenterContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+action_mode = 0
+text = "Close Shop"
+script = ExtResource("3_h5e7j")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Close" to="CenterContainer/VBoxContainer/Close" method="_on_pressed"]

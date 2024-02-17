@@ -32,3 +32,7 @@ func crossfade_to(music) -> void:
 		#actionMusic.stream = audio_stream
 		actionMusic.play()
 		animationPlayer.play("FadeToAction")
+		
+func reset():
+	if !calmMusic.playing:
+			crossfade_to(calmMusic)
