@@ -14,6 +14,7 @@ var targetMap = {}
 var penetrated = 0
 var exploding = false
 var explosionMesh = null
+var explodingPos
 
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -55,6 +56,7 @@ func _on_body_entered(body: Node3D):
 			return
 	if weapon.aoe:
 		exploding = true
+		explodingPos = body.global_position
 		explosionMesh = MeshInstance3D.new()
 		explosionMesh.mesh = SphereMesh.new()
 		explosionMesh.mesh.material = StandardMaterial3D.new()
@@ -65,7 +67,7 @@ func _on_body_entered(body: Node3D):
 		mesh.queue_free()
 		
 		for enemy in get_tree().get_nodes_in_group('enemies'):
-			if enemy.global_position.distance_to(global_position) <= weapon.aoe/2.0:
+			if enemy.global_position.distance_to(explodingPos) <= weapon.aoe/2.0:
 				damageBody(enemy)
 	else:
 		queue_free()

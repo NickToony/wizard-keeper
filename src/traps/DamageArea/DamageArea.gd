@@ -15,7 +15,7 @@ func _ready():
 	pass
 	
 func setup():
-	tick = trap.cooldown * 60
+	tick = 60
 	
 func _process(_delta):
 	tick -= _delta * 100

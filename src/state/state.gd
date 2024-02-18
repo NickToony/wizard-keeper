@@ -23,7 +23,7 @@ var isPaused = false
 
 var lives = 20
 var gold = 0
-var weaponLeft = null
+var weaponLeft = "staff"
 var weaponRight = null
 var weaponCurrent = WeaponIndex.Left
 var traps = [null, null, null, null]
@@ -42,6 +42,8 @@ var cutscenePosition = null
 var endless = false
 var shader = true
 var lights = true
+
+var trapCounts = {}
 
 func _ready():
 	reset()
@@ -152,7 +154,7 @@ func currentTrapData():
 
 func reset():
 	lives = 20
-	weaponLeft = null
+	weaponLeft = "staff"
 	weaponRight = null
 	weaponCurrent = WeaponIndex.None
 	traps = [null, null, null, null]
@@ -164,6 +166,7 @@ func reset():
 	gold = 0
 	difficulty = 1
 	endless = false
+	trapCounts = {}
 
 func setWeapons(left, right):
 	weaponLeft = left
@@ -208,3 +211,15 @@ func removeTrap(index):
 	traps[index] = null
 	emit_signal('traps_updated')
 	emit_signal("trap_changed")
+
+func trapPlaced(trap):
+	if trapCounts.has(trap):
+		trapCounts[trap] += 1
+	else:
+		trapCounts[trap] = 1
+	emit_signal('traps_updated')
+	
+func trapCount(trap):
+	if trapCounts.has(trap):
+		return trapCounts[trap]
+	return 0

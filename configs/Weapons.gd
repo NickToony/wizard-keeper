@@ -10,7 +10,7 @@ var Weapons = [
 		"id": "staff",
 		"name": "Staff",
 		"description": "Basic staff that fires a single long ranged projectile.",
-		"damage": 20,
+		"damage": 25,
 		"rof": 1,
 		"count": 1,
 		"range": 20,
@@ -26,7 +26,7 @@ var Weapons = [
 		"burning": 0,
 		"poison": 0,
 		"slow": 0,
-		"aoe": 0,
+		"aoe": 0.5,
 		"upgrades": [
 			{
 				"id": "staff_fire",
@@ -48,7 +48,7 @@ var Weapons = [
 						"speed": 4,
 						"count": 6,
 						"damage": 5,
-						"penetration": 3,
+						"penetration": 1,
 						"rof": 2,
 						"burning": 5,
 						"aoe": 0,
@@ -95,6 +95,7 @@ var Weapons = [
 				"color": "#583218",
 				"stun": 1,
 				"cost": mediumCost,
+				"aoe": 0.5,
 			},
 			{
 				"id": "staff_poison",
@@ -125,6 +126,7 @@ var Weapons = [
 				"penetration": 1,
 				"description": "Fire projectiles in every direction.",
 				"cost": highCost,
+				"aoe": 0.3,
 			},
 			{
 				"id": "staff_sniper",
@@ -137,6 +139,22 @@ var Weapons = [
 				"penetration": 1,
 				"stun": 1,
 				"cost": lowCost,
+				"aoe": 0,
+				"upgrades": [
+					{
+						"id": "staff_super_sniper",
+						"name": "Super Sniper Staff",
+						"description": "Even more damage. Penetrates the first enemy it hits and stuns them.",
+						"damage": 100,
+						"rof": 0.6,
+						"speed": 8,
+						"color": "#FFFFFF",
+						"penetration": 1,
+						"stun": 1,
+						"cost": highCost,
+						"aoe": 0,
+					},
+				]
 			},
 		],
 	}

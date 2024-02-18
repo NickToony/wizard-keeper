@@ -50,7 +50,9 @@ func _process(delta):
 			validPosition = false
 		if scenery.get_cell_item(wallPosition) != GridMap.INVALID_CELL_ITEM:
 			validPosition = false
-		if trap.cost > State.gold:
+		var calculatedCost = trap.cost
+		calculatedCost *= 1 + (State.trapCount(trap.id) * 0.2)
+		if calculatedCost > State.gold:
 			validPosition = false
 			if Input.is_action_just_pressed("mouse_left"):
 				var damageLabel = damageLabelScene.instantiate()
@@ -107,13 +109,14 @@ func _process(delta):
 			var trapInstance = load(trap.scenePath).instantiate()
 			trapInstance.trap = trap
 			trapInstance.position = snapPosition
-			State.gold -= trap.cost
+			State.gold -= calculatedCost
 			if !trap.wall:
 				#trapInstance.rotation.z = PI/2
 				pass
 			else:
 				trapInstance.rotation.y = buildMeshInstance.rotation.y
 			trapLayer.add_child(trapInstance)
+			State.trapPlaced(trap.id)
 	elif buildMeshInstance:
 		buildMeshInstance.visible = false
 		

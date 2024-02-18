@@ -31,11 +31,11 @@ var Traps = [
 		"meshPath": "res://assets/traps/poisonspike.glb",
 		"scenePath": "res://src/traps/PoisonSpikeTrap.tscn",
 		"icon": "res://assets/icons/sword.png",
-		"description": "Spike trap mounted on the wall. High damage, but needs time to recharge.",
+		"description": "Just like a spike trap, but with poison. Applies a damage over time effect.",
 		"cost": veryHighPlace,
-		"damage": 30,
+		"damage": 80,
 		"cooldown": 6,
-		"poison": 5,
+		"poison": 8,
 		"placecost": veryHighPlace,
 	},
 	{
@@ -76,7 +76,7 @@ var Traps = [
 		"cost": mediumPlace,
 		"damage": 15,
 		"cooldown": 1,
-		"burning": 3,
+		"burning": 6,
 		"placecost": mediumPlace,
 	},
 	{
@@ -90,7 +90,7 @@ var Traps = [
 		"cost": mediumPlace,
 		"damage": 15,
 		"cooldown": 1,
-		"poison": 3,
+		"poison": 6,
 		"placecost": mediumPlace,
 	},
 	{
@@ -100,7 +100,7 @@ var Traps = [
 		"meshPath": "res://assets/traps/lightning/lightning.glb",
 		"scenePath": "res://src/traps/Zapper.tscn",
 		"icon": "res://assets/icons/sword.png",
-		"description": "Electrical!",
+		"description": "Shocking! Does a high amount of damage, but needs a long time to recharge. Stuns enemies that are hit.",
 		"cost": highPlace,
 		"damage": 50,
 		"cooldown": 8,
@@ -114,7 +114,7 @@ var Traps = [
 		"meshPath": "res://assets/traps/jets/jets.glb",
 		"scenePath": "res://src/traps/LavaJet.tscn",
 		"icon": "res://assets/icons/sword.png",
-		"description": "Hot!",
+		"description": "For when you really want something dead. Sets targets on fire for a long time.",
 		"cost": highPlace,
 		"damage": 0,
 		"cooldown": 5,
@@ -138,12 +138,17 @@ func printTrapStats():
 	for trap in Traps:
 		var dps = trap.damage / trap.cooldown
 		if trap.has('burning') && trap.burning:
+			dps += trap.burning
+		if trap.has('poison') && trap.poison:
+			dps += trap.poison
+		var value = dps / float(trap.cost)
+		if trap.has('burning') && trap.burning:
 			dps += 5 * trap.burning
 		if trap.has('poison') && trap.poison:
 			dps += 5 * 2 * trap.poison
-		var value = dps / float(trap.cost)
+		var modifierValue = dps / float(trap.cost)
 		print(trap.name)
-		print('\tdps: ' + str(dps)  + '\tvdps' + str(value))
+		print('\tdps: ' + str(dps)  + '\tvdps' + str(value)  + '\tmdps' + str(modifierValue))
 #
 #
 func getTrap(id: String):

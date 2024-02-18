@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfn6vrwax70yk"]
+[gd_scene load_steps=4 format=3 uid="uid://cfn6vrwax70yk"]
 
 [ext_resource type="PackedScene" uid="uid://bt2ggfygogma2" path="res://src/traps/BaseTrap.tscn" id="1_4oy2d"]
 [ext_resource type="PackedScene" uid="uid://cna0vx65rhcui" path="res://assets/traps/tar.glb" id="2_do3xp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lm2la"]
 
 [node name="TarTrap" instance=ExtResource("1_4oy2d")]
 play_sound = false
 
 [node name="tar" parent="." index="0" instance=ExtResource("2_do3xp")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
+shape = SubResource("BoxShape3D_lm2la")
 
 [editable path="DamageArea"]

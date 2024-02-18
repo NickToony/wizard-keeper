@@ -91,7 +91,7 @@ var levels = {
 				{ "type": Spawnable.Goblin, "count": 20 }
 			],
 			"traps": ["pool", "spikes"],
-			"gold": 50,
+			"gold": 60,
 		},
 		{
 			"cutscenes": [{
@@ -169,6 +169,7 @@ var levels = {
 				{ "type": Spawnable.Zombie, "count": 20 },
 				{ "type": Spawnable.Goblin, "count": 20 }
 			],
+			"difficulty": 0.7,
 		},
 		{
 			"cutscenes": [{
@@ -178,46 +179,94 @@ var levels = {
 			}],
 			"attackscenes": [{
 				"actor": "Wizard",
-				"text": "I see...",
+				"text": "I see..",
 				"target": "enemies",
 			}],
 			"enemies": [
 				{ "type": Spawnable.Demon, "count": 15 },
-				{ "type": Spawnable.Zombie, "count": 30 },
+				{ "type": Spawnable.Zombie, "count": 50 },
 				{ "type": Spawnable.Goblin, "count": 30 }
 			],
+			"difficulty": 1,
+			"shop": true,
+		},
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "Phew...",
+				"target": null,
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "They have a dungeon giant?",
+				"target": "enemies",
+			}],
+			"enemies": [
+				{ "type": Spawnable.Skeleton, "count": 5 },
+				{ "type": Spawnable.Giant, "count": 1 }
+			],
+			"difficulty": 1,
+			"shop": true,
 		}
-	]
+		]
+	},
+	"linear": {
+		"name": "The One Way (Normal Randomised)",
+		"map": "Tutorial",
+		"stages": [
+			{
+				"cutscenes": [{
+					"actor": "Wizard",
+					"text": "Time to hold my ground for 10 waves. The waves will get progressively more difficult.",
+					"target": null,	
+				}],
+				"attackscenes": [{
+					"actor": "Wizard",
+					"text": "Good luck!",
+					"target": "enemies",
+				}],
+				"enemies": [
+					{ "type": Spawnable.Goblin, "count": 10 },
+					{ "type": Spawnable.Zombie, "count": 10 },
+				],
+				"weapons": [],
+				"traps": [],
+				"gold": 100,
+				"shop": true,
+				"endless": true,
+				"difficulty": 0.9,
+			},
+		]
 	},
 	"bigwavenormal": {
 		"name": "Big Wave",
 		"map": "testlevel",
 		"stages": [
-		{
-			"cutscenes": [{
-				"actor": "Wizard",
-				"text": "Here comes a huge wave of enemies. Good thing I saved up all my pennies. It's time to prepare - I only need to survive the one wave.",
-				"target": null,	
-			}],
-			"attackscenes": [{
-				"actor": "Wizard",
-				"text": "It begins.",
-				"target": "enemies",
-			}],
-			"enemies": [
-				{ "type": Spawnable.Goblin, "count": 250 },
-				{ "type": Spawnable.Zombie, "count": 200 },
-				{ "type": Spawnable.Demon, "count": 100 },
-				{ "type": Spawnable.Skeleton, "count": 50 },
-				{ "type": Spawnable.HeavySkeleton, "count": 25 },
-				{ "type": Spawnable.Giant, "count": 5 },
-			],
-			"weapons": [],
-			"traps": [],
-			"gold": 1000,
-			"shop": true,
-		},
-	]
+			{
+				"cutscenes": [{
+					"actor": "Wizard",
+					"text": "Here comes a huge wave of enemies. Good thing I saved up all my pennies. It's time to prepare - I only need to survive the one wave.",
+					"target": null,	
+				}],
+				"attackscenes": [{
+					"actor": "Wizard",
+					"text": "It begins.",
+					"target": "enemies",
+				}],
+				"enemies": [
+					{ "type": Spawnable.Goblin, "count": 250 },
+					{ "type": Spawnable.Zombie, "count": 200 },
+					{ "type": Spawnable.Demon, "count": 100 },
+					{ "type": Spawnable.Skeleton, "count": 50 },
+					{ "type": Spawnable.HeavySkeleton, "count": 25 },
+					{ "type": Spawnable.Giant, "count": 5 },
+				],
+				"weapons": [],
+				"traps": [],
+				"gold": 1000,
+				"shop": true,
+			},
+		]
 	},
 	"bigwavehard": {
 		"name": "Big Wave (Hard)",

@@ -120,7 +120,7 @@ func _physics_process(delta):
 		step += 1
 		
 func endlessWave():
-	State.difficulty += 0.5
+	State.difficulty += 0.1
 	State.nextWave = ''
 	
 	var counts = {
@@ -132,7 +132,7 @@ func endlessWave():
 		Levels.Spawnable.Giant: 0,
 	}
 	
-	var maxCost = (step + 1) * 15
+	var maxCost = State.difficulty * (step + 1) * 15
 	var currentCost = 0
 	var options = []
 	for i in range(100): options.append(Levels.Spawnable.Goblin)

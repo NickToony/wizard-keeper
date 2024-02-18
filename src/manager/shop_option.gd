@@ -19,7 +19,7 @@ func _ready():
 		trap = Traps.getTrap(option.trap)
 		title.text = trap.name
 		description.text = trap.description
-		cost.text = str(trap.cost) + " gold"
+		cost.text = str(trap.cost) + " gold" + '\n+ ' + str(trap.placecost) + ' each gold to place'
 		#goldCost = trap.cost
 		type.text = "TRAP"
 	elif option.has("weapon") && option.weapon != null:
