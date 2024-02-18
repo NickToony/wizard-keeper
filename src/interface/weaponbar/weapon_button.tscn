@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6xwsmjhw8yvi"]
+[gd_scene load_steps=9 format=3 uid="uid://c6xwsmjhw8yvi"]
 
 [ext_resource type="Script" path="res://src/interface/weaponbar/WeaponContainer.gd" id="1_7q5hu"]
 [ext_resource type="Script" path="res://src/interface/weaponbar/weapon_button.gd" id="1_60i21"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_tb7kc"]
 font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_sqtsr"]
+font_size = 9
 
 [node name="WeaponContainer" type="VBoxContainer"]
 offset_right = 40.0
@@ -73,5 +76,19 @@ offset_left = 8.0
 offset_right = 16.0
 offset_bottom = 23.0
 text = "?"
+
+[node name="Cost" type="Label" parent="IconButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_top = 5.0
+offset_right = -9.0
+offset_bottom = 28.0
+grow_horizontal = 0
+text = "225 gold"
+label_settings = SubResource("LabelSettings_sqtsr")
+horizontal_alignment = 2
 
 [connection signal="pressed" from="PanelContainer/Sell" to="." method="_on_sell_pressed"]

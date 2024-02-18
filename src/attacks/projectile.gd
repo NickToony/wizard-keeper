@@ -73,18 +73,22 @@ func _on_body_entered(body: Node3D):
 func damageBody(body):
 	body.damaged(weapon.damage)
 	if weapon.poison:
-		body.poisonTime = weapon.poison * 60
+		if body.poisonTime <= 0:
+			body.poisonTime = weapon.poison * 60
 	if weapon.stun:
-		body.stunTime = weapon.stun * 60
+		if body.stunTime <= 0:
+			body.stunTime = weapon.stun * 60
 	if weapon.slow:
-		body.slowTime = weapon.slow * 60
+		if body.slowTime <= 0:
+			body.slowTime = weapon.slow * 60
 	if weapon.burning:
-		body.burningTime = weapon.burning * 60
+		if body.burningTime <= 0:
+			body.burningTime = weapon.burning * 60
 
 func update(playerVelocity):	
 	velocity = (global_transform.basis.z.normalized() * weapon.speed)
-	if ((velocity + playerVelocity).length_squared() > velocity.length_squared()):
-		velocity += playerVelocity
+	#if ((velocity + playerVelocity).length_squared() > velocity.length_squared()):
+		#velocity += playerVelocity
 	position += global_transform.basis.z.normalized() * 0.3
 	startPos = position
 	

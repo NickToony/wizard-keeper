@@ -1,5 +1,10 @@
 extends Node
 
+var veryHighCost = 80
+var highCost = 60
+var mediumCost = 40
+var lowCost = 20
+
 var Weapons = [
 	{
 		"id": "staff",
@@ -15,7 +20,7 @@ var Weapons = [
 		"spread": 0.05,
 		"penetration": 0,
 		"sound": "res://assets/sound/laser2.ogg",
-		"cost": 25,
+		"cost": lowCost,
 		"color": "#3BE7AF",
 		"stun": 0,
 		"burning": 0,
@@ -27,12 +32,13 @@ var Weapons = [
 				"id": "staff_fire",
 				"name": "Fire Staff",
 				"damage": 50,
-				"rof": 0.5,
-				"speed": 2,
+				"rof": 0.6,
+				"speed": 3,
 				"color": "#E7593B",
 				"description": "Slow and heavy hitting. Explodes on contact and sets them on fire.",
-				"burning": 5,
+				"burning": 8,
 				"aoe": 1,
+				"cost": mediumCost,
 				"upgrades": [
 					{
 						"id": "staff_flame_thrower",
@@ -41,11 +47,12 @@ var Weapons = [
 						"range": 2,
 						"speed": 4,
 						"count": 6,
-						"damage": 3,
+						"damage": 5,
 						"penetration": 3,
 						"rof": 2,
-						"burning": 3,
+						"burning": 5,
 						"aoe": 0,
+						"cost": highCost,
 					},
 					{
 						"id": "staff_meteor",
@@ -54,12 +61,13 @@ var Weapons = [
 						"range": 20,
 						"speed": 1,
 						"count": 1,
-						"damage": 100,
+						"damage": 80,
 						"penetration": 0,
 						"rof": 0.3,
 						"colour": "#D2641C",
 						"burning": 10,
 						"aoe": 3,
+						"cost": veryHighCost,
 					}
 				]
 			},
@@ -71,8 +79,9 @@ var Weapons = [
 				"rof": 4,
 				"speed": 5,
 				"color": "#4C7CF2",
-				"penetration": 1,
+				"aoe": 0.5,
 				"slow": 1,
+				"cost": mediumCost,
 			},
 			{
 				"id": "staff_rock",
@@ -85,6 +94,7 @@ var Weapons = [
 				"speed": 3,
 				"color": "#583218",
 				"stun": 1,
+				"cost": mediumCost,
 			},
 			{
 				"id": "staff_poison",
@@ -97,7 +107,9 @@ var Weapons = [
 				"speed": 8,
 				"color": "#87DB47",
 				"slow": 3,
-				"poison": 5,
+				"poison": 3,
+				"aoe": 1,
+				"cost": mediumCost,
 			},
 			{
 				"id": "implosion",
@@ -112,8 +124,20 @@ var Weapons = [
 				"spread": 0.5,
 				"penetration": 1,
 				"description": "Fire projectiles in every direction.",
-				"cost": 100,
-			}
+				"cost": highCost,
+			},
+			{
+				"id": "staff_sniper",
+				"name": "Sniper Staff",
+				"description": "Fast, precise, good damage. Pretty bad against hordes. Penetrates the first enemy it hits and stuns them.",
+				"damage": 40,
+				"rof": 0.5,
+				"speed": 8,
+				"color": "#FFFFFF",
+				"penetration": 1,
+				"stun": 1,
+				"cost": lowCost,
+			},
 		],
 	}
 ]
@@ -122,7 +146,24 @@ var weaponMap = {}
 
 func _ready():
 	loadWeapons(Weapons, null, 1);
-	print (weaponMap)
+	
+	printWeaponStats()
+
+func printWeaponStats():
+	print('\n\nTRAPS\n-----')
+	for weapon in weaponMap.values():
+		var dps = weapon.damage * weapon.rof
+		if weapon.burning:
+			dps += 5 * weapon.burning
+		if weapon.poison:
+			dps += 5 * 2 * weapon.poison
+		var groupDps = dps * weapon.count
+		if weapon.aoe:
+			groupDps *= 1 + (weapon.aoe/2.0)
+		var value = dps / float(weapon.cost)
+		var groupValue = groupDps / float(weapon.cost)
+		print(weapon.name)
+		print('\tdps: ' + str(dps) + '\tgdps' + str(groupDps) + '\tvdps' + str(value)+ '\tvgdps' + str(groupValue))
 
 func loadWeapons(weaponArray: Array, parent, level):
 	for weapon in weaponArray:

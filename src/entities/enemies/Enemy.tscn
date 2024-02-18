@@ -45,3 +45,11 @@ unit_size = 1.0
 [node name="ResSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_k7npv")
 unit_size = 1.0
+
+[node name="StatusText" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30031, 0)
+visible = false
+billboard = 1
+text = "Uhoh"
+font_size = 8
+outline_size = 4

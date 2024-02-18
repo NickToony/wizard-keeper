@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var modelAnimation: AnimationPlayer
 @onready var model: Node3D
 @onready var goblin = $Goblin
+@onready var status_text = $StatusText
 
 @export var fall_acceleration = 75
 
@@ -21,6 +22,7 @@ var burningTime = 0
 var poisonTime = 0
 var slowTime = 0
 var statusCountdown = 60
+var idleCounter = 0
 
 func _ready() -> void:
 	health = definition.health * State.difficulty
@@ -66,7 +68,7 @@ func _process(delta):
 			$DeathSound.play()
 		return
 	
-	if global_position.y < -10:
+	if global_position.y < -10 || idleCounter > 60 * 15:
 		health -= 1
 	
 	# func set_movement_target(movement_target: Vector3):
@@ -84,11 +86,14 @@ func _process(delta):
 	if speed > 1:
 		modelAnimation.play("Run")
 		model.rotation.y = lerp_angle(model.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+		idleCounter = 0
 	elif speed > 0.1:
 		modelAnimation.play("Walk")
 		model.rotation.y = lerp_angle(model.rotation.y, atan2(-velocity.x, -velocity.z) + PI, 0.2)
+		idleCounter = 0
 	else:
 		modelAnimation.play("Idle")
+		idleCounter += 1
 
 func _physics_process(delta):
 	if poisonTime:
@@ -99,10 +104,18 @@ func _physics_process(delta):
 		burningTime -= 1
 		if burningTime % 30 == 0:
 			damaged(ceil(burningTime/60) + 1, Color.RED)
-	if slowTime:
-		slowTime -= 1
+	
 	if stunTime:
 		stunTime -= 1
+		status_text.visible = true
+		status_text.text = "STUNNED"
+	elif slowTime:
+		slowTime -= 1
+		status_text.visible = true
+		status_text.text = "SLOWED"
+	else:
+		if status_text.visible:
+			status_text.visible = false
 	
 	var targetVelocity = Vector3.ZERO;
 	if health <= 0 || modelAnimation.current_animation == 'Attack' || stunTime > 0:

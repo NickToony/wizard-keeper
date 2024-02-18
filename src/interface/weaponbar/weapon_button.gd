@@ -3,6 +3,7 @@ extends TextureButton
 @onready var label = $Label
 @onready var key = $Key
 @onready var icon: TextureRect = $CenterContainer/TextureRect
+@onready var cost = $Cost
 
 func _ready():
 	button_mask = MOUSE_BUTTON_MASK_LEFT
@@ -14,6 +15,7 @@ func _ready():
 	pass
 
 func update():
+	cost.visible = false
 	if get_parent().weaponIndex != null:
 		button_pressed = State.weaponCurrent == get_parent().weaponIndex
 		if get_parent().weapon:
@@ -36,6 +38,8 @@ func update():
 			label.text = trapData.name
 			icon.texture = load(trapData.icon)
 			icon.visible = true
+			cost.visible = true
+			cost.text = str(trapData.cost) + ' gold'
 			return
 		label.text = ''
 		icon.visible = false

@@ -39,6 +39,8 @@ var cutsceneActor = ''
 var cutscenePlay = false
 var cutscenePosition = null
 
+var endless = false
+
 func _ready():
 	reset()
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -158,6 +160,8 @@ func reset():
 	gameEnd = false
 	rerolls = 0
 	gold = 0
+	difficulty = 1
+	endless = false
 
 func setWeapons(left, right):
 	weaponLeft = left

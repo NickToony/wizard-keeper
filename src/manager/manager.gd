@@ -15,6 +15,7 @@ var cutsceneIndex = 0
 var attacksceneIndex = 0
 var attackscenes = []
 var shop = false
+var pauseSpawning = false
 @onready var level = Levels.levels[levelName]
 
 func _ready():
@@ -41,11 +42,18 @@ func _physics_process(delta):
 			State.game_mode = State.GameMode.Cutscene
 			return
 		
+		var enemyCount = get_tree().get_nodes_in_group("enemies").size() 
 		if stageStep < toSpawn.size():
-			spawnEnemy()
+			if !pauseSpawning:
+				spawnEnemy()
+				if enemyCount > 40:
+					pauseSpawning = true
+			else:
+				if enemyCount < 5:
+					pauseSpawning = false
 			return
 		
-		if get_tree().get_nodes_in_group("enemies").size() > 0:
+		if enemyCount > 0:
 			return
 			
 		State.game_mode = State.GameMode.Wait
@@ -71,12 +79,15 @@ func _physics_process(delta):
 		if toSpawn.size() > 0:
 			return
 		if step >= level.size():
-			# Game over
-			State.cutsceneContent = "I've held them back for now. Time to check the other dungeons."
-			State.cutsceneActor = "Wizard"
-			State.cutscenePosition = null
-			State.gameEnd = true
-			State.game_mode = State.GameMode.Cutscene
+			if !State.endless || step > 10:
+				# Game over
+				State.cutsceneContent = "I've held them back for now. Time to check the other dungeons."
+				State.cutsceneActor = "Wizard"
+				State.cutscenePosition = null
+				State.gameEnd = true
+				State.game_mode = State.GameMode.Cutscene
+			else:
+				endlessWave()
 			return
 		
 		var stage = level[step]
@@ -92,6 +103,7 @@ func _physics_process(delta):
 		cutsceneIndex = 0
 		attacksceneIndex = 0
 		stageStep = 0
+		pauseSpawning = false
 		if stage.has('gold'):
 			State.gold += stage.gold
 		shop = false
@@ -104,20 +116,56 @@ func _physics_process(delta):
 			State.setTraps(stage.traps)
 		if stage.has('difficulty'):
 			State.difficulty = stage.difficulty
+		if stage.has('endless'):
+			State.endless = true
 		
 		step += 1
+		
+func endlessWave():
+	State.difficulty += 0.1
+	State.nextWave = ''
+	
+	var counts = {
+		Levels.Spawnable.Goblin: 0,
+		Levels.Spawnable.Zombie: 0,
+		Levels.Spawnable.Demon: 0,
+		Levels.Spawnable.Skeleton: 0,
+		Levels.Spawnable.HeavySkeleton: 0,
+		Levels.Spawnable.Giant: 0,
+	}
+	
+	var maxCost = (step + 1) * 15
+	var currentCost = 0
+	var options = []
+	for i in range(35): options.append(Levels.Spawnable.Goblin)
+	for i in range(25): options.append(Levels.Spawnable.Zombie)
+	for i in range(10): options.append(Levels.Spawnable.Demon)
+	if step >= 4:
+		for i in range(20): options.append(Levels.Spawnable.Skeleton)
+	if step >= 5:
+		for i in range(10): options.append(Levels.Spawnable.HeavySkeleton)
+	if step >= 6:
+		for i in range(4): options.append(Levels.Spawnable.Giant)
+	while currentCost < maxCost:
+		var mob = options.pick_random()
+		
+		counts[mob] += 1
+		toSpawn.append(mob)
+		currentCost += spawnableToDefinition(mob).value
+	
+	for key in counts.keys():
+		var val = counts[key]
+		State.nextWave = State.nextWave + str(val) + " " + Levels.Spawnable.keys()[key] + "s   "
+	
+	step += 1
+	stageStep = 0
+	shop = true
+	pauseSpawning = false
 
 func spawnEnemy():
 	for spawn in get_tree().get_nodes_in_group("spawns"):
 		if !spawn.isOccupied():
-			var mob
-			match toSpawn[stageStep]:
-				Levels.Spawnable.Goblin:
-					mob = Enemies.Definitions.Goblin
-				Levels.Spawnable.Zombie:
-					mob = Enemies.Definitions.Zombie
-				Levels.Spawnable.Demon:
-					mob = Enemies.Definitions.Demon
+			var mob = spawnableToDefinition(toSpawn[stageStep])
 			
 			if mob:
 				var instance = enemyScene.instantiate()
@@ -128,3 +176,18 @@ func spawnEnemy():
 			stageStep += 1
 			
 			break
+
+func spawnableToDefinition(spawnable):
+	match spawnable:
+		Levels.Spawnable.Goblin:
+			return Enemies.Definitions.Goblin
+		Levels.Spawnable.Zombie:
+			return Enemies.Definitions.Zombie
+		Levels.Spawnable.Demon:
+			return Enemies.Definitions.Demon
+		Levels.Spawnable.Skeleton:
+			return Enemies.Definitions.Skeleton
+		Levels.Spawnable.HeavySkeleton:
+			return Enemies.Definitions.HeavySkeleton
+		Levels.Spawnable.Giant:
+			return Enemies.Definitions.Giant

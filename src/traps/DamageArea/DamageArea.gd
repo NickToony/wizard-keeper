@@ -23,13 +23,17 @@ func _process(_delta):
 		tick = trap.cooldown * 60
 		for target in targets:
 			if trap.has('poison') && trap.poison:
-				target.poisonTime = trap.poison * 60
+				if target.poisonTime <= 0:
+					target.poisonTime = trap.poison * 60
 			if trap.has('stun') && trap.stun:
-				target.stunTime = trap.stun * 60
+				if target.stunTime <= 0:
+					target.stunTime = trap.stun * 60
 			if trap.has('slow') && trap.slow:
-				target.slowTime = trap.slow * 60
+				if target.slowTime <= 0:
+					target.slowTime = trap.slow * 60
 			if trap.has('burning') && trap.burning:
-				target.burningTime = trap.burning * 60
+				if target.burningTime <= 0:
+					target.burningTime = trap.burning * 60
 			target.damaged(trap.damage)
 		emit_signal("trap_ticked")
 		if targets.size() > 0:

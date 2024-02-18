@@ -4,6 +4,9 @@ enum Spawnable {
 	Goblin,
 	Zombie,
 	Demon,
+	Skeleton,
+	HeavySkeleton,
+	Giant,
 }
 
 var levels = {
@@ -201,7 +204,8 @@ var levels = {
 			"weapons": [],
 			"traps": [],
 			"gold": 1000,
-			"shop": true
+			"shop": true,
+			"endless": true,
 		},
 	]
 }

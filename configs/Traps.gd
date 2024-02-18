@@ -16,8 +16,8 @@ var Traps = [
 		"description": "Spike trap mounted on the wall. High damage, but needs time to recharge.",
 		"cost": 50,
 		"placecost": highPlace,
-		"damage": 50,
-		"cooldown": 5,
+		"damage": 100,
+		"cooldown": 6,
 		"stun": 0,
 		"burning": 0,
 		"poison": 0,
@@ -33,14 +33,14 @@ var Traps = [
 		"icon": "res://assets/icons/sword.png",
 		"description": "Spike trap mounted on the wall. High damage, but needs time to recharge.",
 		"cost": 50,
-		"damage": 50,
-		"cooldown": 5,
-		"poison": 10,
+		"damage": 30,
+		"cooldown": 6,
+		"poison": 5,
 		"placecost": veryHighPlace,
 	},
 	{
 		"id": "pool",
-		"name": "Nasty Pool",
+		"name": "Acidic Pool",
 		"wall": false,
 		"meshPath": "res://assets/traps/pool.glb",
 		"scenePath": "res://src/traps/PoolTrap.tscn",
@@ -76,7 +76,7 @@ var Traps = [
 		"cost": 25,
 		"damage": 15,
 		"cooldown": 1,
-		"burning": 5,
+		"burning": 3,
 		"placecost": mediumPlace,
 	},
 	{
@@ -90,7 +90,7 @@ var Traps = [
 		"cost": 25,
 		"damage": 15,
 		"cooldown": 1,
-		"poison": 5,
+		"poison": 3,
 		"placecost": mediumPlace,
 	}
 ]
@@ -99,40 +99,24 @@ var trapMap = {}
 
 func _ready():
 	loadTraps(Traps);
-	#print (weaponMap)
+	printTrapStats()
 #
 func loadTraps(traps: Array):
 	for trap in traps:
 		trapMap[trap.id] = trap
 
-
-#func loadWeapons(weaponArray: Array, parent):
-	#for weapon in weaponArray:
-		#if !weapon.has("upgrades"):
-			#weapon.upgrades = []
-			#
-		#var upgrades = []
-		#weaponMap[weapon.id] = weapon
-		#if parent:
-			#weaponMap[weapon.id].merge(parent)
-		## Nested load
-		#if weapon["upgrades"].size() > 0:
-			#loadWeapons(weapon.upgrades, weaponMap[weapon.id])
-			## Covert upgrades to array of ids
-			#for upgrade in weapon.upgrades:
-				#upgrades.append(upgrade.id)
-		#
-		#weaponMap[weapon.id].upgrades = upgrades
+func printTrapStats():
+	print('\n\nTRAPS\n-----')
+	for trap in Traps:
+		var dps = trap.damage / trap.cooldown
+		if trap.has('burning') && trap.burning:
+			dps += 5 * trap.burning
+		if trap.has('poison') && trap.poison:
+			dps += 5 * 2 * trap.poison
+		var value = dps / float(trap.cost)
+		print(trap.name)
+		print('\tdps: ' + str(dps)  + '\tvdps' + str(value))
 #
 #
 func getTrap(id: String):
 	return trapMap[id]
-	#
-#func getUpgradesForWeapon(id: String):
-	#var weapon = getWeapon(id)
-	#var result = []
-	#if weapon.has("upgrades"):
-		#for child in weapon.upgrades:
-			#var childWeapon = getWeapon(child)
-			#result.append(childWeapon)
-	#return result
