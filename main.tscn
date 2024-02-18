@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmjp6174treub"]
+[gd_scene load_steps=3 format=3 uid="uid://bmjp6174treub"]
+
+[ext_resource type="Script" path="res://src/Sunlight.gd" id="1_pokog"]
 
 [sub_resource type="Environment" id="Environment_c8u53"]
 background_mode = 1
@@ -10,13 +12,14 @@ glow_hdr_luminance_cap = 214.77
 [node name="main" type="Node3D"]
 process_mode = 1
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.124077, -0.539832, 0.832578, 0.428468, 0.727658, 0.535658, -0.894997, 0.423195, 0.141015, 10.3663, 7.59075, 6.69605)
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 10.0
 directional_shadow_pancake_size = 5.0
 sky_mode = 1
+script = ExtResource("1_pokog")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c8u53")

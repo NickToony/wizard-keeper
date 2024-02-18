@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=25 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Theme" uid="uid://dbnc08hltbdu3" path="res://src/menus/MainMenu.tres" id="1_jdnly"]
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://5hwcqxux1ihw" path="res://src/shop/shop.tscn" id="18_4yqyh"]
 [ext_resource type="Script" path="res://src/interface/Exit.gd" id="19_803fl"]
 [ext_resource type="Script" path="res://src/interface/Music.gd" id="19_u340r"]
+[ext_resource type="Script" path="res://src/interface/Shader.gd" id="21_2033y"]
+[ext_resource type="Script" path="res://src/interface/Lights.gd" id="22_y7jvf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phka5"]
 bg_color = Color(0, 0, 0, 1)
@@ -299,10 +301,22 @@ layout_mode = 2
 text = "Toggle Music"
 script = ExtResource("19_u340r")
 
+[node name="Shader" type="Button" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shader"
+script = ExtResource("21_2033y")
+
+[node name="Lights" type="Button" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shader"
+script = ExtResource("22_y7jvf")
+
 [node name="Exit" type="Button" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back to Menu"
 script = ExtResource("19_803fl")
 
 [connection signal="pressed" from="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" to="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" method="_on_pressed"]
+[connection signal="pressed" from="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Shader" to="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Shader" method="_on_pressed"]
+[connection signal="pressed" from="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Lights" to="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Lights" method="_on_pressed"]
 [connection signal="pressed" from="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" to="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" method="_on_pressed"]

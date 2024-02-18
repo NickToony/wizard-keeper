@@ -1,4 +1,5 @@
 extends Camera3D
+@onready var postprocessing = $Postprocessing
 
 var basePos
 var locked = true
@@ -27,3 +28,6 @@ func _physics_process(delta):
 		position = position.lerp(targetPos, 0.2)
 		if position.distance_to(targetPos) < 10:
 			locked = true
+	
+		
+	postprocessing.visible = State.shader

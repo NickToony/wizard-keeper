@@ -40,6 +40,8 @@ var cutscenePlay = false
 var cutscenePosition = null
 
 var endless = false
+var shader = true
+var lights = true
 
 func _ready():
 	reset()
