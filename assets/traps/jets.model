@@ -1,0 +1,20 @@
+# Made using Asset Forge (2.4.0)
+
+:materials
+
+[name:_defaultMat;color:RGBA(0.000, 0.000, 0.000, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
+[name:dark;color:RGBA(0.862, 0.862, 0.862, 1.000);scale:(1.0, 1.0);texture:Metal/metal.png;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:custom6;color:RGBA(1.000, 0.331, 0.000, 1.000);scale:(1.0, 1.0);texture:Nature/rock.png;shader:Default;mapping:0;valueA:0.5;valueB:0.15;]
+[name:custom3;color:RGBA(0.903, 0.903, 0.903, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
+
+:models
+
+[name:;collection:Greebles;type:detail_boltNut%;position:(0.2500, 0.6900, -0.4000);rotation:(89.9802, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:custom3+_defaultMat;]
+[name:;collection:Greebles;type:detail_boltNut%;position:(-0.2500, 0.6900, -0.4000);rotation:(89.9802, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:custom3+_defaultMat;]
+[name:;collection:Greebles;type:detail_boltNut%;position:(-0.2500, 0.2900, -0.4000);rotation:(89.9802, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:custom3+_defaultMat;]
+[name:;collection:Greebles;type:detail_boltNut%;position:(0.2500, 0.2900, -0.4000);rotation:(89.9802, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:custom3+_defaultMat;]
+[name:;collection:Primitives;type:block;position:(0.0000, 0.0000, -0.4700);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 0.9000, 0.1000);group:;locked:False;hidden:False;materials:dark;]
+[name:lava1;collection:Primitives;type:cylinder_taper%;position:(0.2500, 0.6900, 1.9393);rotation:(270.0000, 0.0000, 0.0000);scale:(0.1400, 2.2807, -0.1200);group:;locked:False;hidden:False;materials:custom6;]
+[name:lava1;collection:Primitives;type:cylinder_taper%;position:(0.2500, 0.2900, 1.9393);rotation:(270.0000, 0.0000, 0.0000);scale:(0.1400, 2.2807, -0.1200);group:;locked:False;hidden:False;materials:custom6;]
+[name:lava1;collection:Primitives;type:cylinder_taper%;position:(-0.2500, 0.6900, 1.9393);rotation:(270.0000, 0.0000, 0.0000);scale:(0.1400, 2.2807, -0.1200);group:;locked:False;hidden:False;materials:custom6;]
+[name:lava1;collection:Primitives;type:cylinder_taper%;position:(-0.2500, 0.2900, 1.9393);rotation:(270.0000, 0.0000, 0.0000);scale:(0.1400, 2.2807, -0.1200);group:;locked:False;hidden:False;materials:custom6;]

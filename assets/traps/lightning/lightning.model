@@ -1,0 +1,23 @@
+# Made using Asset Forge (2.4.0)
+
+:materials
+
+[name:metalLight;color:RGBA(0.482, 0.478, 0.545, 1.000);scale:(1.0, 1.0);texture:Metal/stripes.png;shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
+[name:metal;color:RGBA(0.468, 0.467, 0.483, 1.000);scale:(1.0, 1.0);shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
+[name:_defaultMat;color:RGBA(0.195, 0.239, 0.386, 1.000);scale:(1.0, 1.0);texture:Metal/circuit.png;shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
+[name:foliage;color:RGBA(0.578, 0.655, 0.000, 1.000);scale:(1.0, 1.0);texture:Patterns/zigzag.png;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+[name:custom4;color:RGBA(0.578, 0.655, 0.000, 1.000);scale:(1.0, 1.0);texture:Patterns/zigzag.png;shader:Default;mapping:0;valueA:0.35;valueB:0;]
+
+:models
+
+[name:;collection:Vehicles;type:detail_lightRow%;position:(-0.2400, 0.4920, -0.3500);rotation:(0.0000, 0.0000, 90.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalLight+metal+metal;]
+[name:;collection:Vehicles;type:detail_lightRow%;position:(0.2500, 0.4920, -0.3500);rotation:(0.0000, 0.0000, 90.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalLight+metalLight+metal;]
+[name:;collection:Primitives;type:block;position:(0.0000, 0.0000, -0.4350);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0800, 0.1300);group:;locked:False;hidden:False;materials:_defaultMat;]
+[name:;collection:Foliage;type:plant_small;position:(-0.2400, 0.8700, -0.4000);rotation:(285.0000, 90.0000, 90.0000);scale:(0.5500, 7.2703, 0.5500);group:;locked:False;hidden:False;materials:foliage;]
+[name:;collection:Foliage;type:plant_small;position:(-0.2400, 0.6100, -0.4000);rotation:(60.0000, 270.0000, 270.0000);scale:(0.5500, 5.4028, 0.5500);group:;locked:False;hidden:False;materials:foliage;]
+[name:;collection:Foliage;type:plant_small;position:(-0.2400, 0.3600, -0.4000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.5500, 7.6042, 0.5500);group:;locked:False;hidden:False;materials:foliage;]
+[name:;collection:Foliage;type:plant_small;position:(-0.2400, 0.1100, -0.4000);rotation:(15.0000, 270.0000, 270.0000);scale:(0.5500, 6.0032, 0.5500);group:;locked:False;hidden:False;materials:foliage;]
+[name:;collection:Foliage;type:plant_small;position:(0.2500, 0.3600, -0.4000);rotation:(330.0000, 90.0000, 90.0000);scale:(0.5500, 5.7363, 0.5500);group:;locked:False;hidden:False;materials:foliage;]
+[name:;collection:Foliage;type:plant_small;position:(0.2500, 0.8700, -0.4000);rotation:(345.0000, 90.0000, 90.0000);scale:(0.5500, 5.8696, 0.5500);group:;locked:False;hidden:False;materials:custom4;]
+[name:;collection:Foliage;type:plant_small;position:(0.2500, 0.6100, -0.4000);rotation:(75.0000, 90.0000, 90.0000);scale:(0.5500, 7.6706, 0.5500);group:;locked:False;hidden:False;materials:custom4;]
+[name:;collection:Foliage;type:plant_small;position:(0.2500, 0.1100, -0.4000);rotation:(75.0000, 90.0000, 90.0000);scale:(0.5500, 6.9369, 0.5500);group:;locked:False;hidden:False;materials:foliage;]

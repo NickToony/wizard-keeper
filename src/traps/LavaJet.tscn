@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6a2u6b5dnye4"]
+
+[ext_resource type="PackedScene" uid="uid://bt2ggfygogma2" path="res://src/traps/BaseTrap.tscn" id="1_ufot8"]
+[ext_resource type="Script" path="res://src/traps/RayHandler.gd" id="2_m3y4k"]
+[ext_resource type="PackedScene" uid="uid://ce5n24kvgr4kk" path="res://assets/traps/jets/jets.glb" id="3_jvhso"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v3ejt"]
+size = Vector3(1, 1, 2.56396)
+
+[node name="LavaJet" node_paths=PackedStringArray("model") instance=ExtResource("1_ufot8")]
+script = ExtResource("2_m3y4k")
+regex = "lava*"
+lungeSpeed = 10
+retractSpeed = 2
+model = NodePath("jets")
+startHidden = true
+negateX = true
+
+[node name="jets" parent="." index="0" instance=ExtResource("3_jvhso")]
+
+[node name="DamageArea" parent="." index="1"]
+onlyFireIfTargets = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.398906, -0.781982)
+shape = SubResource("BoxShape3D_v3ejt")
+
+[editable path="DamageArea"]

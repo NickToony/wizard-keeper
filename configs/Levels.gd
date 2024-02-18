@@ -202,7 +202,7 @@ var levels = {
 				{ "type": Spawnable.Demon, "count": 10 },
 			],
 			"weapons": [],
-			"traps": [],
+			"traps": ['zapper', 'lavajet'],
 			"gold": 1000,
 			"shop": true,
 			"endless": true,

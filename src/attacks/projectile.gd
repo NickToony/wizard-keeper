@@ -73,16 +73,16 @@ func _on_body_entered(body: Node3D):
 func damageBody(body):
 	body.damaged(weapon.damage)
 	if weapon.poison:
-		if body.poisonTime <= 0:
+		if body.poisonTime < weapon.poison * 30:
 			body.poisonTime = weapon.poison * 60
 	if weapon.stun:
-		if body.stunTime <= 0:
+		if body.stunTime <= weapon.stun * 30:
 			body.stunTime = weapon.stun * 60
 	if weapon.slow:
-		if body.slowTime <= 0:
+		if body.slowTime <= weapon.slow * 30:
 			body.slowTime = weapon.slow * 60
 	if weapon.burning:
-		if body.burningTime <= 0:
+		if body.burningTime <= weapon.burning * 30:
 			body.burningTime = weapon.burning * 60
 
 func update(playerVelocity):	
