@@ -7,7 +7,7 @@ var Definitions: Dictionary = {
 		"speed": 1,
 		"attackspeed": 1,
 		"damage": 10,
-		"gold": 5,
+		"gold": 2,
 		"value": 1,
 	},
 	"Zombie": {
@@ -18,7 +18,7 @@ var Definitions: Dictionary = {
 		"attackspeed": 0.5,
 		"respawn": true,
 		"lives": 2,
-		"gold": 10,
+		"gold": 3,
 		"value": 2,
 	},
 	"Demon": {
@@ -28,7 +28,7 @@ var Definitions: Dictionary = {
 		"damage": 5,
 		"attackspeed": 2,
 		"lives": 1,
-		"gold": 20,
+		"gold": 5,
 		"value": 2,
 	},
 	"Skeleton": {
@@ -38,7 +38,7 @@ var Definitions: Dictionary = {
 		"damage": 10,
 		"attackspeed": 1,
 		"lives": 2,
-		"gold": 40,
+		"gold": 5,
 		"value": 5,
 	},
 	"HeavySkeleton": {
@@ -48,7 +48,7 @@ var Definitions: Dictionary = {
 		"damage": 20,
 		"attackspeed": 1,
 		"lives": 4,
-		"gold": 80,
+		"gold": 10,
 		"value": 10,
 	},
 	"Giant": {
@@ -58,7 +58,7 @@ var Definitions: Dictionary = {
 		"damage": 100,
 		"attackspeed": 0.5,
 		"lives": 10,
-		"gold": 150,
+		"gold": 20,
 		"value": 50,
 	}
 }

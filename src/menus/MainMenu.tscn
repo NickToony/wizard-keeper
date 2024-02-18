@@ -76,4 +76,4 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Label" type="Label" parent="MarginContainer2"]
 layout_mode = 2
-text = "NickToony"
+text = "Made by NickToony"

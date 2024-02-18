@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=19 format=3 uid="uid://c27y82t7fanjr"]
 
+[ext_resource type="Theme" uid="uid://dbnc08hltbdu3" path="res://src/menus/MainMenu.tres" id="1_jdnly"]
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
 [ext_resource type="Texture2D" uid="uid://6tsg4mqyvmcy" path="res://assets/ui/barRed_horizontalMid.png" id="2_y7kw4"]
 [ext_resource type="Script" path="res://src/interface/HealthBar.gd" id="3_jvwfl"]
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jdnly")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0

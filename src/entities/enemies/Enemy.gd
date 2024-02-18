@@ -52,6 +52,11 @@ func _on_animation_finished(animation: String):
 		"Death":
 			if !respawn:
 				State.gold += definition.gold
+				var damageLabel = damageLabelScene.instantiate()
+				damageLabel.text = str(definition.gold) + ' gold'
+				damageLabel.position = global_position
+				damageLabel.color = Color.GOLD
+				get_parent().add_child(damageLabel)
 				queue_free()
 			else:
 				$ResSound.play()

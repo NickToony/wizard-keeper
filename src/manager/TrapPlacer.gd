@@ -6,6 +6,8 @@ extends Node3D
 @onready var wallTraps: Node3D = $"../WallTraps"
 @onready var floorTraps: Node3D = $"../FloorTraps"
 
+var damageLabelScene = preload("res://src/entities/damagelabel/DamageText.tscn")
+
 var buildMeshInstance: Node3D
 var player
 var trap
@@ -50,6 +52,12 @@ func _process(delta):
 			validPosition = false
 		if trap.cost > State.gold:
 			validPosition = false
+			if Input.is_action_just_pressed("mouse_left"):
+				var damageLabel = damageLabelScene.instantiate()
+				damageLabel.text = 'Not enough gold'
+				damageLabel.position = snapPosition
+				damageLabel.color = Color.RED
+				get_parent().add_child(damageLabel)
 		var wallDir: Vector3i
 		if trap.wall:
 			var toCheck = [Vector3i.LEFT, Vector3i.RIGHT, Vector3i.FORWARD, Vector3i.BACK ]

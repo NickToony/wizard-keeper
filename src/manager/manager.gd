@@ -135,15 +135,15 @@ func endlessWave():
 	var maxCost = (step + 1) * 15
 	var currentCost = 0
 	var options = []
-	for i in range(35): options.append(Levels.Spawnable.Goblin)
-	for i in range(25): options.append(Levels.Spawnable.Zombie)
+	for i in range(100): options.append(Levels.Spawnable.Goblin)
+	for i in range(40): options.append(Levels.Spawnable.Zombie)
 	for i in range(10): options.append(Levels.Spawnable.Demon)
+	if step >= 3:
+		for i in range(40): options.append(Levels.Spawnable.Skeleton)
 	if step >= 4:
-		for i in range(20): options.append(Levels.Spawnable.Skeleton)
+		for i in range(30): options.append(Levels.Spawnable.HeavySkeleton)
 	if step >= 5:
-		for i in range(10): options.append(Levels.Spawnable.HeavySkeleton)
-	if step >= 6:
-		for i in range(4): options.append(Levels.Spawnable.Giant)
+		for i in range(5): options.append(Levels.Spawnable.Giant)
 	while currentCost < maxCost:
 		var mob = options.pick_random()
 		
