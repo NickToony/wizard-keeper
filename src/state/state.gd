@@ -32,6 +32,7 @@ var nextWave = ''
 var gameEnd = false
 var shop = false
 var rerolls = 0
+var difficulty = 1
 
 var cutsceneContent = ''
 var cutsceneActor = ''

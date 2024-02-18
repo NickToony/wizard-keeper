@@ -17,7 +17,7 @@ func _ready():
 	State.reset()
 	pass
 
-func goToLevel(levelName):
+func goToLevel(levelName):		
 	var main = mainScene.instantiate()
 	var level = load("res://src/levels/" + levelName + ".tscn").instantiate()
 	main.add_child(level)

@@ -1,5 +1,10 @@
 extends Node
 
+var veryHighPlace = 80
+var highPlace = 60
+var mediumPlace = 40
+var lowPlace = 20
+
 var Traps = [
 	{
 		"id": "spikes",
@@ -10,6 +15,7 @@ var Traps = [
 		"icon": "res://assets/icons/sword.png",
 		"description": "Spike trap mounted on the wall. High damage, but needs time to recharge.",
 		"cost": 50,
+		"placecost": highPlace,
 		"damage": 50,
 		"cooldown": 5,
 		"stun": 0,
@@ -30,6 +36,7 @@ var Traps = [
 		"damage": 50,
 		"cooldown": 5,
 		"poison": 10,
+		"placecost": veryHighPlace,
 	},
 	{
 		"id": "pool",
@@ -40,8 +47,9 @@ var Traps = [
 		"icon": "res://assets/icons/sword.png",
 		"description": "A pool of acidic goo. Hurts enemies as they walk over it, but magically harmless to wizards!",
 		"cost": 25,
-		"damage": 10,
+		"damage": 20,
 		"cooldown": 1,
+		"placecost": lowPlace,
 	},
 	{
 		"id": "tar",
@@ -54,7 +62,8 @@ var Traps = [
 		"cost": 25,
 		"damage": 0,
 		"cooldown": 0.2,
-		"slow": 1,
+		"slow": 2,
+		"placecost": lowPlace,
 	},
 	{
 		"id": "lava",
@@ -65,9 +74,10 @@ var Traps = [
 		"icon": "res://assets/icons/sword.png",
 		"description": "Fill a pit with lava. Damages and sets enemies on fire.",
 		"cost": 25,
-		"damage":5,
+		"damage": 15,
 		"cooldown": 1,
 		"burning": 5,
+		"placecost": mediumPlace,
 	},
 	{
 		"id": "poison",
@@ -78,9 +88,10 @@ var Traps = [
 		"icon": "res://assets/icons/sword.png",
 		"description": "This pool damages and poisons enemies that walk over it.",
 		"cost": 25,
-		"damage": 5,
+		"damage": 15,
 		"cooldown": 1,
 		"poison": 5,
+		"placecost": mediumPlace,
 	}
 ]
 

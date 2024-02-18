@@ -102,6 +102,8 @@ func _physics_process(delta):
 			State.setWeapons(stage.weapons[0], stage.weapons[1])
 		if stage.has('traps') && stage.traps.size():
 			State.setTraps(stage.traps)
+		if stage.has('difficulty'):
+			State.difficulty = stage.difficulty
 		
 		step += 1
 

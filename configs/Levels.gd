@@ -7,7 +7,7 @@ enum Spawnable {
 }
 
 var levels = {
-	"tutorial": [
+	"Tutorial": [
 		{
 			"cutscenes": [{
 				"actor": "Wizard",
@@ -35,6 +35,7 @@ var levels = {
 				{ "type": Spawnable.Goblin, "count": 5 },
 			],
 			"weapons": ["staff", null],
+			"difficulty": 0.5,
 		},
 		{
 			"cutscenes": [{

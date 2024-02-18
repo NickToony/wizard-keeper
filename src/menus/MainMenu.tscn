@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://decd6wqe38mqe"]
+[gd_scene load_steps=6 format=3 uid="uid://decd6wqe38mqe"]
 
 [ext_resource type="Script" path="res://src/menus/LevelSelection.gd" id="1_nt3v0"]
+[ext_resource type="Theme" uid="uid://dbnc08hltbdu3" path="res://src/menus/MainMenu.tres" id="2_lpea8"]
+[ext_resource type="Texture2D" uid="uid://bsaj7f2y248fv" path="res://assets/menu/background.png" id="2_q1t3k"]
 [ext_resource type="Texture2D" uid="uid://soqrkg6otf4u" path="res://assets/GWJ-Half-Logo-Orange.svg" id="2_y4144"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
+[sub_resource type="LabelSettings" id="LabelSettings_sjcxb"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_lpea8")
+texture = ExtResource("2_q1t3k")
+expand_mode = 2
+stretch_mode = 6
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -22,6 +32,16 @@ grow_vertical = 2
 [node name="LevelSelection" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 script = ExtResource("1_nt3v0")
+
+[node name="Title" type="Label" parent="CenterContainer/LevelSelection"]
+layout_mode = 2
+text = "Wizard Keeper"
+label_settings = SubResource("LabelSettings_sjcxb")
+horizontal_alignment = 1
+
+[node name="Padding1" type="Control" parent="CenterContainer/LevelSelection"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -42,3 +62,18 @@ theme_override_constants/margin_bottom = 24
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_y4144")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 82.0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+text = "NickToony"

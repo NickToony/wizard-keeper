@@ -7,6 +7,7 @@ var Definitions: Dictionary = {
 		"speed": 1,
 		"attackspeed": 1,
 		"damage": 10,
+		"gold": 5,
 	},
 	"Zombie": {
 		"mesh": "res://assets/enemies/Zombie.gltf",
@@ -16,7 +17,7 @@ var Definitions: Dictionary = {
 		"attackspeed": 0.5,
 		"respawn": true,
 		"lives": 2,
-		"gold": 2,
+		"gold": 10,
 	},
 	"Demon": {
 		"mesh": "res://assets/enemies/Demon.gltf",
@@ -25,7 +26,7 @@ var Definitions: Dictionary = {
 		"damage": 5,
 		"attackspeed": 2,
 		"lives": 1,
-		"gold": 3,
+		"gold": 20,
 	}
 }
 

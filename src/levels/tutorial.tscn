@@ -44,4 +44,4 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="Manager" parent="." index="8"]
-levelName = "tutorial"
+levelName = "Tutorial"

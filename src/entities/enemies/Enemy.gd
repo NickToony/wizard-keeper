@@ -23,7 +23,7 @@ var slowTime = 0
 var statusCountdown = 60
 
 func _ready() -> void:
-	health = definition.health
+	health = definition.health * State.difficulty
 	maxHealth = health
 	model = load(definition.mesh).instantiate()
 	modelAnimation = model.get_node("AnimationPlayer")

@@ -48,6 +48,8 @@ func _process(delta):
 			validPosition = false
 		if scenery.get_cell_item(wallPosition) != GridMap.INVALID_CELL_ITEM:
 			validPosition = false
+		if trap.cost > State.gold:
+			validPosition = false
 		var wallDir: Vector3i
 		if trap.wall:
 			var toCheck = [Vector3i.LEFT, Vector3i.RIGHT, Vector3i.FORWARD, Vector3i.BACK ]
@@ -97,6 +99,7 @@ func _process(delta):
 			var trapInstance = load(trap.scenePath).instantiate()
 			trapInstance.trap = trap
 			trapInstance.position = snapPosition
+			State.gold -= trap.cost
 			if !trap.wall:
 				#trapInstance.rotation.z = PI/2
 				pass
