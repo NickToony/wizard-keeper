@@ -16,7 +16,6 @@ func _ready():
 func update():
 	if get_parent().weaponIndex != null:
 		button_pressed = State.weaponCurrent == get_parent().weaponIndex
-		print(get_parent().weapon)
 		if get_parent().weapon:
 			var weaponData = Weapons.getWeapon(get_parent().weapon)
 			label.text = weaponData.name

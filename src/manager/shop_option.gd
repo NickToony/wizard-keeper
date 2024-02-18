@@ -78,7 +78,6 @@ func _on_buy():
 		State.addWeapon(weapon.id)
 	
 	if trap:
-		print('buy trap')
 		State.gold -= trap.cost
 		
 		State.addTrap(trap.id)

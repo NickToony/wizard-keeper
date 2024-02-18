@@ -3,7 +3,7 @@
 :materials
 
 [name:_defaultMat;color:RGBA(0.259, 0.261, 0.269, 1.000);scale:(1.0, 1.0);texture:Concrete/conrete.png;shader:Default;mapping:0;valueA:0.35;valueB:0.25;]
-[name:custom1;color:RGBA(0.889, 0.298, 0.938, 1.000);scale:(1.0, 1.0);texture:Nature/rock.png;shader:Default;mapping:0;valueA:0.5;valueB:0.15;]
+[name:custom1;color:RGBA(0.179, 1.000, 0.000, 1.000);scale:(1.0, 1.0);texture:Nature/rock.png;shader:Default;mapping:0;valueA:0.5;valueB:0.15;]
 
 :models
 

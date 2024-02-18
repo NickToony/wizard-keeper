@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs7ow1243panb"]
+
+[ext_resource type="PackedScene" uid="uid://bt2ggfygogma2" path="res://src/traps/BaseTrap.tscn" id="1_3gfd1"]
+[ext_resource type="PackedScene" uid="uid://c7ros3kl4jxvy" path="res://assets/traps/poisonpool.glb" id="2_nnrxo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_283xb"]
+size = Vector3(0.766602, 1, 0.788086)
+
+[node name="PoisonPool" instance=ExtResource("1_3gfd1")]
+
+[node name="poisonpool" parent="." index="0" instance=ExtResource("2_nnrxo")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
+shape = SubResource("BoxShape3D_283xb")
+
+[editable path="DamageArea"]

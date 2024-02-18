@@ -109,7 +109,7 @@ func _physics_process(delta):
 		pass
 	elif !navigation_agent.is_navigation_finished():
 		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-		targetVelocity = global_position.direction_to(next_path_position) * (definition.speed / 2 if slowTime > 0 else definition.speed)
+		targetVelocity = global_position.direction_to(next_path_position) * (definition.speed * 0.7 if slowTime > 0 else definition.speed)
 	else:
 		var exit = get_tree().get_nodes_in_group("exit")[0]
 		navigation_agent.set_target_position(exit.global_position)
@@ -133,8 +133,9 @@ func _on_velocity_computed(safe_velocity: Vector3):
 
 func damaged(amount, color = Color.BLACK):
 	health -= amount
-	var damageLabel = damageLabelScene.instantiate()
-	damageLabel.text = str(amount)
-	damageLabel.position = global_position
-	damageLabel.color = color
-	get_parent().add_child(damageLabel)
+	if amount > 0:
+		var damageLabel = damageLabelScene.instantiate()
+		damageLabel.text = str(amount)
+		damageLabel.position = global_position
+		damageLabel.color = color
+		get_parent().add_child(damageLabel)

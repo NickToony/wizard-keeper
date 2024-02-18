@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://82smqfdeby1r"]
+
+[ext_resource type="PackedScene" uid="uid://bt2ggfygogma2" path="res://src/traps/BaseTrap.tscn" id="1_bikab"]
+[ext_resource type="Script" path="res://src/traps/PoisonSpikeTrap.gd" id="2_x2rqr"]
+[ext_resource type="PackedScene" uid="uid://dfjyvcnplqln4" path="res://assets/traps/poisonspike.glb" id="2_x61f8"]
+[ext_resource type="AudioStream" uid="uid://bvsjytjxj7n32" path="res://assets/sound/stab.ogg" id="4_e6mnb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pr1q3"]
+size = Vector3(1, 1, 2.49634)
+
+[node name="PoisonSpikeTrap" instance=ExtResource("1_bikab")]
+script = ExtResource("2_x2rqr")
+
+[node name="poisonspike" parent="." index="0" instance=ExtResource("2_x61f8")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.498907, -0.748169)
+shape = SubResource("BoxShape3D_pr1q3")
+
+[node name="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("4_e6mnb")
+
+[editable path="DamageArea"]

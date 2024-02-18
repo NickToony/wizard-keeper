@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bvsjytjxj7n32" path="res://assets/sound/stab.ogg" id="4_mu2mt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gnsg"]
-size = Vector3(1, 0.896484, 1.47607)
+size = Vector3(1, 0.896484, 2.50464)
 
 [node name="WallSpikeTrap" type="Node3D"]
 script = ExtResource("1_2vq2q")
@@ -14,11 +14,10 @@ script = ExtResource("1_2vq2q")
 [node name="spiketrap" parent="." instance=ExtResource("2_sol5b")]
 
 [node name="DamageArea" parent="." instance=ExtResource("2_h42h2")]
-monitorable = false
 onlyFireIfTargets = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447705, -0.238037)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447705, -0.75232)
 shape = SubResource("BoxShape3D_1gnsg")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

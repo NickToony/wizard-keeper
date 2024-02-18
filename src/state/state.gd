@@ -183,7 +183,6 @@ func addWeapon(newWeapon):
 func addTrap(newTrap):
 	if traps.size() < 4:
 		traps.append(newTrap)
-		print('append trap')
 	else:
 		var freeIndex = -1
 		var i = 0
