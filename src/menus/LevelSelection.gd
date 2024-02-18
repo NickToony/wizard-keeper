@@ -20,6 +20,7 @@ func _ready():
 func goToLevel(levelName):		
 	var main = mainScene.instantiate()
 	var level = load("res://src/levels/" + levelName + ".tscn").instantiate()
+	level.level_name = levelName
 	main.add_child(level)
 	rootScene.add_child(main)
 	get_parent().get_parent().queue_free()

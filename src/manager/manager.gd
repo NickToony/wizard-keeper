@@ -1,9 +1,6 @@
-#@tool
 extends Node
 
 @onready var enemies = $"../Enemies"
-
-@export var levelName: String = "level1"
 
 var enemyScene = preload("res://src/entities/enemies/Enemy.tscn")
 
@@ -16,10 +13,11 @@ var attacksceneIndex = 0
 var attackscenes = []
 var shop = false
 var pauseSpawning = false
-@onready var level = Levels.levels[levelName]
+var level
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	level = Levels.levels[get_parent().level_name]
 	pass
 	
 func _physics_process(delta):
