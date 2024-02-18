@@ -13,7 +13,7 @@ var Definitions: Dictionary = {
 	"Zombie": {
 		"mesh": "res://assets/enemies/Zombie.gltf",
 		"health": 100,
-		"speed": .7,
+		"speed": .8,
 		"damage": 20,
 		"attackspeed": 0.5,
 		"respawn": true,
@@ -23,13 +23,13 @@ var Definitions: Dictionary = {
 	},
 	"Demon": {
 		"mesh": "res://assets/enemies/Demon.gltf",
-		"health": 100,
-		"speed": 3,
+		"health": 150,
+		"speed": 2.6,
 		"damage": 5,
 		"attackspeed": 2,
 		"lives": 1,
 		"gold": 5,
-		"value": 2,
+		"value": 3,
 	},
 	"Skeleton": {
 		"mesh": "res://assets/enemies/Skeleton.gltf",
@@ -54,7 +54,7 @@ var Definitions: Dictionary = {
 	"Giant": {
 		"mesh": "res://assets/enemies/Giant.gltf",
 		"health": 600,
-		"speed": .6,
+		"speed": .8,
 		"damage": 100,
 		"attackspeed": 0.5,
 		"lives": 10,
