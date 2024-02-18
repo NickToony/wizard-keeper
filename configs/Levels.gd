@@ -262,12 +262,68 @@ var levels = {
 				"gold": 200,
 				"shop": true,
 				"endless": true,
-				"difficulty": 1.5,
+				"difficulty": 1.6,
+			},
+		]
+	},
+	"2way": {
+		"name": "Split Ends (Normal Randomised)",
+		"map": "testlevel",
+		"stages": [
+			{
+				"cutscenes": [{
+					"actor": "Wizard",
+					"text": "Time to hold my ground for 10 waves. The waves will get progressively more difficult.",
+					"target": null,	
+				}],
+				"attackscenes": [{
+					"actor": "Wizard",
+					"text": "Good luck!",
+					"target": "enemies",
+				}],
+				"enemies": [
+					{ "type": Spawnable.Goblin, "count": 10 },
+					{ "type": Spawnable.Zombie, "count": 10 },
+				],
+				"weapons": [],
+				"traps": [],
+				"gold": 100,
+				"shop": true,
+				"endless": true,
+				"difficulty": 0.9,
+			},
+		]
+	},
+	"2way2": {
+		"name": "Split Ends (Hard Randomised)",
+		"map": "testlevel",
+		"stages": [
+			{
+				"cutscenes": [{
+					"actor": "Wizard",
+					"text": "Time to hold my ground for 10 waves. The waves will get progressively more difficult.",
+					"target": null,	
+				}],
+				"attackscenes": [{
+					"actor": "Wizard",
+					"text": "Good luck!",
+					"target": "enemies",
+				}],
+				"enemies": [
+					{ "type": Spawnable.Goblin, "count": 10 },
+					{ "type": Spawnable.Zombie, "count": 10 },
+				],
+				"weapons": [],
+				"traps": [],
+				"gold": 200,
+				"shop": true,
+				"endless": true,
+				"difficulty": 1.6,
 			},
 		]
 	},
 	"bigwavenormal": {
-		"name": "Big Wave",
+		"name": "Bonus: One Big Wave",
 		"map": "testlevel",
 		"stages": [
 			{
@@ -282,9 +338,9 @@ var levels = {
 					"target": "enemies",
 				}],
 				"enemies": [
-					{ "type": Spawnable.Goblin, "count": 250 },
-					{ "type": Spawnable.Zombie, "count": 200 },
-					{ "type": Spawnable.Demon, "count": 100 },
+					{ "type": Spawnable.Goblin, "count": 200 },
+					{ "type": Spawnable.Zombie, "count": 150 },
+					{ "type": Spawnable.Demon, "count": 80 },
 					{ "type": Spawnable.Skeleton, "count": 50 },
 					{ "type": Spawnable.HeavySkeleton, "count": 25 },
 					{ "type": Spawnable.Giant, "count": 5 },
@@ -297,7 +353,7 @@ var levels = {
 		]
 	},
 	"bigwavehard": {
-		"name": "Big Wave (Hard)",
+		"name": "Bonus: One Big Wave (Hard)",
 		"map": "testlevel",
 		"stages": [
 		{

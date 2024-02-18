@@ -100,9 +100,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("trap4"):
 		setTrap = 4
 		
-	if Input.is_key_pressed(KEY_P):
-		for enemy in get_tree().get_nodes_in_group("enemies"):
-			enemy.health -= 10
+	#if Input.is_key_pressed(KEY_P):
+		#for enemy in get_tree().get_nodes_in_group("enemies"):
+			#enemy.health -= 10
 	
 	if setWeapon:
 		if setWeapon != weaponCurrent:

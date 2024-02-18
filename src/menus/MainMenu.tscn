@@ -41,7 +41,7 @@ label_settings = SubResource("LabelSettings_sjcxb")
 horizontal_alignment = 1
 
 [node name="Padding1" type="Control" parent="CenterContainer/Menu"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="LevelSelection" type="VBoxContainer" parent="CenterContainer/Menu"]
