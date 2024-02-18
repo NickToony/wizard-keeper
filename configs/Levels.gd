@@ -10,8 +10,11 @@ enum Spawnable {
 }
 
 var levels = {
-	"Tutorial": [
-		{
+	"Tutorial": {
+		"name": "Tutorial (Very Easy)",
+		"map": "Tutorial",
+		"stages": [
+			{
 			"cutscenes": [{
 				"actor": "Wizard",
 				"text": "Another wonderful day of peace... yet here I am patrolling these dungeons again",
@@ -88,6 +91,7 @@ var levels = {
 				{ "type": Spawnable.Goblin, "count": 20 }
 			],
 			"traps": ["pool", "spikes"],
+			"gold": 50,
 		},
 		{
 			"cutscenes": [{
@@ -183,29 +187,67 @@ var levels = {
 				{ "type": Spawnable.Goblin, "count": 30 }
 			],
 		}
-	],
-	"testlevel": [
+	]
+	},
+	"bigwavenormal": {
+		"name": "Big Wave",
+		"map": "testlevel",
+		"stages": [
 		{
 			"cutscenes": [{
 				"actor": "Wizard",
-				"text": "Here comes a huge wave of enemies. Good thing I saved up all my pennies. It's time to prepare.",
+				"text": "Here comes a huge wave of enemies. Good thing I saved up all my pennies. It's time to prepare - I only need to survive the one wave.",
 				"target": null,	
 			}],
 			"attackscenes": [{
 				"actor": "Wizard",
-				"text": "Here they come!",
+				"text": "It begins.",
 				"target": "enemies",
 			}],
 			"enemies": [
-				{ "type": Spawnable.Goblin, "count": 25 },
-				{ "type": Spawnable.Zombie, "count": 25 },
-				{ "type": Spawnable.Demon, "count": 10 },
+				{ "type": Spawnable.Goblin, "count": 250 },
+				{ "type": Spawnable.Zombie, "count": 200 },
+				{ "type": Spawnable.Demon, "count": 100 },
+				{ "type": Spawnable.Skeleton, "count": 50 },
+				{ "type": Spawnable.HeavySkeleton, "count": 25 },
+				{ "type": Spawnable.Giant, "count": 5 },
 			],
 			"weapons": [],
-			"traps": ['zapper', 'lavajet'],
+			"traps": [],
 			"gold": 1000,
 			"shop": true,
-			"endless": true,
 		},
 	]
+	},
+	"bigwavehard": {
+		"name": "Big Wave (Hard)",
+		"map": "testlevel",
+		"stages": [
+		{
+			"cutscenes": [{
+				"actor": "Wizard",
+				"text": "This will be one tough wave. Good thing I got a loan from my wizard friend.",
+				"target": null,	
+			}],
+			"attackscenes": [{
+				"actor": "Wizard",
+				"text": "Now I'm on my own.",
+				"target": "enemies",
+			}],
+			"enemies": [
+				{ "type": Spawnable.Goblin, "count": 250 },
+				{ "type": Spawnable.Zombie, "count": 200 },
+				{ "type": Spawnable.Demon, "count": 100 },
+				{ "type": Spawnable.Skeleton, "count": 50 },
+				{ "type": Spawnable.HeavySkeleton, "count": 25 },
+				{ "type": Spawnable.Giant, "count": 5 },
+			],
+			"weapons": [],
+			"traps": [],
+			"gold": 1500,
+			"shop": true,
+			"difficulty": 2,
+		},
+	]
+	}
 }

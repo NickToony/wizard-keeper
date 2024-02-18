@@ -17,7 +17,7 @@ var level
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	level = Levels.levels[get_parent().level_name]
+	level = Levels.levels[get_parent().level_name].stages
 	pass
 	
 func _physics_process(delta):
@@ -120,7 +120,7 @@ func _physics_process(delta):
 		step += 1
 		
 func endlessWave():
-	State.difficulty += 0.1
+	State.difficulty += 0.5
 	State.nextWave = ''
 	
 	var counts = {

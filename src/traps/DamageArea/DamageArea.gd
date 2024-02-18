@@ -36,9 +36,8 @@ func _process(_delta):
 					target.burningTime = trap.burning * 60
 			target.damaged(trap.damage)
 		emit_signal("trap_ticked")
-		emit_signal("trap_ticked_effective")
-		#if targets.size() > 0:
-			#emit_signal("trap_ticked_effective")
+		if targets.size() > 0:
+			emit_signal("trap_ticked_effective")
 
 func _on_body_entered(body: Node3D):
 	if body.is_in_group('enemies'):

@@ -104,7 +104,7 @@ func _process(delta):
 			dead = true
 			respawnCounter = 1000
 		elif respawnCounter <= 0:
-			global_position = get_tree().get_nodes_in_group('exit')[0].global_position + Vector3(0, 1, 0)
+			global_position = get_tree().get_nodes_in_group('exit')[0].global_position + Vector3(0, 0.6, 0)
 			health = maxHealth
 			dead = false
 		else:

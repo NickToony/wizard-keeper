@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=26 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Theme" uid="uid://dbnc08hltbdu3" path="res://src/menus/MainMenu.tres" id="1_jdnly"]
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/interface/TrapBar.gd" id="8_ifm6r"]
 [ext_resource type="Script" path="res://src/interface/Lives.gd" id="9_bjq5a"]
 [ext_resource type="Script" path="res://src/interface/WaitDisplay.gd" id="10_mojjs"]
+[ext_resource type="Script" path="res://src/interface/Difficulty.gd" id="10_o73fu"]
 [ext_resource type="Script" path="res://src/interface/Gold.gd" id="10_xtolg"]
 [ext_resource type="Script" path="res://src/interface/PlayDisplay.gd" id="11_3q85v"]
 [ext_resource type="Script" path="res://src/interface/NextWave.gd" id="11_xaouc"]
@@ -140,6 +141,11 @@ theme_override_constants/margin_bottom = 8
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
+
+[node name="Difficulty" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lives"
+script = ExtResource("10_o73fu")
 
 [node name="Gold" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

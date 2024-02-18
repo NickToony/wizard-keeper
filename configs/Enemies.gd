@@ -43,7 +43,7 @@ var Definitions: Dictionary = {
 	},
 	"HeavySkeleton": {
 		"mesh": "res://assets/enemies/Skeleton_Armor.gltf",
-		"health": 400,
+		"health": 300,
 		"speed": .8,
 		"damage": 20,
 		"attackspeed": 1,
@@ -53,8 +53,8 @@ var Definitions: Dictionary = {
 	},
 	"Giant": {
 		"mesh": "res://assets/enemies/Giant.gltf",
-		"health": 1000,
-		"speed": .7,
+		"health": 600,
+		"speed": .6,
 		"damage": 100,
 		"attackspeed": 0.5,
 		"lives": 10,

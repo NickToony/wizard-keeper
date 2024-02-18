@@ -2,7 +2,7 @@ extends VBoxContainer
 
 var mainScene = preload("res://main.tscn")
 
-@onready var levels = Levels.levels.keys()
+var levels = Levels.levels.keys()
 
 @onready var rootScene = get_node("/root/SubViewportContainer/SubViewport")
 @onready var level_selection = $LevelSelection
@@ -10,7 +10,7 @@ var mainScene = preload("res://main.tscn")
 func _ready():
 	for level in levels:
 		var button = Button.new()
-		button.text = level
+		button.text = Levels.levels[level].name
 		button.pressed.connect(func(): goToLevel(level))
 		level_selection.add_child(button)
 	
@@ -20,7 +20,7 @@ func _ready():
 
 func goToLevel(levelName):		
 	var main = mainScene.instantiate()
-	var level = load("res://src/levels/" + levelName + ".tscn").instantiate()
+	var level = load("res://src/levels/" + Levels.levels[levelName].map + ".tscn").instantiate()
 	level.level_name = levelName
 	main.add_child(level)
 	rootScene.add_child(main)
