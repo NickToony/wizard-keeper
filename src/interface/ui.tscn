@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c27y82t7fanjr"]
+[gd_scene load_steps=23 format=3 uid="uid://c27y82t7fanjr"]
 
 [ext_resource type="Theme" uid="uid://dbnc08hltbdu3" path="res://src/menus/MainMenu.tres" id="1_jdnly"]
 [ext_resource type="Texture2D" uid="uid://cwxaul0wlmcar" path="res://assets/ui/barBack_horizontalMid.png" id="1_m8tr0"]
@@ -18,6 +18,20 @@
 [ext_resource type="Script" path="res://src/interface/Actor.gd" id="16_87sjr"]
 [ext_resource type="Script" path="res://src/interface/Content.gd" id="16_evlyw"]
 [ext_resource type="PackedScene" uid="uid://5hwcqxux1ihw" path="res://src/shop/shop.tscn" id="18_4yqyh"]
+[ext_resource type="Script" path="res://src/interface/Exit.gd" id="19_803fl"]
+[ext_resource type="Script" path="res://src/interface/Music.gd" id="19_u340r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phka5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8pnk"]
+font_size = 36
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -44,20 +58,6 @@ stretch_margin_bottom = 10
 texture_under = ExtResource("1_m8tr0")
 texture_progress = ExtResource("2_y7kw4")
 script = ExtResource("3_jvwfl")
-
-[node name="PauseMode" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_5uprp")
-
-[node name="Label" type="Label" parent="PauseMode"]
-layout_mode = 0
-offset_left = 909.0
-offset_top = 488.0
-offset_right = 971.0
-offset_bottom = 511.0
-text = "PAUSED"
 
 [node name="BottomBar" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -117,28 +117,37 @@ keyLabel = "3"
 layout_mode = 2
 keyLabel = "4"
 
-[node name="Lives" type="Label" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -21.0
+offset_bottom = 60.0
 grow_horizontal = 0
-text = "Lives"
-script = ExtResource("9_bjq5a")
 
-[node name="Gold" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_top = 32.0
-offset_bottom = 55.0
-grow_horizontal = 0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Gold" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
 text = "Gold"
 script = ExtResource("10_xtolg")
+
+[node name="Lives" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lives"
+script = ExtResource("9_bjq5a")
 
 [node name="WaitDisplay" type="Control" parent="."]
 layout_mode = 1
@@ -243,3 +252,57 @@ horizontal_alignment = 1
 
 [node name="Shop" parent="." instance=ExtResource("18_4yqyh")]
 layout_mode = 1
+
+[node name="PauseMode" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_5uprp")
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMode/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_phka5")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMode/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_y8pnk")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Music" type="Button" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Toggle Music"
+script = ExtResource("19_u340r")
+
+[node name="Exit" type="Button" parent="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Menu"
+script = ExtResource("19_803fl")
+
+[connection signal="pressed" from="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" to="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" method="_on_pressed"]
+[connection signal="pressed" from="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" to="PauseMode/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" method="_on_pressed"]

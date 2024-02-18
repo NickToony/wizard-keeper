@@ -5,13 +5,14 @@ var mainScene = preload("res://main.tscn")
 @onready var levels = Levels.levels.keys()
 
 @onready var rootScene = get_node("/root/SubViewportContainer/SubViewport")
+@onready var level_selection = $LevelSelection
 
 func _ready():
 	for level in levels:
 		var button = Button.new()
 		button.text = level
 		button.pressed.connect(func(): goToLevel(level))
-		add_child(button)
+		level_selection.add_child(button)
 	
 	Music.reset()
 	State.reset()

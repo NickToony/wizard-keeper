@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://decd6wqe38mqe"]
+[gd_scene load_steps=7 format=3 uid="uid://decd6wqe38mqe"]
 
 [ext_resource type="Script" path="res://src/menus/LevelSelection.gd" id="1_nt3v0"]
 [ext_resource type="Theme" uid="uid://dbnc08hltbdu3" path="res://src/menus/MainMenu.tres" id="2_lpea8"]
 [ext_resource type="Texture2D" uid="uid://bsaj7f2y248fv" path="res://assets/menu/background.png" id="2_q1t3k"]
 [ext_resource type="Texture2D" uid="uid://soqrkg6otf4u" path="res://assets/GWJ-Half-Logo-Orange.svg" id="2_y4144"]
+[ext_resource type="Script" path="res://src/menus/Music.gd" id="4_oart4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sjcxb"]
 font_size = 50
@@ -29,19 +30,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LevelSelection" type="VBoxContainer" parent="CenterContainer"]
+[node name="Menu" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 script = ExtResource("1_nt3v0")
 
-[node name="Title" type="Label" parent="CenterContainer/LevelSelection"]
+[node name="Title" type="Label" parent="CenterContainer/Menu"]
 layout_mode = 2
 text = "Wizard Keeper"
 label_settings = SubResource("LabelSettings_sjcxb")
 horizontal_alignment = 1
 
-[node name="Padding1" type="Control" parent="CenterContainer/LevelSelection"]
+[node name="Padding1" type="Control" parent="CenterContainer/Menu"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+
+[node name="LevelSelection" type="VBoxContainer" parent="CenterContainer/Menu"]
+layout_mode = 2
+
+[node name="Padding2" type="Control" parent="CenterContainer/Menu"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Music" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+script = ExtResource("4_oart4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -77,3 +89,5 @@ theme_override_constants/margin_bottom = 16
 [node name="Label" type="Label" parent="MarginContainer2"]
 layout_mode = 2
 text = "Made by NickToony"
+
+[connection signal="pressed" from="CenterContainer/Menu/Music" to="CenterContainer/Menu/Music" method="_on_pressed"]

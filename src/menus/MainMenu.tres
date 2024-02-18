@@ -12,4 +12,5 @@ texture_margin_bottom = 5.0
 [resource]
 /icons/zdf = null
 Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/styles/normal = SubResource("StyleBoxTexture_j280u")

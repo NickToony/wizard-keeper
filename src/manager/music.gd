@@ -3,6 +3,8 @@ extends Node
 @onready var actionMusic = $ActionMusic
 @onready var animationPlayer = $AnimationPlayer
 
+var enabled = true
+
 func _ready():
 	calmMusic.process_mode = Node.PROCESS_MODE_ALWAYS
 	actionMusic.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -19,7 +21,7 @@ func _physics_process(delta):
 
 # crossfades to a new audio stream
 func crossfade_to(music) -> void:
-	if !State.music:
+	if !enabled:
 		return
 
 	# The `playing` property of the stream players tells us which track is active. 
@@ -34,5 +36,13 @@ func crossfade_to(music) -> void:
 		animationPlayer.play("FadeToAction")
 		
 func reset():
-	if !calmMusic.playing:
-			crossfade_to(calmMusic)
+	if enabled && !calmMusic.playing:
+		crossfade_to(calmMusic)
+
+func toggle():
+	enabled = !enabled
+	if enabled:
+		crossfade_to(calmMusic)
+	else:
+		calmMusic.stop()
+		actionMusic.stop()
