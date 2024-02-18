@@ -238,6 +238,34 @@ var levels = {
 			},
 		]
 	},
+	"linear2": {
+		"name": "The One Way (Hard Randomised)",
+		"map": "Tutorial",
+		"stages": [
+			{
+				"cutscenes": [{
+					"actor": "Wizard",
+					"text": "Time to hold my ground for 10 waves. The waves will get progressively more difficult.",
+					"target": null,	
+				}],
+				"attackscenes": [{
+					"actor": "Wizard",
+					"text": "Good luck!",
+					"target": "enemies",
+				}],
+				"enemies": [
+					{ "type": Spawnable.Goblin, "count": 10 },
+					{ "type": Spawnable.Zombie, "count": 10 },
+				],
+				"weapons": [],
+				"traps": [],
+				"gold": 200,
+				"shop": true,
+				"endless": true,
+				"difficulty": 1.5,
+			},
+		]
+	},
 	"bigwavenormal": {
 		"name": "Big Wave",
 		"map": "testlevel",

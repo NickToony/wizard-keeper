@@ -6,5 +6,7 @@ func _ready():
 	visible = !Engine.is_editor_hint()
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
 	if shadow_enabled != State.lights:
 		shadow_enabled = State.lights

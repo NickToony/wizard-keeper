@@ -10,7 +10,7 @@ size = Vector3(1, 1, 2.56396)
 [node name="LavaJet" node_paths=PackedStringArray("model") instance=ExtResource("1_ufot8")]
 script = ExtResource("2_m3y4k")
 regex = "lava*"
-lungeSpeed = 10
+lungeSpeed = 2
 retractSpeed = 2
 model = NodePath("jets")
 startHidden = true
